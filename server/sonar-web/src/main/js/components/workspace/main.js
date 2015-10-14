@@ -26,7 +26,7 @@ Workspace.prototype = {
     });
 
     this.itemsView = new ItemsView({ collection: this.items });
-    this.itemsView.render().$el.appendTo(document.body);
+    this.itemsView.render().$el.appendTo($('#extra'));
     this.itemsView.on('click', function (model) {
       that.open(model);
     });

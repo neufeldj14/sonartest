@@ -1,8 +1,5 @@
-<div id="body" class="page">
-  <% if @snapshot %>
-    <div class="print"><h2><%= h @snapshot.project.name(true) %></h2></div>
-  <% end %>
-  <div class="hidden" id="messages-panel">
+<main id="body" class="page-main page-container">
+  <div class="panel hidden" id="messages-panel">
     <div class="alert alert-danger hidden" id="error">
       <span id="errormsg"></span> &nbsp;&nbsp;[<a href="#" onclick="return hideError();"><%= message('hide').downcase -%></a>]
     </div>
@@ -13,5 +10,6 @@
       <span id="warningmsg"></span> &nbsp;&nbsp;[<a href="#" onclick="return hideWarning();"><%= message('hide').downcase -%></a>]
     </div>
   </div>
-  <%= yield %>
-</div>
+
+  <div id="content"><%= yield %></div>
+</main>

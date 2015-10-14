@@ -188,4 +188,8 @@ gulp.task('build', ['clean', 'scripts', 'styles'], function () {
   }
 });
 
+gulp.task('watch', [], function () {
+  gulp.watch('src/main/less/**/*.less', ['styles']);
+});
+
 gulp.task('default', ['build']);

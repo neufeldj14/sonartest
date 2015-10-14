@@ -2,10 +2,29 @@
 @import (reference) "../mixins";
 @import (reference) "../init/links";
 
-body {
-  min-height: 100vh;
+
+.page-wrapper {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-wrapper-simple {
+  justify-content: space-between;
+
+  .page-main {
+    flex: 0 1 auto;
+    width: 400px;
+    min-width: 0;
+    margin: 0 auto;
+    padding: 40px;
+    border: 1px solid @barBorderColor;
+    background-color: #fff;
+  }
+}
+
+.page-main {
+  flex: 1;
 }
 
 .page {
@@ -21,20 +40,6 @@ body {
 .page-wrapper {
   box-sizing: border-box;
   flex: 1;
-}
-
-.page-wrapper-simple {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.page-wrapper-global {
-  padding-top: @navbarGlobalHeight;
-}
-
-.page-wrapper-context {
-  padding-top: @navbarGlobalHeight + @navbarContextHeight;
 }
 
 .page-simple {

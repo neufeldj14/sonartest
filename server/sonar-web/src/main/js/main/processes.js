@@ -164,5 +164,5 @@ $.ajaxSetup({
 
 
 $(function () {
-  processesView.render().$el.insertBefore('#footer');
+  processesView.render().$el.appendTo('#extra');
 });

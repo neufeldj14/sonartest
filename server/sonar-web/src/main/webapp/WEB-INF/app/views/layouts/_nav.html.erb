@@ -1,0 +1,15 @@
+<%
+   selected_section = Navigation::SECTION_HOME
+   selected_section = controller.class::SECTION if defined?(controller.class::SECTION)
+   if selected_section == Navigation::SECTION_RESOURCE && !@project && !@resource
+     selected_section = Navigation::SECTION_HOME
+   end
+   @project = @resource unless @project || selected_section == Navigation::SECTION_HOME
+   has_context_nav = selected_section == Navigation::SECTION_RESOURCE || selected_section == Navigation::SECTION_CONFIGURATION
+%>
+
+<nav class="navbar navbar-global page-container" id="global-navigation"></nav>
+
+<% if has_context_nav %>
+  <nav class="navbar navbar-context page-container" id="context-navigation"></nav>
+<% end %>
