@@ -1548,6 +1548,13 @@
         <module>it</module>
       </modules>
     </profile>
+
+    <profile>
+      <id>upgrade-test</id>
+      <modules>
+        <module>tests/upgrade-test</module>
+      </modules>
+    </profile>
   </profiles>
 
 </project>
