@@ -132,10 +132,3 @@
 
   <%= render :partial => 'footer' -%>
 </div>
-
-<% content_for :extra_script do %>
-  <script>
-    window.sonarqube.el = '#source-viewer';
-  </script>
-  <script src="<%= ApplicationController.root_context -%>/js/bundles/drilldown.js?v=<%= sonar_version -%>"></script>
-<% end %>

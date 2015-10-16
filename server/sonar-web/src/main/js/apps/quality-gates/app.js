@@ -11,8 +11,7 @@ import '../../helpers/handlebars-helpers';
 
 var App = new Marionette.Application();
 
-var init = function () {
-  let options = window.sonarqube;
+var init = function (options) {
   // Layout
   this.layout = new Layout({ el: options.el });
   this.layout.render();
@@ -46,19 +45,19 @@ var init = function () {
   });
 };
 
-var appXHR = $.get(baseUrl + '/api/qualitygates/app')
-    .done(function (r) {
-      App.canEdit = r.edit;
-      App.periods = r.periods;
-      App.metrics = r.metrics;
-    });
-
 App.on('start', function (options) {
+  var appXHR = $.get(baseUrl + '/api/qualitygates/app')
+      .done(function (r) {
+        App.canEdit = r.edit;
+        App.periods = r.periods;
+        App.metrics = r.metrics;
+      });
+
   appXHR.done(function () {
     init.call(App, options);
   });
 });
 
-window.sonarqube.appStarted.then(options => App.start(options));
+export default App;
 
 

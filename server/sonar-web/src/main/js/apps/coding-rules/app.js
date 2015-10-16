@@ -16,9 +16,7 @@ import './partials';
 import '../../helpers/handlebars-helpers';
 
 var App = new Marionette.Application(),
-    init = function () {
-      let options = window.sonarqube;
-
+    init = function (options) {
       this.layout = new Layout({ el: options.el });
       this.layout.render();
       $('#footer').addClass('search-navigator-footer');
@@ -78,27 +76,27 @@ App.getSubCharacteristicName = function (key) {
   }
 };
 
-var appXHR = $.get(baseUrl + '/api/rules/app').done(function (r) {
-  App.canWrite = r.canWrite;
-  App.qualityProfiles = _.sortBy(r.qualityprofiles, ['name', 'lang']);
-  App.languages = _.extend(r.languages, {
-    none: 'None'
-  });
-  _.map(App.qualityProfiles, function (profile) {
-    profile.language = App.languages[profile.lang];
-  });
-  App.repositories = r.repositories;
-  App.repositories.push(App.manualRepository());
-  App.statuses = r.statuses;
-  App.characteristics = r.characteristics.map(function (item, index) {
-    return _.extend(item, { index: index });
-  });
-});
-
 App.on('start', function (options) {
+  var appXHR = $.get(baseUrl + '/api/rules/app').done(function (r) {
+    App.canWrite = r.canWrite;
+    App.qualityProfiles = _.sortBy(r.qualityprofiles, ['name', 'lang']);
+    App.languages = _.extend(r.languages, {
+      none: 'None'
+    });
+    _.map(App.qualityProfiles, function (profile) {
+      profile.language = App.languages[profile.lang];
+    });
+    App.repositories = r.repositories;
+    App.repositories.push(App.manualRepository());
+    App.statuses = r.statuses;
+    App.characteristics = r.characteristics.map(function (item, index) {
+      return _.extend(item, { index: index });
+    });
+  });
+
   appXHR.done(function () {
     init.call(App, options);
   });
 });
 
-window.sonarqube.appStarted.then(options => App.start(options));
+export default App;

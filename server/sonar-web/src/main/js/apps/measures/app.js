@@ -158,8 +158,8 @@ var NavigatorApp = new Marionette.Application(),
       key.setScope('list');
     };
 
-NavigatorApp.on('start', function () {
-  init.call(NavigatorApp);
+NavigatorApp.on('start', function (options) {
+  init.call(NavigatorApp, options);
 });
 
-window.sonarqube.appStarted.then(options => NavigatorApp.start(options));
+export default NavigatorApp;

@@ -17,9 +17,7 @@ import './partials';
 import '../../helpers/handlebars-helpers';
 
 var App = new Marionette.Application(),
-    init = function () {
-      let options = window.sonarqube;
-
+    init = function (options) {
       this.state = new State();
       this.list = new Issues();
       this.facets = new Facets();
@@ -63,10 +61,10 @@ var App = new Marionette.Application(),
       });
     };
 
-App.on('start', function () {
-  init.call(App);
+App.on('start', function (options) {
+  init.call(App, options);
 });
 
-window.sonarqube.appStarted.then(options => App.start(options));
+export default App;
 
 

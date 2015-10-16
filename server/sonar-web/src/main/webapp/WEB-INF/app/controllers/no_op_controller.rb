@@ -17,12 +17,10 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
+class NoOpController < ApplicationController
 
-class QualityGatesController < ApplicationController
+  SECTION=Navigation::SECTION_HOME
 
-  SECTION=Navigation::SECTION_QUALITY_GATES
-
-  # GET /quality_gates/index
   def index
 
   end

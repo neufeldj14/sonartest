@@ -14,6 +14,8 @@ var uglify = require('gulp-uglify');
 
 var source = require('vinyl-source-stream');
 
+var BUNDLED_APPS = ['coding-rules', 'component-issues', 'issues', 'measures', 'quality-gates', 'quality-profiles'];
+
 
 function getAppName (file) {
   return file
@@ -90,7 +92,12 @@ module.exports.apps = function (output, production, dev, watch, done) {
       done(err);
     }
 
-    var tasks = files.map(function (entry) {
+    var filteredFiles = files.filter(function (file) {
+      var appName = getAppName(file);
+      return BUNDLED_APPS.indexOf(appName) === -1;
+    });
+
+    var tasks = filteredFiles.map(function (entry) {
       return doBrowserify(
           entry,
           getAppName(entry) + '.js',

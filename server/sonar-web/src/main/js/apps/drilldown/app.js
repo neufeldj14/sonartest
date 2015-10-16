@@ -5,8 +5,7 @@ import '../../helpers/handlebars-helpers';
 
 var App = new Marionette.Application(),
     init = function () {
-      let options = window.sonarqube;
-      App.addRegions({ viewerRegion: options.el });
+      App.addRegions({ viewerRegion: '#source-viewer' });
       $('.js-drilldown-link').on('click', function (e) {
         e.preventDefault();
         $(e.currentTarget).closest('table').find('.selected').removeClass('selected');
@@ -27,4 +26,4 @@ App.on('start', function (options) {
   init.call(App, options);
 });
 
-window.sonarqube.appStarted.then(options => App.start(options));
+export default App;

@@ -17,16 +17,14 @@ import '../issues/partials';
 import '../../helpers/handlebars-helpers';
 
 var App = new Marionette.Application(),
-    init = function () {
-      let options = window.sonarqube;
-
-      this.config = options.config;
+    init = function (options) {
+      this.config = options;
       this.state = new State({
         isContext: true,
-        contextQuery: { componentUuids: options.config.resource },
-        contextComponentUuid: options.config.resource,
-        contextComponentName: options.config.resourceName,
-        contextComponentQualifier: options.config.resourceQualifier
+        contextQuery: { componentUuids: options.component.id },
+        contextComponentUuid: options.component.id,
+        contextComponentName: options.component.name,
+        contextComponentQualifier: options.component.qualifier
       });
       this.updateContextFacets();
       this.list = new Issues();
@@ -66,7 +64,7 @@ var App = new Marionette.Application(),
     };
 
 App.getContextQuery = function () {
-  return { componentUuids: this.config.resource };
+  return { componentUuids: this.config.component.id };
 };
 
 App.getRestrictedFacets = function () {
@@ -85,8 +83,8 @@ App.updateContextFacets = function () {
       facetsFromServer = this.state.get('facetsFromServer');
   return this.state.set({
     facets: facets,
-    allFacets: _.difference(allFacets, this.getRestrictedFacets()[this.config.resourceQualifier]),
-    facetsFromServer: _.difference(facetsFromServer, this.getRestrictedFacets()[this.config.resourceQualifier])
+    allFacets: _.difference(allFacets, this.getRestrictedFacets()[this.config.component.qualifier]),
+    facetsFromServer: _.difference(facetsFromServer, this.getRestrictedFacets()[this.config.component.qualifier])
   });
 };
 
@@ -94,4 +92,4 @@ App.on('start', function (options) {
   init.call(App, options);
 });
 
-window.sonarqube.appStarted.then(options => App.start(options));
+export default App;
