@@ -57,7 +57,7 @@ public class BuildComponentTreeStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     analysisMetadataHolder.setAnalysisDate(new Date(reportReader.readMetadata().getAnalysisDate()));
     BatchReport.Metadata reportMetadata = reportReader.readMetadata();
     String branch = reportMetadata.hasBranch() ? reportMetadata.getBranch() : null;

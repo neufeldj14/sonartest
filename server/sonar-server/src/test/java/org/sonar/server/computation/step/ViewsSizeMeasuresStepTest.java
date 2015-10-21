@@ -33,6 +33,7 @@ import static com.google.common.collect.FluentIterable.from;
 import static com.google.common.collect.Iterables.concat;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.api.measures.CoreMetrics.CLASSES_KEY;
 import static org.sonar.api.measures.CoreMetrics.DIRECTORIES_KEY;
 import static org.sonar.api.measures.CoreMetrics.FILES_KEY;
@@ -115,7 +116,7 @@ public class ViewsSizeMeasuresStepTest {
 
   @Test
   public void verify_FILE_and_DIRECTORY_computation_and_aggregation() {
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyNoMeasure(PROJECTVIEW_1_REF);
     verifyNoMeasure(PROJECTVIEW_2_REF);
@@ -146,7 +147,7 @@ public class ViewsSizeMeasuresStepTest {
     measureRepository.addRawMeasure(PROJECTVIEW_5_REF, metric1Key, newMeasureBuilder().create(3));
     measureRepository.addRawMeasure(PROJECTVIEW_5_REF, metric2Key, newMeasureBuilder().create(7));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyNoMeasure(PROJECTVIEW_1_REF);
     verifyNoMeasure(PROJECTVIEW_2_REF);
@@ -177,7 +178,7 @@ public class ViewsSizeMeasuresStepTest {
     measureRepository.addRawMeasure(PROJECTVIEW_4_REF, metricKey, newMeasureBuilder().create(3));
     measureRepository.addRawMeasure(PROJECTVIEW_5_REF, metricKey, newMeasureBuilder().create(7));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyNoMeasure(PROJECTVIEW_1_REF);
     verifyNoMeasure(PROJECTVIEW_2_REF);

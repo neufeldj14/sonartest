@@ -124,7 +124,7 @@ public class ViewsPersistSnapshotsStepTest extends BaseStepTest {
     dbIdsRepository.setComponentId(subView, subViewDto.getId());
     dbIdsRepository.setComponentId(projectView, projectViewDto.getId());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("snapshots")).isEqualTo(3);
 
@@ -194,7 +194,7 @@ public class ViewsPersistSnapshotsStepTest extends BaseStepTest {
 
     periodsHolder.setPeriods(new Period(1, CoreProperties.TIMEMACHINE_MODE_DATE, "2015-01-01", analysisDate, 123L));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     SnapshotDto viewSnapshot = getUnprocessedSnapshot(viewDto.getId());
     assertThat(viewSnapshot.getPeriodMode(1)).isEqualTo(CoreProperties.TIMEMACHINE_MODE_DATE);

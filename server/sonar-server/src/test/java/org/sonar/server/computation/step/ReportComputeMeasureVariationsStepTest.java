@@ -46,6 +46,7 @@ import org.sonar.server.computation.period.PeriodsHolderRule;
 import org.sonar.test.DbTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.db.component.SnapshotTesting.createForComponent;
 import static org.sonar.db.component.SnapshotTesting.newSnapshotForProject;
 
@@ -109,7 +110,7 @@ public class ReportComputeMeasureVariationsStepTest {
 
     treeRootHolder.setRoot(PROJECT);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getRawMeasures(PROJECT).keys()).isEmpty();
   }
@@ -120,7 +121,7 @@ public class ReportComputeMeasureVariationsStepTest {
     treeRootHolder.setRoot(project);
     periodsHolder.setPeriods();
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getRawMeasures(project).keys()).isEmpty();
   }
@@ -149,7 +150,7 @@ public class ReportComputeMeasureVariationsStepTest {
     addRawMeasure(project, ISSUES_METRIC, Measure.newMeasureBuilder().create(80, null));
     addRawMeasure(directory, ISSUES_METRIC, Measure.newMeasureBuilder().create(20, null));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getRawMeasure(project, ISSUES_METRIC).get().getVariations().getVariation1()).isEqualTo(20d);
     assertThat(measureRepository.getRawMeasure(directory, ISSUES_METRIC).get().getVariations().getVariation1()).isEqualTo(10d);
@@ -182,7 +183,7 @@ public class ReportComputeMeasureVariationsStepTest {
 
     addRawMeasure(PROJECT, ISSUES_METRIC, Measure.newMeasureBuilder().create(80, null));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getRawMeasures(PROJECT).keys()).hasSize(1);
 
@@ -216,7 +217,7 @@ public class ReportComputeMeasureVariationsStepTest {
     addRawMeasure(PROJECT, FILE_COMPLEXITY_METRIC, Measure.newMeasureBuilder().create(3d, null));
     addRawMeasure(PROJECT, BUILD_BREAKER_METRIC, Measure.newMeasureBuilder().create(false, null));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getRawMeasures(PROJECT).keys()).hasSize(4);
 

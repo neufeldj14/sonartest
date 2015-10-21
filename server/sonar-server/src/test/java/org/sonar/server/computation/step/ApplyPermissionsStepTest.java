@@ -51,6 +51,7 @@ import org.sonar.server.issue.index.IssueIndexDefinition;
 import org.sonar.test.DbTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.db.component.ComponentTesting.newView;
 import static org.sonar.db.permission.PermissionTemplateTesting.newPermissionTemplateDto;
 import static org.sonar.server.computation.component.Component.Type.PROJECT;
@@ -114,7 +115,7 @@ public class ApplyPermissionsStepTest extends BaseStepTest {
     dbIdsRepository.setComponentId(project, projectDto.getId());
     treeRootHolder.setRoot(project);
 
-    step.execute();
+    step.execute(mock(StepContext.class));
     dbSession.commit();
 
     assertThat(dbClient.componentDao().selectOrFailByKey(dbSession, ROOT_KEY).getAuthorizationUpdatedAt()).isNotNull();
@@ -135,7 +136,7 @@ public class ApplyPermissionsStepTest extends BaseStepTest {
     dbIdsRepository.setComponentId(project, projectDto.getId());
     treeRootHolder.setRoot(project);
 
-    step.execute();
+    step.execute(mock(StepContext.class));
     dbSession.commit();
 
     // Check that authorization updated at has not been changed -> Nothing has been done
@@ -155,7 +156,7 @@ public class ApplyPermissionsStepTest extends BaseStepTest {
     dbIdsRepository.setComponentId(project, viewDto.getId());
     treeRootHolder.setRoot(project);
 
-    step.execute();
+    step.execute(mock(StepContext.class));
     dbSession.commit();
 
     assertThat(dbClient.componentDao().selectOrFailByKey(dbSession, ROOT_KEY).getAuthorizationUpdatedAt()).isNotNull();
@@ -175,7 +176,7 @@ public class ApplyPermissionsStepTest extends BaseStepTest {
     dbIdsRepository.setComponentId(project, viewDto.getId());
     treeRootHolder.setRoot(project);
 
-    step.execute();
+    step.execute(mock(StepContext.class));
     dbSession.commit();
 
     // Check that authorization updated at has not been changed -> Nothing has been done

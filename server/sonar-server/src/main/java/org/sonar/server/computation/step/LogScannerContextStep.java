@@ -35,7 +35,7 @@ public class LogScannerContextStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     CloseableIterator<String> logs = reportReader.readScannerLogs();
     try {
       while (logs.hasNext()) {

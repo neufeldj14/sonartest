@@ -68,7 +68,7 @@ public class ExtractReportStepTest {
 
     when(reportFiles.fileForUuid(TASK_UUID)).thenReturn(zip);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
   }
 
   @Test
@@ -80,7 +80,7 @@ public class ExtractReportStepTest {
     ZipUtils.zipDir(zipDir, zip);
     when(reportFiles.fileForUuid(TASK_UUID)).thenReturn(zip);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(reportDirectoryHolder).setDirectory(argThat(new TypeSafeMatcher<File>() {
       @Override

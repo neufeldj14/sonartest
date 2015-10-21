@@ -83,7 +83,7 @@ public class QualityGateEventsStepTest {
   public void no_event_if_no_raw_ALERT_STATUS_measure() {
     when(measureRepository.getRawMeasure(PROJECT_COMPONENT, alertStatusMetric)).thenReturn(Optional.<Measure>absent());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(measureRepository).getRawMeasure(PROJECT_COMPONENT, alertStatusMetric);
     verifyNoMoreInteractions(measureRepository, eventRepository);
@@ -93,7 +93,7 @@ public class QualityGateEventsStepTest {
   public void no_event_created_if_raw_ALERT_STATUS_measure_is_null() {
     when(measureRepository.getRawMeasure(PROJECT_COMPONENT, alertStatusMetric)).thenReturn(of(Measure.newMeasureBuilder().createNoValue()));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(measureRepository).getRawMeasure(PROJECT_COMPONENT, alertStatusMetric);
     verifyNoMoreInteractions(measureRepository, eventRepository);
@@ -107,7 +107,7 @@ public class QualityGateEventsStepTest {
   public void no_event_created_if_raw_ALERT_STATUS_measure_is_unsupported_value() {
     when(measureRepository.getRawMeasure(PROJECT_COMPONENT, alertStatusMetric)).thenReturn(of(Measure.newMeasureBuilder().create(INVALID_ALERT_STATUS)));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(measureRepository).getRawMeasure(PROJECT_COMPONENT, alertStatusMetric);
     verifyNoMoreInteractions(measureRepository, eventRepository);
@@ -120,7 +120,7 @@ public class QualityGateEventsStepTest {
     when(measureRepository.getRawMeasure(PROJECT_COMPONENT, alertStatusMetric)).thenReturn(of(Measure.newMeasureBuilder().setQualityGateStatus(someQGStatus).createNoValue()));
     when(measureRepository.getBaseMeasure(PROJECT_COMPONENT, alertStatusMetric)).thenReturn(of(Measure.newMeasureBuilder().createNoValue()));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(measureRepository).getRawMeasure(PROJECT_COMPONENT, alertStatusMetric);
     verify(measureRepository).getBaseMeasure(PROJECT_COMPONENT, alertStatusMetric);
@@ -163,7 +163,7 @@ public class QualityGateEventsStepTest {
     when(measureRepository.getRawMeasure(PROJECT_COMPONENT, alertStatusMetric)).thenReturn(of(Measure.newMeasureBuilder().setQualityGateStatus(someQGStatus).createNoValue()));
     when(measureRepository.getBaseMeasure(PROJECT_COMPONENT, alertStatusMetric)).thenReturn(of(Measure.newMeasureBuilder().createNoValue()));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(measureRepository).getRawMeasure(PROJECT_COMPONENT, alertStatusMetric);
     verify(measureRepository).getBaseMeasure(PROJECT_COMPONENT, alertStatusMetric);
@@ -191,7 +191,7 @@ public class QualityGateEventsStepTest {
     when(measureRepository.getRawMeasure(PROJECT_COMPONENT, alertStatusMetric)).thenReturn(of(Measure.newMeasureBuilder().setQualityGateStatus(OK_QUALITY_GATE_STATUS).createNoValue()));
     when(measureRepository.getBaseMeasure(PROJECT_COMPONENT, alertStatusMetric)).thenReturn(of(Measure.newMeasureBuilder().setQualityGateStatus(OK_QUALITY_GATE_STATUS).createNoValue()));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(measureRepository).getRawMeasure(PROJECT_COMPONENT, alertStatusMetric);
     verify(measureRepository).getBaseMeasure(PROJECT_COMPONENT, alertStatusMetric);
@@ -214,7 +214,7 @@ public class QualityGateEventsStepTest {
     when(measureRepository.getBaseMeasure(PROJECT_COMPONENT, alertStatusMetric)).thenReturn(
       of(Measure.newMeasureBuilder().setQualityGateStatus(new QualityGateStatus(previousAlertStatus)).createNoValue()));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(measureRepository).getRawMeasure(PROJECT_COMPONENT, alertStatusMetric);
     verify(measureRepository).getBaseMeasure(PROJECT_COMPONENT, alertStatusMetric);

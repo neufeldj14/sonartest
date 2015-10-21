@@ -29,6 +29,7 @@ import org.sonar.server.computation.metric.MetricRepositoryRule;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.guava.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.api.measures.CoreMetrics.CLASSES;
 import static org.sonar.api.measures.CoreMetrics.CLASSES_KEY;
 import static org.sonar.api.measures.CoreMetrics.CLASS_COMPLEXITY;
@@ -127,7 +128,7 @@ public class ReportComplexityMeasuresStepTest {
     measureRepository.addRawMeasure(FILE_1_REF, metricKey, newMeasureBuilder().create(10));
     measureRepository.addRawMeasure(FILE_2_REF, metricKey, newMeasureBuilder().create(40));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasure(FILE_1_REF, metricKey)).isAbsent();
     assertThat(measureRepository.getAddedRawMeasure(FILE_2_REF, metricKey)).isAbsent();
@@ -158,7 +159,7 @@ public class ReportComplexityMeasuresStepTest {
     measureRepository.addRawMeasure(FILE_1_REF, metricKey, newMeasureBuilder().create("0.5=3;3.5=5;6.5=9"));
     measureRepository.addRawMeasure(FILE_2_REF, metricKey, newMeasureBuilder().create("0.5=0;3.5=2;6.5=1"));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasure(FILE_1_REF, metricKey)).isAbsent();
     assertThat(measureRepository.getAddedRawMeasure(FILE_2_REF, metricKey)).isAbsent();
@@ -202,7 +203,7 @@ public class ReportComplexityMeasuresStepTest {
     measureRepository.addRawMeasure(FILE_2_REF, mainMetric, newMeasureBuilder().create(1));
     measureRepository.addRawMeasure(FILE_2_REF, byMetric, newMeasureBuilder().create(1));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(toEntries(measureRepository.getAddedRawMeasures(FILE_1_REF))).contains(entryOf(metricKey, newMeasureBuilder().create(2.5)));
     assertThat(toEntries(measureRepository.getAddedRawMeasures(FILE_2_REF))).contains(entryOf(metricKey, newMeasureBuilder().create(1d)));

@@ -39,6 +39,7 @@ import org.sonar.server.computation.qualityprofile.QualityProfile;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.guava.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.api.measures.CoreMetrics.QUALITY_PROFILES;
 import static org.sonar.api.measures.CoreMetrics.QUALITY_PROFILES_KEY;
 import static org.sonar.server.computation.component.Component.Type.MODULE;
@@ -92,7 +93,7 @@ public class ComputeQProfileMeasureStepTest {
     QualityProfile qp = createQProfile(QP_NAME_1, LANGUAGE_KEY_1);
     addMeasure(SUB_MODULE_REF, qp);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasures(PROJECT_REF).get(QUALITY_PROFILES_KEY)).extracting("data").containsOnly(toJson(qp));
   }
@@ -116,7 +117,7 @@ public class ComputeQProfileMeasureStepTest {
     QualityProfile qp2 = createQProfile(QP_NAME_2, LANGUAGE_KEY_2);
     addMeasure(12, qp2);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasures(PROJECT_REF).get(QUALITY_PROFILES_KEY)).extracting("data").containsOnly(toJson(qp1, qp2));
   }
@@ -130,7 +131,7 @@ public class ComputeQProfileMeasureStepTest {
     QualityProfile qp = createQProfile(QP_NAME_1, LANGUAGE_KEY_1);
     addMeasure(PROJECT_REF, qp);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasures(PROJECT_REF)).isEmpty();
   }
@@ -142,7 +143,7 @@ public class ComputeQProfileMeasureStepTest {
 
     treeRootHolder.setRoot(MULTI_MODULE_PROJECT);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasures(PROJECT_REF)).isEmpty();
   }
@@ -155,7 +156,7 @@ public class ComputeQProfileMeasureStepTest {
     treeRootHolder.setRoot(MULTI_MODULE_PROJECT);
     measureRepository.addRawMeasure(PROJECT_REF, QUALITY_PROFILES_KEY, newMeasureBuilder().create(toJson()));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasures(PROJECT_REF)).isEmpty();
   }

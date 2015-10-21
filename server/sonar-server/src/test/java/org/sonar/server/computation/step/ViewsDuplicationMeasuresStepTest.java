@@ -27,6 +27,7 @@ import org.sonar.server.computation.metric.MetricRepositoryRule;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.guava.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.api.measures.CoreMetrics.COMMENT_LINES;
 import static org.sonar.api.measures.CoreMetrics.COMMENT_LINES_KEY;
 import static org.sonar.api.measures.CoreMetrics.DUPLICATED_BLOCKS;
@@ -90,7 +91,7 @@ public class ViewsDuplicationMeasuresStepTest {
     addRawMeasure(PROJECT_VIEW_2_REF, DUPLICATED_BLOCKS_KEY, 40);
     addRawMeasure(PROJECT_VIEW_3_REF, DUPLICATED_BLOCKS_KEY, 60);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_BLOCKS_KEY, 50);
@@ -104,7 +105,7 @@ public class ViewsDuplicationMeasuresStepTest {
     addRawMeasure(PROJECT_VIEW_2_REF, DUPLICATED_BLOCKS_KEY, 0);
     // no raw measure for PROJECT_VIEW_3_REF
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_BLOCKS_KEY, 0);
@@ -114,7 +115,7 @@ public class ViewsDuplicationMeasuresStepTest {
 
   @Test
   public void aggregate_zero_duplicated_blocks_when_no_data() {
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_BLOCKS_KEY, 0);
@@ -128,7 +129,7 @@ public class ViewsDuplicationMeasuresStepTest {
     addRawMeasure(PROJECT_VIEW_2_REF, DUPLICATED_FILES_KEY, 40);
     addRawMeasure(PROJECT_VIEW_3_REF, DUPLICATED_FILES_KEY, 70);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_FILES_KEY, 50);
@@ -142,7 +143,7 @@ public class ViewsDuplicationMeasuresStepTest {
     addRawMeasure(PROJECT_VIEW_2_REF, DUPLICATED_FILES_KEY, 0);
     // no raw measure for PROJECT_VIEW_3_REF
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_FILES_KEY, 0);
@@ -152,7 +153,7 @@ public class ViewsDuplicationMeasuresStepTest {
 
   @Test
   public void aggregate_zero_duplicated_files_when_no_data() {
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_FILES_KEY, 0);
@@ -166,7 +167,7 @@ public class ViewsDuplicationMeasuresStepTest {
     addRawMeasure(PROJECT_VIEW_2_REF, DUPLICATED_LINES_KEY, 40);
     addRawMeasure(PROJECT_VIEW_3_REF, DUPLICATED_LINES_KEY, 50);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_LINES_KEY, 50);
@@ -180,7 +181,7 @@ public class ViewsDuplicationMeasuresStepTest {
     addRawMeasure(PROJECT_VIEW_2_REF, DUPLICATED_LINES_KEY, 0);
     // no raw measure for PROJECT_VIEW_3_REF
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_LINES_KEY, 0);
@@ -190,7 +191,7 @@ public class ViewsDuplicationMeasuresStepTest {
 
   @Test
   public void aggregate_zero_duplicated_line_when_no_data() {
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_LINES_KEY, 0);
@@ -211,7 +212,7 @@ public class ViewsDuplicationMeasuresStepTest {
     addRawMeasure(SUBVIEW_REF, LINES_KEY, 50);
     addRawMeasure(ROOT_REF, LINES_KEY, 50);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_LINES_DENSITY_KEY, 10d);
@@ -239,7 +240,7 @@ public class ViewsDuplicationMeasuresStepTest {
     addRawMeasure(SUBVIEW_REF, NCLOC_KEY, 38);
     addRawMeasure(ROOT_REF, NCLOC_KEY, 38);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_LINES_DENSITY_KEY, 10d);
@@ -258,7 +259,7 @@ public class ViewsDuplicationMeasuresStepTest {
     addRawMeasure(SUBVIEW_REF, NCLOC_KEY, 50);
     addRawMeasure(ROOT_REF, NCLOC_KEY, 50);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_LINES_DENSITY_KEY, 10d);
@@ -284,7 +285,7 @@ public class ViewsDuplicationMeasuresStepTest {
     addRawMeasure(SUBVIEW_REF, NCLOC_KEY, 38);
     addRawMeasure(ROOT_REF, NCLOC_KEY, 38);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_LINES_DENSITY_KEY, 0d);
@@ -301,7 +302,7 @@ public class ViewsDuplicationMeasuresStepTest {
     addRawMeasure(SUBVIEW_REF, LINES_KEY, 0);
     addRawMeasure(ROOT_REF, LINES_KEY, 0);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasures(DUPLICATED_LINES_DENSITY_KEY);
   }
@@ -321,7 +322,7 @@ public class ViewsDuplicationMeasuresStepTest {
     addRawMeasure(SUBVIEW_REF, NCLOC_KEY, 0);
     addRawMeasure(ROOT_REF, NCLOC_KEY, 0);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasures(DUPLICATED_LINES_DENSITY_KEY);
   }
@@ -338,7 +339,7 @@ public class ViewsDuplicationMeasuresStepTest {
     addRawMeasure(SUBVIEW_REF, LINES_KEY, 5);
     addRawMeasure(ROOT_REF, LINES_KEY, 5);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoNewRawMeasuresOnProjectViews();
     assertRawMeasureValue(SUB_SUBVIEW_REF, DUPLICATED_LINES_DENSITY_KEY, 100d);

@@ -81,7 +81,7 @@ public class PersistFileSourcesStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     // Don't use batch insert for file_sources since keeping all data in memory can produce OOM for big files
     DbSession session = dbClient.openSession(false);
     try {

@@ -72,7 +72,7 @@ public class ValidateProjectStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     DbSession session = dbClient.openSession(false);
     try {
       List<ComponentDto> baseModules = dbClient.componentDao().selectEnabledModulesFromProjectKey(session, treeRootHolder.getRoot().getKey());

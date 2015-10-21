@@ -55,7 +55,7 @@ public class IndexComponentsStepTest extends BaseStepTest {
     dbIdsRepository.setComponentId(project, 123L);
     treeRootHolder.setRoot(project);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(resourceIndexDao).indexProject(123L);
   }
@@ -66,7 +66,7 @@ public class IndexComponentsStepTest extends BaseStepTest {
     dbIdsRepository.setComponentId(view, 123L);
     treeRootHolder.setRoot(view);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(resourceIndexDao).indexProject(123L);
   }

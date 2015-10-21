@@ -28,6 +28,7 @@ import org.sonar.server.computation.metric.MetricRepositoryRule;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.guava.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.api.measures.CoreMetrics.SKIPPED_TESTS;
 import static org.sonar.api.measures.CoreMetrics.SKIPPED_TESTS_KEY;
 import static org.sonar.api.measures.CoreMetrics.TESTS;
@@ -121,7 +122,7 @@ public class ViewsUnitTestMeasuresStepTest {
     addedRawMeasure(PROJECT_VIEW_1_REF, TEST_FAILURES_KEY, 4);
     addedRawMeasure(PROJECT_VIEW_2_REF, TEST_FAILURES_KEY, 1);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoAddedRawMeasureOnProjectViews();
     assertAddedRawMeasureValue(SUB_SUBVIEW_1_REF, TEST_SUCCESS_DENSITY_KEY, 60d);
@@ -140,7 +141,7 @@ public class ViewsUnitTestMeasuresStepTest {
     addedRawMeasure(PROJECT_VIEW_1_REF, TEST_FAILURES_KEY, 4);
     addedRawMeasure(PROJECT_VIEW_2_REF, TEST_FAILURES_KEY, 1);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoAddedRawMeasureOnProjectViews();
     assertAddedRawMeasureValue(SUB_SUBVIEW_1_REF, TEST_SUCCESS_DENSITY_KEY, 83.3d);
@@ -160,7 +161,7 @@ public class ViewsUnitTestMeasuresStepTest {
     addedRawMeasure(PROJECT_VIEW_1_REF, TEST_FAILURES_KEY, 0);
     addedRawMeasure(PROJECT_VIEW_2_REF, TEST_FAILURES_KEY, 0);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoAddedRawMeasureOnProjectViews();
     assertAddedRawMeasureValue(SUB_SUBVIEW_1_REF, TEST_SUCCESS_DENSITY_KEY, 76.7d);
@@ -180,7 +181,7 @@ public class ViewsUnitTestMeasuresStepTest {
     addedRawMeasure(PROJECT_VIEW_1_REF, TEST_FAILURES_KEY, 0);
     addedRawMeasure(PROJECT_VIEW_2_REF, TEST_FAILURES_KEY, 0);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoAddedRawMeasureOnProjectViews();
     assertAddedRawMeasureValue(SUB_SUBVIEW_1_REF, TEST_SUCCESS_DENSITY_KEY, 100d);
@@ -203,7 +204,7 @@ public class ViewsUnitTestMeasuresStepTest {
     addedRawMeasure(PROJECT_VIEW_1_REF, TEST_FAILURES_KEY, 2);
     addedRawMeasure(PROJECT_VIEW_2_REF, TEST_FAILURES_KEY, 5);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoAddedRawMeasureOnProjectViews();
     assertAddedRawMeasureValue(SUB_SUBVIEW_1_REF, TEST_SUCCESS_DENSITY_KEY, 0d);
@@ -220,7 +221,7 @@ public class ViewsUnitTestMeasuresStepTest {
     addedRawMeasure(PROJECT_VIEW_1_REF, TEST_FAILURES_KEY, 4);
     addedRawMeasure(PROJECT_VIEW_2_REF, TEST_FAILURES_KEY, 1);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoAddedRawMeasureOnProjectViews();
     assertNoAddedRawMeasure(SUB_SUBVIEW_1_REF, TEST_SUCCESS_DENSITY_KEY);
@@ -236,7 +237,7 @@ public class ViewsUnitTestMeasuresStepTest {
     addedRawMeasure(PROJECT_VIEW_1_REF, TEST_ERRORS_KEY, 0);
     addedRawMeasure(PROJECT_VIEW_2_REF, TEST_ERRORS_KEY, 0);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoAddedRawMeasureOnProjectViews();
     assertNoAddedRawMeasure(SUB_SUBVIEW_1_REF, TEST_SUCCESS_DENSITY_KEY);
@@ -248,7 +249,7 @@ public class ViewsUnitTestMeasuresStepTest {
     addedRawMeasure(PROJECT_VIEW_1_REF, metricKey, file1Value);
     addedRawMeasure(PROJECT_VIEW_2_REF, metricKey, file2Value);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoAddedRawMeasureOnProjectViews();
     assertAddedRawMeasureValue(SUB_SUBVIEW_1_REF, metricKey, expectedValue);
@@ -261,7 +262,7 @@ public class ViewsUnitTestMeasuresStepTest {
     measureRepository.addRawMeasure(PROJECT_VIEW_1_REF, metricKey, newMeasureBuilder().create(file1Value));
     measureRepository.addRawMeasure(PROJECT_VIEW_2_REF, metricKey, newMeasureBuilder().create(file2Value));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoAddedRawMeasureOnProjectViews();
     assertAddedRawMeasureValue(SUB_SUBVIEW_1_REF, metricKey, expectedValue);

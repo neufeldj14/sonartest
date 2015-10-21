@@ -35,6 +35,7 @@ import org.sonar.server.computation.qualityprofile.ActiveRulesHolderImpl;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.db.rule.RuleTesting.XOO_X1;
 import static org.sonar.db.rule.RuleTesting.XOO_X2;
 
@@ -63,7 +64,7 @@ public class LoadQualityProfilesStepTest {
       .setRuleRepository(XOO_X2.repository()).setRuleKey(XOO_X2.rule()).setSeverity(Constants.Severity.MAJOR);
     batchReportReader.putActiveRules(asList(batch1.build(), batch2.build()));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(activeRulesHolder.getAll()).hasSize(2);
 
@@ -85,7 +86,7 @@ public class LoadQualityProfilesStepTest {
       .setSeverity(Constants.Severity.BLOCKER);
     batchReportReader.putActiveRules(asList(batch1.build()));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(activeRulesHolder.getAll()).isEmpty();
   }
@@ -97,7 +98,7 @@ public class LoadQualityProfilesStepTest {
       .setSeverity(Constants.Severity.BLOCKER);
     batchReportReader.putActiveRules(asList(batch1.build()));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(activeRulesHolder.getAll()).isEmpty();
   }

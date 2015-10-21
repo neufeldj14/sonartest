@@ -85,7 +85,7 @@ public class ComputeMeasureVariationsStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     DbSession dbSession = dbClient.openSession(false);
     try {
       List<Metric> metrics = from(metricRepository.getAll()).filter(NumericMetric.INSTANCE).toList();

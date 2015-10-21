@@ -30,6 +30,7 @@ import org.sonar.server.computation.measure.MeasureRepositoryRule;
 import org.sonar.server.computation.metric.MetricRepositoryRule;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.server.computation.component.Component.Type.PROJECT_VIEW;
 import static org.sonar.server.computation.component.Component.Type.SUBVIEW;
 import static org.sonar.server.computation.component.Component.Type.VIEW;
@@ -137,7 +138,7 @@ public class ViewsCoverageMeasuresStepTest {
       .addRawMeasure(PROJECTVIEW_3_REF, metricKeys.getUncoveredLines(), newMeasureBuilder().create(300))
       .addRawMeasure(PROJECTVIEW_3_REF, metricKeys.getUncoveredConditions(), newMeasureBuilder().create(19));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     MeasureRepoEntry[] subViewRepoEntries = {
       entryOf(metricKeys.getLines(), newMeasureBuilder().create(5000)),
@@ -208,7 +209,7 @@ public class ViewsCoverageMeasuresStepTest {
       .addRawMeasure(PROJECTVIEW_3_REF, metricKeys.getUncoveredLines(), newMeasureBuilder().create(300))
       .addRawMeasure(PROJECTVIEW_3_REF, metricKeys.getUncoveredConditions(), newMeasureBuilder().create(19));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(toEntries(measureRepository.getAddedRawMeasures(PROJECTVIEW_1_REF))).isEmpty();
     assertThat(toEntries(measureRepository.getAddedRawMeasures(PROJECTVIEW_2_REF))).isEmpty();

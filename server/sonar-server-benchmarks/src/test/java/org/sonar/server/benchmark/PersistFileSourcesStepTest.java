@@ -47,8 +47,10 @@ import org.sonar.server.computation.scm.ScmInfoRepositoryImpl;
 import org.sonar.server.computation.source.SourceHashRepositoryImpl;
 import org.sonar.server.computation.source.SourceLinesRepositoryImpl;
 import org.sonar.server.computation.step.PersistFileSourcesStep;
+import org.sonar.server.computation.step.StepContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 public class PersistFileSourcesStepTest {
 
@@ -93,7 +95,7 @@ public class PersistFileSourcesStepTest {
     SourceHashRepositoryImpl sourceHashRepository = new SourceHashRepositoryImpl(sourceLinesRepository);
     ScmInfoRepositoryImpl scmInfoRepository = new ScmInfoRepositoryImpl(batchReportReader, analysisMetadataHolder, dbClient, sourceHashRepository);
     PersistFileSourcesStep step = new PersistFileSourcesStep(dbClient, System2.INSTANCE, treeRootHolder, batchReportReader, sourceLinesRepository, scmInfoRepository);
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     long end = System.currentTimeMillis();
     long duration = end - start;

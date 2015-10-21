@@ -85,7 +85,7 @@ public class LoadMeasureComputersStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     List<MeasureComputerWrapper> wrappers = from(Arrays.asList(measureComputers)).transform(ToMeasureWrapper.INSTANCE).toList();
     validateMetrics(wrappers);
     measureComputersHolder.setMeasureComputers(sortComputers(wrappers));

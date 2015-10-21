@@ -25,7 +25,7 @@ package org.sonar.server.computation.step;
  */
 public interface ComputationStep {
 
-  void execute();
+  void execute(StepContext context);
 
   String getDescription();
 }

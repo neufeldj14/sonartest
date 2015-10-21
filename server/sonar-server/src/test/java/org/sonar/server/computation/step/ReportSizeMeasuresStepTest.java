@@ -34,6 +34,7 @@ import static com.google.common.collect.FluentIterable.from;
 import static com.google.common.collect.Iterables.concat;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.api.measures.CoreMetrics.CLASSES_KEY;
 import static org.sonar.api.measures.CoreMetrics.DIRECTORIES_KEY;
 import static org.sonar.api.measures.CoreMetrics.FILES_KEY;
@@ -111,7 +112,7 @@ public class ReportSizeMeasuresStepTest {
 
   @Test
   public void verify_FILE_and_DIRECTORY_computation_and_aggregation() {
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyMeasuresOnFile(FILE_1_REF, 1);
     verifyMeasuresOnFile(FILE_2_REF, 1);
@@ -140,7 +141,7 @@ public class ReportSizeMeasuresStepTest {
     // UNIT_TEST_1_REF has no metric1
     measureRepository.addRawMeasure(UNIT_TEST_1_REF, metric2Key, newMeasureBuilder().create(90));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyMeasuresOnFile(FILE_1_REF, 1);
     verifyMeasuresOnFile(FILE_2_REF, 1);
@@ -171,7 +172,7 @@ public class ReportSizeMeasuresStepTest {
     measureRepository.addRawMeasure(FILE_2_REF, metricKey, newMeasureBuilder().create(6));
     measureRepository.addRawMeasure(UNIT_TEST_1_REF, metricKey, newMeasureBuilder().create(3));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyMeasuresOnFile(FILE_1_REF, 1);
     verifyMeasuresOnFile(FILE_2_REF, 1);

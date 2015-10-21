@@ -107,7 +107,7 @@ public class QualityGateMeasuresStepTest {
 
     treeRootHolder.setRoot(notAProjectComponent);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyNoMoreInteractions(measureRepository);
   }
@@ -116,7 +116,7 @@ public class QualityGateMeasuresStepTest {
   public void no_measure_if_there_is_no_qualitygate() {
     qualityGateHolder.setQualityGate(null);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyNoMoreInteractions(measureRepository);
   }
@@ -127,7 +127,7 @@ public class QualityGateMeasuresStepTest {
     qualityGateHolder.setQualityGate(new QualityGate("name", of(equals2Condition)));
     when(measureRepository.getRawMeasure(PROJECT_COMPONENT, INT_METRIC_1)).thenReturn(Optional.<Measure>absent());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(measureRepository).getRawMeasure(PROJECT_COMPONENT, INT_METRIC_1);
     verify(measureRepository).add(same(PROJECT_COMPONENT), same(ALERT_STATUS_METRIC), alertStatusMeasureCaptor.capture());
@@ -150,7 +150,7 @@ public class QualityGateMeasuresStepTest {
     qualityGateHolder.setQualityGate(new QualityGate("name", of(equals2Condition)));
     when(measureRepository.getRawMeasure(PROJECT_COMPONENT, INT_METRIC_1)).thenReturn(Optional.of(rawMeasure));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     ArgumentCaptor<Measure> equals2ConditionMeasureCaptor = ArgumentCaptor.forClass(Measure.class);
 
@@ -181,7 +181,7 @@ public class QualityGateMeasuresStepTest {
     when(measureRepository.getRawMeasure(PROJECT_COMPONENT, INT_METRIC_1)).thenReturn(Optional.of(rawMeasure));
     when(measureRepository.getRawMeasure(PROJECT_COMPONENT, INT_METRIC_2)).thenReturn(Optional.of(rawMeasure));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     ArgumentCaptor<Measure> equals1ErrorConditionMeasureCaptor = ArgumentCaptor.forClass(Measure.class);
     ArgumentCaptor<Measure> equals1WarningConditionMeasureCaptor = ArgumentCaptor.forClass(Measure.class);
@@ -222,7 +222,7 @@ public class QualityGateMeasuresStepTest {
     when(measureRepository.getRawMeasure(PROJECT_COMPONENT, INT_METRIC_1)).thenReturn(Optional.of(rawMeasure));
     when(measureRepository.getRawMeasure(PROJECT_COMPONENT, INT_METRIC_2)).thenReturn(Optional.of(rawMeasure));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     ArgumentCaptor<Measure> equals2ConditionMeasureCaptor = ArgumentCaptor.forClass(Measure.class);
     ArgumentCaptor<Measure> equals1WarningConditionMeasureCaptor = ArgumentCaptor.forClass(Measure.class);

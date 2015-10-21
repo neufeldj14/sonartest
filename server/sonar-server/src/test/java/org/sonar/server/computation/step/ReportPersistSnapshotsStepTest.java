@@ -124,7 +124,7 @@ public class ReportPersistSnapshotsStepTest extends BaseStepTest {
     dbIdsRepository.setComponentId(directory, directoryDto.getId());
     dbIdsRepository.setComponentId(file, fileDto.getId());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("snapshots")).isEqualTo(4);
 
@@ -215,7 +215,7 @@ public class ReportPersistSnapshotsStepTest extends BaseStepTest {
     dbIdsRepository.setComponentId(directory, directoryDto.getId());
     dbIdsRepository.setComponentId(file, fileDto.getId());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     SnapshotDto fileSnapshot = getUnprocessedSnapshot(fileDto.getId());
     assertThat(fileSnapshot.getQualifier()).isEqualTo("UTS");
@@ -245,7 +245,7 @@ public class ReportPersistSnapshotsStepTest extends BaseStepTest {
     dbIdsRepository.setComponentId(subModuleA, subModuleADto.getId());
     dbIdsRepository.setComponentId(moduleB, moduleBDto.getId());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("snapshots")).isEqualTo(4);
 
@@ -291,7 +291,7 @@ public class ReportPersistSnapshotsStepTest extends BaseStepTest {
     treeRootHolder.setRoot(project);
     dbIdsRepository.setComponentId(project, projectDto.getId());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     SnapshotDto projectSnapshot = getUnprocessedSnapshot(projectDto.getId());
     assertThat(projectSnapshot.getPeriodMode(1)).isEqualTo(CoreProperties.TIMEMACHINE_MODE_DATE);
@@ -336,7 +336,7 @@ public class ReportPersistSnapshotsStepTest extends BaseStepTest {
     dbIdsRepository.setComponentId(directory, directoryDto.getId());
     dbIdsRepository.setComponentId(file, fileDto.getId());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     SnapshotDto newProjectSnapshot = getUnprocessedSnapshot(projectDto.getId());
     assertThat(newProjectSnapshot.getPeriodMode(1)).isEqualTo(CoreProperties.TIMEMACHINE_MODE_PREVIOUS_ANALYSIS);
@@ -363,7 +363,7 @@ public class ReportPersistSnapshotsStepTest extends BaseStepTest {
     treeRootHolder.setRoot(project);
     dbIdsRepository.setComponentId(project, projectDto.getId());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     SnapshotDto projectSnapshot = getUnprocessedSnapshot(projectDto.getId());
     assertThat(projectSnapshot.getPeriodMode(1)).isNull();

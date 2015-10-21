@@ -67,7 +67,7 @@ public class SendIssueNotificationsStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     Component project = treeRootHolder.getRoot();
     if (service.hasProjectSubscribersForTypes(project.getUuid(), NOTIF_TYPES)) {
       doExecute(project);

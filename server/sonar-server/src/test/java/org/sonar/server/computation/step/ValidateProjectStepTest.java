@@ -40,6 +40,8 @@ import org.sonar.server.computation.component.Component;
 import org.sonar.server.computation.component.ReportComponent;
 import org.sonar.test.DbTests;
 
+import static org.mockito.Mockito.mock;
+
 @Category(DbTests.class)
 public class ValidateProjectStepTest {
 
@@ -81,7 +83,7 @@ public class ValidateProjectStepTest {
       .build());
     treeRootHolder.setRoot(ReportComponent.builder(Component.Type.PROJECT, 1).setUuid("ABCD").setKey(PROJECT_KEY + ":origin/master").build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
   }
 
   @Test
@@ -101,7 +103,7 @@ public class ValidateProjectStepTest {
       .build());
     treeRootHolder.setRoot(ReportComponent.builder(Component.Type.PROJECT, 1).setUuid("ABCD").setKey(PROJECT_KEY + ":bran#ch").build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
   }
 
   @Test
@@ -129,7 +131,7 @@ public class ValidateProjectStepTest {
       ReportComponent.builder(Component.Type.MODULE, 2).setUuid("BCDE").setKey("Module$Key").build())
       .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
   }
 
   @Test
@@ -161,7 +163,7 @@ public class ValidateProjectStepTest {
       ReportComponent.builder(Component.Type.MODULE, 2).setUuid("BCDE").setKey(MODULE_KEY).build())
       .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
   }
 
   @Test
@@ -195,7 +197,7 @@ public class ValidateProjectStepTest {
       ReportComponent.builder(Component.Type.MODULE, 2).setUuid("BCDE").setKey(MODULE_KEY).build())
       .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
   }
 
   @Test
@@ -230,7 +232,7 @@ public class ValidateProjectStepTest {
       ReportComponent.builder(Component.Type.MODULE, 2).setUuid("BCDE").setKey(MODULE_KEY).build())
       .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
   }
 
   @Test
@@ -252,7 +254,7 @@ public class ValidateProjectStepTest {
 
     treeRootHolder.setRoot(ReportComponent.builder(Component.Type.PROJECT, 1).setUuid("ABCD").setKey(PROJECT_KEY).build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
   }
 
   @Test
@@ -279,6 +281,6 @@ public class ValidateProjectStepTest {
 
     treeRootHolder.setRoot(ReportComponent.builder(Component.Type.PROJECT, 1).setUuid("ABCD").setKey(PROJECT_KEY).build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
   }
 }

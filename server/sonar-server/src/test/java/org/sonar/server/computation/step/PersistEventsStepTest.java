@@ -82,7 +82,7 @@ public class PersistEventsStepTest extends BaseStepTest {
 
     treeRootHolder.setRoot(ReportComponent.builder(Component.Type.PROJECT, 1).setUuid("ABCD").build());
 
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     dbTester.assertDbUnit(getClass(), "nothing_to_do_when_no_events_in_report.xml", "events");
   }
@@ -104,7 +104,7 @@ public class PersistEventsStepTest extends BaseStepTest {
     when(eventRepository.getEvents(child)).thenReturn(ImmutableList.of(Event.createAlert("Red (was Orange)", null, "Open issues > 0")));
 
     treeRootHolder.setRoot(root);
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     dbTester.assertDbUnit(getClass(), "persist_report_events_with_component_children-result.xml", "events");
   }
@@ -117,7 +117,7 @@ public class PersistEventsStepTest extends BaseStepTest {
     treeRootHolder.setRoot(project);
     dbIdsRepository.setSnapshotId(project, 1000L);
 
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     dbTester.assertDbUnit(getClass(), "add_version_event-result.xml", "events");
   }
@@ -130,7 +130,7 @@ public class PersistEventsStepTest extends BaseStepTest {
     treeRootHolder.setRoot(project);
     dbIdsRepository.setSnapshotId(project, 1001L);
 
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     dbTester.assertDbUnit(getClass(), "keep_one_event_by_version-result.xml", "events");
   }

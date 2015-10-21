@@ -28,6 +28,7 @@ import org.sonar.server.computation.metric.MetricRepositoryRule;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.guava.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.api.measures.CoreMetrics.COMMENT_LINES;
 import static org.sonar.api.measures.CoreMetrics.COMMENT_LINES_KEY;
 import static org.sonar.api.measures.CoreMetrics.DUPLICATED_BLOCKS;
@@ -94,7 +95,7 @@ public class ReportDuplicationMeasuresStepTest {
     addRawMeasure(FILE_1_REF, DUPLICATED_BLOCKS_KEY, 10);
     addRawMeasure(FILE_2_REF, DUPLICATED_BLOCKS_KEY, 40);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasure(FILE_1_REF, DUPLICATED_BLOCKS_KEY);
     assertNoRawMeasure(FILE_2_REF, DUPLICATED_BLOCKS_KEY);
@@ -109,7 +110,7 @@ public class ReportDuplicationMeasuresStepTest {
     addRawMeasure(FILE_1_REF, DUPLICATED_BLOCKS_KEY, 0);
     addRawMeasure(FILE_2_REF, DUPLICATED_BLOCKS_KEY, 0);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasure(FILE_1_REF, DUPLICATED_BLOCKS_KEY);
     assertNoRawMeasure(FILE_2_REF, DUPLICATED_BLOCKS_KEY);
@@ -121,7 +122,7 @@ public class ReportDuplicationMeasuresStepTest {
 
   @Test
   public void aggregate_zero_duplicated_blocks_when_no_data() {
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasure(FILE_1_REF, DUPLICATED_BLOCKS_KEY);
     assertNoRawMeasure(FILE_2_REF, DUPLICATED_BLOCKS_KEY);
@@ -136,7 +137,7 @@ public class ReportDuplicationMeasuresStepTest {
     addRawMeasure(FILE_1_REF, DUPLICATED_FILES_KEY, 10);
     addRawMeasure(FILE_2_REF, DUPLICATED_FILES_KEY, 40);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasure(FILE_1_REF, DUPLICATED_FILES_KEY);
     assertNoRawMeasure(FILE_2_REF, DUPLICATED_FILES_KEY);
@@ -151,7 +152,7 @@ public class ReportDuplicationMeasuresStepTest {
     addRawMeasure(FILE_1_REF, DUPLICATED_FILES_KEY, 0);
     addRawMeasure(FILE_2_REF, DUPLICATED_FILES_KEY, 0);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasure(FILE_1_REF, DUPLICATED_FILES_KEY);
     assertNoRawMeasure(FILE_2_REF, DUPLICATED_FILES_KEY);
@@ -163,7 +164,7 @@ public class ReportDuplicationMeasuresStepTest {
 
   @Test
   public void aggregate_zero_duplicated_files_when_no_data() {
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasure(FILE_1_REF, DUPLICATED_FILES_KEY);
     assertNoRawMeasure(FILE_2_REF, DUPLICATED_FILES_KEY);
@@ -178,7 +179,7 @@ public class ReportDuplicationMeasuresStepTest {
     addRawMeasure(FILE_1_REF, DUPLICATED_LINES_KEY, 10);
     addRawMeasure(FILE_2_REF, DUPLICATED_LINES_KEY, 40);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasure(FILE_1_REF, DUPLICATED_LINES_KEY);
     assertNoRawMeasure(FILE_2_REF, DUPLICATED_LINES_KEY);
@@ -193,7 +194,7 @@ public class ReportDuplicationMeasuresStepTest {
     addRawMeasure(FILE_1_REF, DUPLICATED_LINES_KEY, 0);
     addRawMeasure(FILE_2_REF, DUPLICATED_LINES_KEY, 0);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasure(FILE_1_REF, DUPLICATED_LINES_KEY);
     assertNoRawMeasure(FILE_2_REF, DUPLICATED_LINES_KEY);
@@ -205,7 +206,7 @@ public class ReportDuplicationMeasuresStepTest {
 
   @Test
   public void aggregate_zero_duplicated_line_when_no_data() {
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasure(FILE_1_REF, DUPLICATED_LINES_KEY);
     assertNoRawMeasure(FILE_2_REF, DUPLICATED_LINES_KEY);
@@ -227,7 +228,7 @@ public class ReportDuplicationMeasuresStepTest {
     addRawMeasure(MODULE_REF, LINES_KEY, 50);
     addRawMeasure(ROOT_REF, LINES_KEY, 50);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRawMeasureValue(FILE_1_REF, DUPLICATED_LINES_DENSITY_KEY, 20d);
     assertRawMeasureValue(FILE_2_REF, DUPLICATED_LINES_DENSITY_KEY, 7.5d);
@@ -256,7 +257,7 @@ public class ReportDuplicationMeasuresStepTest {
     addRawMeasure(MODULE_REF, NCLOC_KEY, 38);
     addRawMeasure(ROOT_REF, NCLOC_KEY, 38);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRawMeasureValue(FILE_1_REF, DUPLICATED_LINES_DENSITY_KEY, 20d);
     assertRawMeasureValue(FILE_2_REF, DUPLICATED_LINES_DENSITY_KEY, 7.5d);
@@ -278,7 +279,7 @@ public class ReportDuplicationMeasuresStepTest {
     addRawMeasure(MODULE_REF, NCLOC_KEY, 50);
     addRawMeasure(ROOT_REF, NCLOC_KEY, 50);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRawMeasureValue(FILE_1_REF, DUPLICATED_LINES_DENSITY_KEY, 20d);
     assertRawMeasureValue(FILE_2_REF, DUPLICATED_LINES_DENSITY_KEY, 7.5d);
@@ -307,7 +308,7 @@ public class ReportDuplicationMeasuresStepTest {
     addRawMeasure(MODULE_REF, NCLOC_KEY, 38);
     addRawMeasure(ROOT_REF, NCLOC_KEY, 38);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRawMeasureValue(FILE_1_REF, DUPLICATED_LINES_DENSITY_KEY, 0d);
     assertRawMeasureValue(FILE_2_REF, DUPLICATED_LINES_DENSITY_KEY, 0d);
@@ -326,7 +327,7 @@ public class ReportDuplicationMeasuresStepTest {
     addRawMeasure(MODULE_REF, LINES_KEY, 0);
     addRawMeasure(ROOT_REF, LINES_KEY, 0);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasures(DUPLICATED_LINES_DENSITY_KEY);
   }
@@ -347,7 +348,7 @@ public class ReportDuplicationMeasuresStepTest {
     addRawMeasure(MODULE_REF, NCLOC_KEY, 0);
     addRawMeasure(ROOT_REF, NCLOC_KEY, 0);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasures(DUPLICATED_LINES_DENSITY_KEY);
   }
@@ -364,7 +365,7 @@ public class ReportDuplicationMeasuresStepTest {
     addRawMeasure(MODULE_REF, LINES_KEY, 5);
     addRawMeasure(ROOT_REF, LINES_KEY, 5);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRawMeasureValue(FILE_1_REF, DUPLICATED_LINES_DENSITY_KEY, 100d);
     assertRawMeasureValue(FILE_2_REF, DUPLICATED_LINES_DENSITY_KEY, 100d);

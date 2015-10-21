@@ -63,7 +63,7 @@ public class QualityGateLoadingStepTest {
     treeRootHolder.setRoot(root);
     when(settingsRepository.getSettings(root)).thenReturn(new Settings());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyNoQualityGate();
 
@@ -80,7 +80,7 @@ public class QualityGateLoadingStepTest {
     treeRootHolder.setRoot(PROJECT_ALONE);
     when(settingsRepository.getSettings(PROJECT_ALONE)).thenReturn(new Settings().setProperty("sonar.qualitygate", "10 sds"));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
   }
 
   @Test
@@ -89,7 +89,7 @@ public class QualityGateLoadingStepTest {
     when(settingsRepository.getSettings(PROJECT_ALONE)).thenReturn(new Settings().setProperty("sonar.qualitygate", 10));
     when(qualityGateService.findById(10)).thenReturn(Optional.<QualityGate>absent());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyNoQualityGate();
   }
@@ -102,7 +102,7 @@ public class QualityGateLoadingStepTest {
     when(settingsRepository.getSettings(PROJECT_ALONE)).thenReturn(new Settings().setProperty("sonar.qualitygate", 10));
     when(qualityGateService.findById(10)).thenReturn(Optional.of(qualityGate));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(mutableQualityGateHolder.getQualityGate().get()).isSameAs(qualityGate);
   }

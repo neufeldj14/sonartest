@@ -41,6 +41,7 @@ import org.sonar.test.DbTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.guava.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.server.computation.component.Component.Type.DIRECTORY;
 import static org.sonar.server.computation.component.Component.Type.FILE;
 import static org.sonar.server.computation.component.Component.Type.MODULE;
@@ -134,7 +135,7 @@ public class CustomMeasuresCopyStepTest {
             .build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRawMeasureValue(FILE1_REF, FLOAT_METRIC.getKey(), 3.1d);
     assertNoRawMeasureValue(FILE2_REF);
@@ -158,7 +159,7 @@ public class CustomMeasuresCopyStepTest {
         )
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoRawMeasureValue(PROJECT_VIEW_REF);
     assertRawMeasureValue(SUBVIEW_REF, FLOAT_METRIC.getKey(), 3.1d);

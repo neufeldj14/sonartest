@@ -54,7 +54,7 @@ public class PersistIssuesStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     DbSession session = dbClient.openSession(true);
     IssueMapper mapper = session.getMapper(IssueMapper.class);
     IssueChangeMapper changeMapper = session.getMapper(IssueChangeMapper.class);

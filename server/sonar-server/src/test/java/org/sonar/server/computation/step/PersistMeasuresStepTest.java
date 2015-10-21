@@ -43,6 +43,7 @@ import org.sonar.server.computation.period.Period;
 import org.sonar.test.DbTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.api.measures.CoreMetrics.CLASS_COMPLEXITY_DISTRIBUTION;
 import static org.sonar.api.measures.CoreMetrics.CLASS_COMPLEXITY_DISTRIBUTION_KEY;
 import static org.sonar.api.measures.CoreMetrics.FILE_COMPLEXITY_DISTRIBUTION;
@@ -189,7 +190,7 @@ public class PersistMeasuresStepTest extends BaseStepTest {
     measureRepository.addRawMeasure(INTERMEDIATE_2_REF, LONG_METRIC_KEY, newMeasureBuilder().create(9635L));
     measureRepository.addRawMeasure(LEAF_REF, DOUBLE_METRIC_KEY, newMeasureBuilder().create(123.123d));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_measures")).isEqualTo(4);
 
@@ -270,7 +271,7 @@ public class PersistMeasuresStepTest extends BaseStepTest {
             .build())
         .create(10d));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_measures")).isEqualTo(1);
     List<Map<String, Object>> dtos = selectSnapshots();
@@ -290,7 +291,7 @@ public class PersistMeasuresStepTest extends BaseStepTest {
 
     measureRepository.addRawMeasure(LEAF_REF, OPTIMIZED_METRIC_KEY, newMeasureBuilder().create(true));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(selectSnapshots()).isEmpty();
   }
@@ -305,7 +306,7 @@ public class PersistMeasuresStepTest extends BaseStepTest {
     measureRepository.addRawMeasure(LEAF_REF, STRING_METRIC_KEY, newMeasureBuilder().createNoValue());
     measureRepository.addRawMeasure(LEAF_REF, DOUBLE_METRIC_KEY, newMeasureBuilder().createNoValue());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(selectSnapshots()).isEmpty();
   }
@@ -319,7 +320,7 @@ public class PersistMeasuresStepTest extends BaseStepTest {
     measureRepository.addRawMeasure(ROOT_REF, FILE_COMPLEXITY_DISTRIBUTION_KEY, newMeasureBuilder().create("0=1;2=10"));
     measureRepository.addRawMeasure(LEAF_REF, FILE_COMPLEXITY_DISTRIBUTION_KEY, newMeasureBuilder().create("0=1;2=10"));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_measures")).isEqualTo(1);
 
@@ -340,7 +341,7 @@ public class PersistMeasuresStepTest extends BaseStepTest {
     measureRepository.addRawMeasure(ROOT_REF, FUNCTION_COMPLEXITY_DISTRIBUTION_KEY, newMeasureBuilder().create("0=1;2=10"));
     measureRepository.addRawMeasure(LEAF_REF, FUNCTION_COMPLEXITY_DISTRIBUTION_KEY, newMeasureBuilder().create("0=1;2=10"));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_measures")).isEqualTo(1);
 
@@ -361,7 +362,7 @@ public class PersistMeasuresStepTest extends BaseStepTest {
     measureRepository.addRawMeasure(ROOT_REF, CLASS_COMPLEXITY_DISTRIBUTION_KEY, newMeasureBuilder().create("0=1;2=10"));
     measureRepository.addRawMeasure(LEAF_REF, CLASS_COMPLEXITY_DISTRIBUTION_KEY, newMeasureBuilder().create("0=1;2=10"));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_measures")).isEqualTo(1);
 

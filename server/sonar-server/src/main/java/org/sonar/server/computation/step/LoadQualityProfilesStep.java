@@ -51,7 +51,7 @@ public class LoadQualityProfilesStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     List<ActiveRule> activeRules = new ArrayList<>();
     try (CloseableIterator<BatchReport.ActiveRule> batchActiveRules = batchReportReader.readActiveRules()) {
       while (batchActiveRules.hasNext()) {

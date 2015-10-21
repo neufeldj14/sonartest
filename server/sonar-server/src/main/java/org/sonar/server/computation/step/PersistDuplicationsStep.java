@@ -58,7 +58,7 @@ public class PersistDuplicationsStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     DbSession session = dbClient.openSession(true);
     try {
       MetricDto duplicationMetric = dbClient.metricDao().selectOrFailByKey(session, CoreMetrics.DUPLICATIONS_DATA_KEY);

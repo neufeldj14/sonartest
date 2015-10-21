@@ -40,7 +40,7 @@ public class IndexComponentsStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     resourceIndexDao.indexProject(dbIdsRepository.getComponentId(treeRootHolder.getRoot()));
   }
 

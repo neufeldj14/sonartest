@@ -33,7 +33,7 @@ public class IndexIssuesStepTest {
     IssueIndexer issueIndexer = mock(IssueIndexer.class);
     IndexIssuesStep underTest = new IndexIssuesStep(issueIndexer);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(issueIndexer).index();
   }

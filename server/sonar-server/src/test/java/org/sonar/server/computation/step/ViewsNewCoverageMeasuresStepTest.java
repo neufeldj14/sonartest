@@ -36,6 +36,7 @@ import org.sonar.server.computation.period.PeriodsHolderRule;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.guava.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.api.utils.DateUtils.parseDate;
 import static org.sonar.server.computation.component.Component.Type.PROJECT_VIEW;
 import static org.sonar.server.computation.component.Component.Type.SUBVIEW;
@@ -150,7 +151,7 @@ public class ViewsNewCoverageMeasuresStepTest {
     measureRepository.addRawMeasure(PROJECT_VIEW_4_REF, newConditionsToCover, createMeasure(24d, 25d));
     measureRepository.addRawMeasure(PROJECT_VIEW_4_REF, newUncoveredConditions, createMeasure(60d, 70d));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoAddedRawMeasureOnProjectViews();
     assertNoAddedRawMeasures(SUB_SUBVIEW_1_REF);
@@ -221,7 +222,7 @@ public class ViewsNewCoverageMeasuresStepTest {
       .addRawMeasure(PROJECT_VIEW_4_REF, metricKeys.getUncoveredLines(), createMeasure(100d, 20d))
       .addRawMeasure(PROJECT_VIEW_4_REF, metricKeys.getUncoveredConditions(), createMeasure(6d, 9d));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoAddedRawMeasureOnProjectViews();
 

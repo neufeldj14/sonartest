@@ -67,7 +67,7 @@ public class SwitchSnapshotStepTest {
     treeRootHolder.setRoot(project);
     dbIdsRepository.setSnapshotId(project, 1);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     db.assertDbUnit(getClass(), "snapshots-result.xml", "snapshots");
   }

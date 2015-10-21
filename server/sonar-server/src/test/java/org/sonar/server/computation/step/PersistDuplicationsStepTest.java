@@ -42,6 +42,7 @@ import org.sonar.test.DbTests;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 @Category(DbTests.class)
 public class PersistDuplicationsStepTest extends BaseStepTest {
@@ -86,7 +87,7 @@ public class PersistDuplicationsStepTest extends BaseStepTest {
     saveDuplicationMetric();
     initReportWithProjectAndFile();
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_measures")).isEqualTo(0);
   }
@@ -111,7 +112,7 @@ public class PersistDuplicationsStepTest extends BaseStepTest {
       .build();
     reportReader.putDuplications(2, newArrayList(duplication));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_measures")).isEqualTo(1);
 
@@ -151,7 +152,7 @@ public class PersistDuplicationsStepTest extends BaseStepTest {
       .build();
     reportReader.putDuplications(3, newArrayList(duplication));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_measures")).isEqualTo(1);
 
@@ -190,7 +191,7 @@ public class PersistDuplicationsStepTest extends BaseStepTest {
       .build();
     reportReader.putDuplications(3, newArrayList(duplication));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_measures")).isEqualTo(1);
 
@@ -232,7 +233,7 @@ public class PersistDuplicationsStepTest extends BaseStepTest {
       .build();
     reportReader.putDuplications(10, newArrayList(duplication));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_measures")).isEqualTo(1);
 
@@ -270,7 +271,7 @@ public class PersistDuplicationsStepTest extends BaseStepTest {
       .build();
     reportReader.putDuplications(2, newArrayList(duplication));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_measures")).isEqualTo(1);
 
@@ -299,7 +300,7 @@ public class PersistDuplicationsStepTest extends BaseStepTest {
       .build();
     reportReader.putDuplications(2, newArrayList(duplication));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_measures")).isEqualTo(1);
 

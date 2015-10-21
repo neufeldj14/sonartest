@@ -35,6 +35,7 @@ import org.sonar.server.computation.debt.MutableDebtModelHolder;
 import org.sonar.test.DbTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 @Category(DbTests.class)
 public class LoadDebtModelStepTest extends BaseStepTest {
@@ -72,7 +73,7 @@ public class LoadDebtModelStepTest extends BaseStepTest {
   public void feed_characteristics() {
     dbTester.prepareDbUnit(getClass(), "shared.xml");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     Collection<Characteristic> rootChars = debtModelHolder.getRootCharacteristics();
     assertThat(rootChars).extracting("id").containsOnly(1);

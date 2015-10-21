@@ -99,7 +99,7 @@ public class ViewsPersistComponentsStepTest extends BaseStepTest {
   public void persist_empty_view() {
     treeRootHolder.setRoot(createViewBuilder().build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRowsCountInTableProjects(1);
 
@@ -114,7 +114,7 @@ public class ViewsPersistComponentsStepTest extends BaseStepTest {
 
     treeRootHolder.setRoot(createViewBuilder().build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRowsCountInTableProjects(1);
 
@@ -128,7 +128,7 @@ public class ViewsPersistComponentsStepTest extends BaseStepTest {
             .addChildren(createProjectView1Builder().build())
             .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRowsCountInTableProjects(2);
 
@@ -147,7 +147,7 @@ public class ViewsPersistComponentsStepTest extends BaseStepTest {
           createSubView1Builder().build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRowsCountInTableProjects(2);
 
@@ -170,7 +170,7 @@ public class ViewsPersistComponentsStepTest extends BaseStepTest {
           createSubView1Builder().build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRowsCountInTableProjects(2);
 
@@ -188,7 +188,7 @@ public class ViewsPersistComponentsStepTest extends BaseStepTest {
           createSubView1Builder().build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRowsCountInTableProjects(2);
 
@@ -207,7 +207,7 @@ public class ViewsPersistComponentsStepTest extends BaseStepTest {
                     .build())
             .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRowsCountInTableProjects(3);
 
@@ -226,7 +226,7 @@ public class ViewsPersistComponentsStepTest extends BaseStepTest {
 
     treeRootHolder.setRoot(createViewBuilder().build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertRowsCountInTableProjects(1);
 

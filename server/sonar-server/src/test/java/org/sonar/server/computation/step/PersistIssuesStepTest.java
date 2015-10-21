@@ -42,11 +42,12 @@ import org.sonar.server.computation.issue.RuleRepositoryImpl;
 import org.sonar.server.computation.issue.UpdateConflictResolver;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class PersistIssuesStepTest extends BaseStepTest {
 
-  public static final long NOW = 1400000000000L;
+  public static final long NOW = 1_400_000_000_000L;
 
   @Rule
   public TemporaryFolder temp = new TemporaryFolder();
@@ -102,9 +103,9 @@ public class PersistIssuesStepTest extends BaseStepTest {
       .setNew(true)
       ).close();
 
-    step.execute();
+    step.execute(mock(StepContext.class));
 
-    dbTester.assertDbUnit(getClass(), "insert_new_issue-result.xml", new String[] {"id"}, "issues");
+    dbTester.assertDbUnit(getClass(), "insert_new_issue-result.xml", new String[]{"id"}, "issues");
   }
 
   @Test
@@ -124,7 +125,7 @@ public class PersistIssuesStepTest extends BaseStepTest {
       .setChanged(true)
       ).close();
 
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     dbTester.assertDbUnit(getClass(), "close_issue-result.xml", "issues");
   }
@@ -152,7 +153,7 @@ public class PersistIssuesStepTest extends BaseStepTest {
       )
       ).close();
 
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     dbTester.assertDbUnit(getClass(), "add_comment-result.xml", new String[] {"id", "created_at", "updated_at"}, "issue_changes");
   }
@@ -178,7 +179,7 @@ public class PersistIssuesStepTest extends BaseStepTest {
       )
       ).close();
 
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     dbTester.assertDbUnit(getClass(), "add_change-result.xml", new String[] {"id", "created_at", "updated_at"}, "issue_changes");
   }

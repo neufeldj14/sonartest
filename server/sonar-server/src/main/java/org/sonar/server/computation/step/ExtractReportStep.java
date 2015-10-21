@@ -51,7 +51,7 @@ public class ExtractReportStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     File dir = tempFolder.newDir();
     File zip = reportFiles.fileForUuid(task.getUuid());
     try {

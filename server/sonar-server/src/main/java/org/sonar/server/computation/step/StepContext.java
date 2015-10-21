@@ -19,33 +19,26 @@
  */
 package org.sonar.server.computation.step;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.sonar.api.utils.log.LogTester;
-import org.sonar.api.utils.log.LoggerLevel;
-import org.sonar.server.computation.batch.BatchReportReaderRule;
+import org.sonar.core.util.logs.Profiler;
 
-import static java.util.Arrays.asList;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
+/**
+ * Context available during execution of a {@link ComputationStep}
+ * @see ComputationStep#execute(StepContext)
+ */
+public class StepContext {
+  private final Profiler profiler;
 
-public class LogScannerContextStepTest {
-
-  @Rule
-  public BatchReportReaderRule reportReader = new BatchReportReaderRule();
-
-  @Rule
-  public LogTester logTester = new LogTester();
-
-  LogScannerContextStep underTest = new LogScannerContextStep(reportReader);
-
-  @Test
-  public void log_scanner_logs() {
-    reportReader.setScannerLogs(asList("log1", "log2"));
-
-    underTest.execute(mock(StepContext.class));
-
-    assertThat(logTester.logs(LoggerLevel.INFO)).containsExactly("log1", "log2");
+  public StepContext(Profiler profiler) {
+    this.profiler = profiler;
   }
 
+  /**
+   * Add information to the profiler log. For example {@code addProfilerContext("issues", 100000)}
+   * completes the log with the number of processed issues (see last field) :
+   * <pre>2015.10.21 13:23:11 INFO  [o.s.s.c.s.ComputationStepExecutor] Persist issues | time=11226ms | issues=100000</pre>
+   */
+  public StepContext addProfilerContext(String key, Object value) {
+    profiler.addContext(key, value);
+    return this;
+  }
 }

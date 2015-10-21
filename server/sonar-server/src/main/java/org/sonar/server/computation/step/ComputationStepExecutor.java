@@ -34,9 +34,10 @@ public final class ComputationStepExecutor {
 
   public void execute() {
     Profiler stepProfiler = Profiler.create(LOGGER);
+    StepContext context = new StepContext(stepProfiler);
     for (ComputationStep step : steps.instances()) {
       stepProfiler.start();
-      step.execute();
+      step.execute(context);
       stepProfiler.stopInfo(step.getDescription());
     }
   }

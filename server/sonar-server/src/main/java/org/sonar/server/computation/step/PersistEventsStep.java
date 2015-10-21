@@ -60,7 +60,7 @@ public class PersistEventsStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     final DbSession session = dbClient.openSession(false);
     try {
       long analysisDate = analysisMetadataHolder.getAnalysisDate().getTime();

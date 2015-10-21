@@ -63,7 +63,7 @@ public class QualityGateEventsStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     new DepthTraversalTypeAwareCrawler(
       new TypeAwareVisitorAdapter(CrawlerDepthLimit.PROJECT, ComponentVisitor.Order.PRE_ORDER) {
         @Override

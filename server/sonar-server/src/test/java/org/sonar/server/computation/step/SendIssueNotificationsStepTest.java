@@ -89,7 +89,7 @@ public class SendIssueNotificationsStepTest extends BaseStepTest {
   public void do_not_send_notifications_if_no_subscribers() {
     when(notifService.hasProjectSubscribersForTypes(PROJECT_UUID, SendIssueNotificationsStep.NOTIF_TYPES)).thenReturn(false);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(notifService, never()).deliver(any(Notification.class));
   }
@@ -101,7 +101,7 @@ public class SendIssueNotificationsStepTest extends BaseStepTest {
 
     when(notifService.hasProjectSubscribersForTypes(PROJECT_UUID, SendIssueNotificationsStep.NOTIF_TYPES)).thenReturn(true);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verify(notifService).deliver(any(NewIssuesNotification.class));
     verify(notifService, atLeastOnce()).deliver(any(IssueChangeNotification.class));

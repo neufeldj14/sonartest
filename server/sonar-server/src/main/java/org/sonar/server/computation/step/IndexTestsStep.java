@@ -34,7 +34,7 @@ public class IndexTestsStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     indexer.index(treeRootHolder.getRoot().getUuid());
   }
 

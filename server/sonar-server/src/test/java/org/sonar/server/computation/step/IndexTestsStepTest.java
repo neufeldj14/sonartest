@@ -40,6 +40,7 @@ import org.sonar.server.test.index.TestIndexDefinition;
 import org.sonar.server.test.index.TestIndexer;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 public class IndexTestsStepTest extends BaseStepTest {
 
@@ -73,7 +74,7 @@ public class IndexTestsStepTest extends BaseStepTest {
 
     treeRootHolder.setRoot(ReportComponent.builder(Component.Type.PROJECT, 1).setUuid("ABCD").setKey("PROJECT_KEY").build());
 
-    step().execute();
+    step().execute(mock(StepContext.class));
 
     List<SearchHit> docs = esTester.getDocuments(TestIndexDefinition.INDEX, TestIndexDefinition.TYPE);
     assertThat(docs).hasSize(1);

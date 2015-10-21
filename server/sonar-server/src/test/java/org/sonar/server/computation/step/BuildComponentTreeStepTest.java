@@ -46,6 +46,7 @@ import org.sonar.server.computation.component.MutableTreeRootHolderRule;
 import org.sonar.test.DbTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.batch.protocol.Constants.ComponentType.DIRECTORY;
 import static org.sonar.batch.protocol.Constants.ComponentType.FILE;
 import static org.sonar.batch.protocol.Constants.ComponentType.MODULE;
@@ -103,7 +104,7 @@ public class BuildComponentTreeStepTest {
 
   @Test(expected = NullPointerException.class)
   public void fails_if_root_component_does_not_exist_in_reportReader() {
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
   }
 
   @DataProvider
@@ -123,7 +124,7 @@ public class BuildComponentTreeStepTest {
     int componentRef = 1;
     reportReader.putComponent(component(componentRef, componentType));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     Component root = treeRootHolder.getRoot();
     assertThat(root).isNotNull();
@@ -144,7 +145,7 @@ public class BuildComponentTreeStepTest {
     reportReader.putComponent(component(DIR_REF_2, DIRECTORY, FILE_3_REF));
     reportReader.putComponent(component(FILE_3_REF, FILE));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     Component root = treeRootHolder.getRoot();
     assertThat(root).isNotNull();
@@ -169,7 +170,7 @@ public class BuildComponentTreeStepTest {
     reportReader.putComponent(componentWithPath(DIR_REF_1, DIRECTORY, REPORT_DIR_KEY_1, FILE_1_REF));
     reportReader.putComponent(componentWithPath(FILE_1_REF, FILE, REPORT_FILE_KEY_1));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyComponent(ROOT_REF, REPORT_PROJECT_KEY);
     verifyComponent(MODULE_REF, REPORT_MODULE_KEY);
@@ -189,7 +190,7 @@ public class BuildComponentTreeStepTest {
     reportReader.putComponent(componentWithPath(DIR_REF_1, DIRECTORY, REPORT_DIR_KEY_1, FILE_1_REF));
     reportReader.putComponent(componentWithPath(FILE_1_REF, FILE, REPORT_FILE_KEY_1));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyComponent(ROOT_REF, REPORT_PROJECT_KEY, "ABCD");
     verifyComponent(MODULE_REF, REPORT_MODULE_KEY, "BCDE");
@@ -210,7 +211,7 @@ public class BuildComponentTreeStepTest {
     reportReader.putComponent(componentWithPath(DIR_REF_1, DIRECTORY, REPORT_DIR_KEY_1, FILE_1_REF));
     reportReader.putComponent(componentWithPath(FILE_1_REF, FILE, REPORT_FILE_KEY_1));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyComponent(ROOT_REF, REPORT_PROJECT_KEY + ":origin/master");
     verifyComponent(MODULE_REF, REPORT_MODULE_KEY + ":origin/master");
@@ -227,7 +228,7 @@ public class BuildComponentTreeStepTest {
     reportReader.putComponent(componentWithPath(DIR_REF_2, DIRECTORY, REPORT_DIR_KEY_2, FILE_2_REF));
     reportReader.putComponent(componentWithPath(FILE_2_REF, FILE, REPORT_FILE_KEY_2));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyComponent(ROOT_REF, REPORT_PROJECT_KEY);
     verifyComponent(MODULE_REF, REPORT_MODULE_KEY);
@@ -245,7 +246,7 @@ public class BuildComponentTreeStepTest {
     reportReader.putComponent(componentWithPath(DIR_REF_1, DIRECTORY, REPORT_DIR_KEY_1, FILE_1_REF));
     reportReader.putComponent(componentWithPath(FILE_1_REF, FILE, REPORT_FILE_KEY_1));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyComponent(ROOT_REF, REPORT_PROJECT_KEY);
     verifyComponent(MODULE_REF, REPORT_MODULE_KEY);
@@ -266,7 +267,7 @@ public class BuildComponentTreeStepTest {
     reportReader.putComponent(componentWithPath(DIR_REF_1, DIRECTORY, REPORT_DIR_KEY_1, FILE_1_REF));
     reportReader.putComponent(componentWithPath(FILE_1_REF, FILE, REPORT_FILE_KEY_1));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyComponent(ROOT_REF, REPORT_PROJECT_KEY, "ABCD");
 
@@ -279,7 +280,7 @@ public class BuildComponentTreeStepTest {
   @Test
   public void set_first_analysis_to_true_when_no_snapshot() throws Exception {
     reportReader.putComponent(componentWithKey(ROOT_REF, PROJECT, REPORT_PROJECT_KEY));
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(analysisMetadataHolder.isFirstAnalysis()).isTrue();
   }
@@ -290,7 +291,7 @@ public class BuildComponentTreeStepTest {
     insertSnapshot(newSnapshotForProject(project).setLast(false));
 
     reportReader.putComponent(componentWithKey(ROOT_REF, PROJECT, REPORT_PROJECT_KEY));
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(analysisMetadataHolder.isFirstAnalysis()).isTrue();
   }
@@ -301,7 +302,7 @@ public class BuildComponentTreeStepTest {
     insertSnapshot(newSnapshotForProject(project).setLast(true));
 
     reportReader.putComponent(componentWithKey(ROOT_REF, PROJECT, REPORT_PROJECT_KEY));
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(analysisMetadataHolder.isFirstAnalysis()).isFalse();
   }

@@ -28,6 +28,7 @@ import org.sonar.server.computation.metric.MetricRepositoryRule;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.guava.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.api.measures.CoreMetrics.NCLOC_LANGUAGE_DISTRIBUTION;
 import static org.sonar.api.measures.CoreMetrics.NCLOC_LANGUAGE_DISTRIBUTION_KEY;
 import static org.sonar.server.computation.component.Component.Type.PROJECT_VIEW;
@@ -85,7 +86,7 @@ public class ViewsLanguageDistributionMeasuresStepTest {
     // no raw measure on PROJECT_VIEW_4_REF
     addRawMeasure(PROJECT_VIEW_5_REF, NCLOC_LANGUAGE_DISTRIBUTION_KEY, "<null>=3;foo=10");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertNoAddedRawMeasureOnProjectViews();
     assertAddedRawMeasure(SUB_SUBVIEW_1_REF, NCLOC_LANGUAGE_DISTRIBUTION_KEY, "java=16;xoo=15");

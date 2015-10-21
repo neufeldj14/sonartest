@@ -107,7 +107,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     // No project, no snapshot
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     assertThat(periodsHolder.getPeriods()).isEmpty();
   }
 
@@ -121,7 +121,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
     String textDate = "2008-11-22";
     settings.setProperty("sonar.timemachine.period1", textDate);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     List<Period> periods = periodsHolder.getPeriods();
     assertThat(periods).hasSize(1);
 
@@ -141,7 +141,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "UNKNWOWN VERSION");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     assertThat(periodsHolder.getPeriods()).isEmpty();
   }
 
@@ -154,7 +154,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     assertThat(periodsHolder.getPeriods()).isEmpty();
   }
 
@@ -167,7 +167,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "100");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     assertThat(periodsHolder.getPeriods()).isEmpty();
   }
 
@@ -181,7 +181,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
     String textDate = "2008-11-22";
     settings.setProperty("sonar.timemachine.period1", textDate);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     List<Period> periods = periodsHolder.getPeriods();
     assertThat(periods).hasSize(1);
 
@@ -206,7 +206,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", date);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     List<Period> periods = periodsHolder.getPeriods();
     assertThat(periods).hasSize(1);
 
@@ -228,7 +228,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
     // No analysis at and after this date
     settings.setProperty("sonar.timemachine.period1", "2008-11-30");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     assertThat(periodsHolder.getPeriods()).isEmpty();
   }
 
@@ -241,7 +241,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "10");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     List<Period> periods = periodsHolder.getPeriods();
     assertThat(periods).hasSize(1);
 
@@ -265,7 +265,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "0");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     assertThat(periodsHolder.getPeriods()).isEmpty();
   }
 
@@ -278,7 +278,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "previous_analysis");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     List<Period> periods = periodsHolder.getPeriods();
     assertThat(periods).hasSize(1);
 
@@ -302,7 +302,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "previous_analysis");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     assertThat(periodsHolder.getPeriods()).isEmpty();
   }
 
@@ -314,7 +314,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "previous_version");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     List<Period> periods = periodsHolder.getPeriods();
     assertThat(periods).hasSize(1);
 
@@ -337,7 +337,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "previous_version");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     List<Period> periods = periodsHolder.getPeriods();
     assertThat(periods).hasSize(0);
   }
@@ -350,7 +350,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "previous_version");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     List<Period> periods = periodsHolder.getPeriods();
     assertThat(periods).hasSize(1);
 
@@ -371,7 +371,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "previous_version");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     assertThat(periodsHolder.getPeriods()).isEmpty();
   }
 
@@ -384,7 +384,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "previous_version");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     assertThat(periodsHolder.getPeriods()).isEmpty();
   }
 
@@ -397,7 +397,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "0.9");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     List<Period> periods = periodsHolder.getPeriods();
     assertThat(periods).hasSize(1);
 
@@ -421,7 +421,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
 
     settings.setProperty("sonar.timemachine.period1", "0.8");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     assertThat(periodsHolder.getPeriods()).isEmpty();
   }
 
@@ -437,7 +437,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
     settings.setProperty("sonar.timemachine.period4", "previous_version"); // Analysis from 2008-11-12 should be returned
     settings.setProperty("sonar.timemachine.period5", "0.9"); // Analysis from 2008-11-11
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     List<Period> periods = periodsHolder.getPeriods();
 
     assertThat(periods).extracting("mode").containsExactly(CoreProperties.TIMEMACHINE_MODE_DATE, CoreProperties.TIMEMACHINE_MODE_DAYS,
@@ -477,7 +477,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
     settings.setProperty("sonar.timemachine.period4", "previous_version"); // Analysis from 2008-11-12 should be returned
     settings.setProperty("sonar.timemachine.period5", "0.9"); // Analysis from 2008-11-11
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     List<Period> periods = periodsHolder.getPeriods();
 
     assertThat(periods).extracting("mode").containsExactly(CoreProperties.TIMEMACHINE_MODE_DATE, CoreProperties.TIMEMACHINE_MODE_DAYS,
@@ -509,7 +509,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
     settings.setProperty("sonar.timemachine.period4.TRK", "2008-11-22");
     settings.setProperty("sonar.timemachine.period5.TRK", "previous_analysis");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     assertThat(periodsHolder.getPeriods()).hasSize(2);
   }
 
@@ -522,7 +522,7 @@ public class LoadPeriodsStepTest extends BaseStepTest {
     settings.setProperty("sonar.timemachine.period4.VW", "2008-11-22");
     settings.setProperty("sonar.timemachine.period5.VW", "previous_analysis");
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
     assertThat(periodsHolder.getPeriods()).hasSize(2);
   }
 

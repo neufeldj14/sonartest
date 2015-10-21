@@ -30,6 +30,7 @@ import org.sonar.server.computation.metric.MetricRepositoryRule;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.guava.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.api.measures.CoreMetrics.SKIPPED_TESTS;
 import static org.sonar.api.measures.CoreMetrics.SKIPPED_TESTS_KEY;
 import static org.sonar.api.measures.CoreMetrics.TESTS;
@@ -128,7 +129,7 @@ public class ReportUnitTestMeasuresStepTest {
     measureRepository.addRawMeasure(FILE_1_REF, TEST_FAILURES_KEY, newMeasureBuilder().create(4));
     measureRepository.addRawMeasure(FILE_2_REF, TEST_FAILURES_KEY, newMeasureBuilder().create(1));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(toEntries(measureRepository.getAddedRawMeasures(FILE_1_REF))).contains(entryOf(TEST_SUCCESS_DENSITY_KEY, newMeasureBuilder().create(40d)));
     assertThat(toEntries(measureRepository.getAddedRawMeasures(FILE_2_REF))).contains(entryOf(TEST_SUCCESS_DENSITY_KEY, newMeasureBuilder().create(70d)));
@@ -149,7 +150,7 @@ public class ReportUnitTestMeasuresStepTest {
     measureRepository.addRawMeasure(FILE_1_REF, TEST_FAILURES_KEY, newMeasureBuilder().create(4));
     measureRepository.addRawMeasure(FILE_2_REF, TEST_FAILURES_KEY, newMeasureBuilder().create(1));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasure(FILE_1_REF, TEST_SUCCESS_DENSITY_KEY).get().getDoubleValue()).isEqualTo(60d);
     assertThat(measureRepository.getAddedRawMeasure(FILE_2_REF, TEST_SUCCESS_DENSITY_KEY).get().getDoubleValue()).isEqualTo(95d);
@@ -170,7 +171,7 @@ public class ReportUnitTestMeasuresStepTest {
     measureRepository.addRawMeasure(FILE_1_REF, TEST_FAILURES_KEY, newMeasureBuilder().create(0));
     measureRepository.addRawMeasure(FILE_2_REF, TEST_FAILURES_KEY, newMeasureBuilder().create(0));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasure(FILE_1_REF, TEST_SUCCESS_DENSITY_KEY).get().getDoubleValue()).isEqualTo(80d);
     assertThat(measureRepository.getAddedRawMeasure(FILE_2_REF, TEST_SUCCESS_DENSITY_KEY).get().getDoubleValue()).isEqualTo(75d);
@@ -191,7 +192,7 @@ public class ReportUnitTestMeasuresStepTest {
     measureRepository.addRawMeasure(FILE_1_REF, TEST_FAILURES_KEY, newMeasureBuilder().create(0));
     measureRepository.addRawMeasure(FILE_2_REF, TEST_FAILURES_KEY, newMeasureBuilder().create(0));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasure(FILE_1_REF, TEST_SUCCESS_DENSITY_KEY).get().getDoubleValue()).isEqualTo(100d);
     assertThat(measureRepository.getAddedRawMeasure(FILE_2_REF, TEST_SUCCESS_DENSITY_KEY).get().getDoubleValue()).isEqualTo(100d);
@@ -212,7 +213,7 @@ public class ReportUnitTestMeasuresStepTest {
     measureRepository.addRawMeasure(FILE_1_REF, TEST_FAILURES_KEY, newMeasureBuilder().create(2));
     measureRepository.addRawMeasure(FILE_2_REF, TEST_FAILURES_KEY, newMeasureBuilder().create(5));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasure(FILE_1_REF, TEST_SUCCESS_DENSITY_KEY).get().getDoubleValue()).isEqualTo(0d);
     assertThat(measureRepository.getAddedRawMeasure(FILE_2_REF, TEST_SUCCESS_DENSITY_KEY).get().getDoubleValue()).isEqualTo(0d);
@@ -230,7 +231,7 @@ public class ReportUnitTestMeasuresStepTest {
     measureRepository.addRawMeasure(FILE_1_REF, TEST_FAILURES_KEY, newMeasureBuilder().create(4));
     measureRepository.addRawMeasure(FILE_2_REF, TEST_FAILURES_KEY, newMeasureBuilder().create(1));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasure(FILE_1_REF, TEST_SUCCESS_DENSITY_KEY)).isAbsent();
     assertThat(measureRepository.getAddedRawMeasure(FILE_2_REF, TEST_SUCCESS_DENSITY_KEY)).isAbsent();
@@ -248,7 +249,7 @@ public class ReportUnitTestMeasuresStepTest {
     measureRepository.addRawMeasure(FILE_1_REF, TEST_ERRORS_KEY, newMeasureBuilder().create(0));
     measureRepository.addRawMeasure(FILE_2_REF, TEST_ERRORS_KEY, newMeasureBuilder().create(0));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasure(FILE_1_REF, TEST_SUCCESS_DENSITY_KEY)).isAbsent();
     assertThat(measureRepository.getAddedRawMeasure(FILE_2_REF, TEST_SUCCESS_DENSITY_KEY)).isAbsent();
@@ -262,7 +263,7 @@ public class ReportUnitTestMeasuresStepTest {
     measureRepository.addRawMeasure(FILE_1_REF, metricKey, newMeasureBuilder().create(file1Value));
     measureRepository.addRawMeasure(FILE_2_REF, metricKey, newMeasureBuilder().create(file2Value));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasure(FILE_1_REF, metricKey)).isAbsent();
     assertThat(measureRepository.getAddedRawMeasure(FILE_2_REF, metricKey)).isAbsent();
@@ -276,7 +277,7 @@ public class ReportUnitTestMeasuresStepTest {
     measureRepository.addRawMeasure(FILE_1_REF, metricKey, newMeasureBuilder().create(file1Value));
     measureRepository.addRawMeasure(FILE_2_REF, metricKey, newMeasureBuilder().create(file2Value));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasure(FILE_1_REF, metricKey)).isAbsent();
     assertThat(measureRepository.getAddedRawMeasure(FILE_2_REF, metricKey)).isAbsent();

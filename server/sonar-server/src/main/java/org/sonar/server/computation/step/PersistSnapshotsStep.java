@@ -64,7 +64,7 @@ public class PersistSnapshotsStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     DbSession session = dbClient.openSession(false);
     try {
       new PathAwareCrawler<>(

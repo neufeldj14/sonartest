@@ -31,6 +31,7 @@ import org.sonar.server.computation.measure.MeasureRepositoryRule;
 import org.sonar.server.computation.metric.MetricRepositoryRule;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.server.computation.component.Component.Type.DIRECTORY;
 import static org.sonar.server.computation.component.Component.Type.FILE;
 import static org.sonar.server.computation.component.Component.Type.MODULE;
@@ -138,7 +139,7 @@ public class ReportCoverageMeasuresStepTest {
       .addRawMeasure(FILE_2_REF, metricKeys.getUncoveredLines(), newMeasureBuilder().create(200))
       .addRawMeasure(FILE_2_REF, metricKeys.getUncoveredConditions(), newMeasureBuilder().create(16));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     MeasureRepoEntry[] nonFileRepoEntries = {
       entryOf(metricKeys.getLines(), newMeasureBuilder().create(5000)),
@@ -201,7 +202,7 @@ public class ReportCoverageMeasuresStepTest {
       .addRawMeasure(FILE_2_REF, metricKeys.getUncoveredLines(), newMeasureBuilder().create(200))
       .addRawMeasure(FILE_2_REF, metricKeys.getUncoveredConditions(), newMeasureBuilder().create(16));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(toEntries(measureRepository.getAddedRawMeasures(FILE_1_REF))).contains(
       entryOf(codeCoverageKey, newMeasureBuilder().create(98.8d)),

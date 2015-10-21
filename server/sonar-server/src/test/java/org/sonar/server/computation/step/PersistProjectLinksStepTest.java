@@ -97,7 +97,7 @@ public class PersistProjectLinksStepTest extends BaseStepTest {
       .addLink(BatchReport.ComponentLink.newBuilder().setType(Constants.ComponentLinkType.SCM).setHref("https://github.com/SonarSource/sonar/server").build())
       .build());
 
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     dbTester.assertDbUnit(getClass(), "add_links_on_project_and_module-result.xml", "project_links");
   }
@@ -114,7 +114,7 @@ public class PersistProjectLinksStepTest extends BaseStepTest {
       .addLink(BatchReport.ComponentLink.newBuilder().setType(Constants.ComponentLinkType.HOME).setHref("http://www.sonarqube.org").build())
       .build());
 
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     dbTester.assertDbUnit(getClass(), "nothing_to_do_when_link_already_exists.xml", "project_links");
   }
@@ -138,7 +138,7 @@ public class PersistProjectLinksStepTest extends BaseStepTest {
       .addLink(BatchReport.ComponentLink.newBuilder().setType(Constants.ComponentLinkType.HOME).setHref("http://www.sonarqube.org").build())
       .build());
 
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_links")).isEqualTo(0);
   }
@@ -155,7 +155,7 @@ public class PersistProjectLinksStepTest extends BaseStepTest {
       .addLink(BatchReport.ComponentLink.newBuilder().setType(Constants.ComponentLinkType.HOME).setHref("http://www.sonarqube.org").build())
       .build());
 
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     dbTester.assertDbUnit(getClass(), "update_link-result.xml", "project_links");
   }
@@ -171,7 +171,7 @@ public class PersistProjectLinksStepTest extends BaseStepTest {
       .setType(Constants.ComponentType.PROJECT)
       .build());
 
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("project_links")).isEqualTo(0);
   }
@@ -187,7 +187,7 @@ public class PersistProjectLinksStepTest extends BaseStepTest {
       .setType(Constants.ComponentType.PROJECT)
       .build());
 
-    step.execute();
+    step.execute(mock(StepContext.class));
 
     dbTester.assertDbUnit(getClass(), "not_delete_custom_link.xml", "project_links");
   }
@@ -206,7 +206,7 @@ public class PersistProjectLinksStepTest extends BaseStepTest {
       .build());
 
     try {
-      step.execute();
+      step.execute(mock(StepContext.class));
       failBecauseExceptionWasNotThrown(IllegalArgumentException.class);
     } catch (IllegalArgumentException e) {
       assertThat(e).hasMessage("Link of type 'homepage' has already been declared on component 'ABCD'");

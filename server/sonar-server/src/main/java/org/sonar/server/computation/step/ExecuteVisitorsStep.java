@@ -46,7 +46,7 @@ public class ExecuteVisitorsStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     VisitorsCrawler visitorsCrawler = new VisitorsCrawler(visitors);
     visitorsCrawler.visit(treeRootHolder.getRoot());
     logVisitorExecutionDurations(visitors, visitorsCrawler);

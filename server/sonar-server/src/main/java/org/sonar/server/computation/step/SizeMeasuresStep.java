@@ -73,7 +73,7 @@ public class SizeMeasuresStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     Metric fileMetric = metricRepository.getByKey(CoreMetrics.FILES_KEY);
     Metric directoryMetric = metricRepository.getByKey(CoreMetrics.DIRECTORIES_KEY);
 

@@ -88,7 +88,7 @@ public class LoadPeriodsStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     new DepthTraversalTypeAwareCrawler(
       new TypeAwareVisitorAdapter(reportMaxDepth(PROJECT).withViewsMaxDepth(VIEW), PRE_ORDER) {
         @Override

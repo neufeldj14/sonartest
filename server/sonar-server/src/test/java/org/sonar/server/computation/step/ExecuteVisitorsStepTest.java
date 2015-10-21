@@ -36,6 +36,7 @@ import org.sonar.server.computation.metric.MetricImpl;
 import org.sonar.server.computation.metric.MetricRepositoryRule;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.api.measures.CoreMetrics.NCLOC;
 import static org.sonar.api.measures.CoreMetrics.NCLOC_KEY;
 import static org.sonar.server.computation.component.Component.Type.DIRECTORY;
@@ -92,7 +93,7 @@ public class ExecuteVisitorsStepTest {
     measureRepository.addRawMeasure(MODULE_REF, NCLOC_KEY, newMeasureBuilder().create(3));
     measureRepository.addRawMeasure(ROOT_REF, NCLOC_KEY, newMeasureBuilder().create(3));
 
-    underStep.execute();
+    underStep.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasure(FILE_1_REF, TEST_METRIC_KEY).get().getIntValue()).isEqualTo(2);
     assertThat(measureRepository.getAddedRawMeasure(FILE_2_REF, TEST_METRIC_KEY).get().getIntValue()).isEqualTo(3);
@@ -108,7 +109,7 @@ public class ExecuteVisitorsStepTest {
     measureRepository.addRawMeasure(FILE_1_REF, NCLOC_KEY, newMeasureBuilder().create(1));
     measureRepository.addRawMeasure(FILE_2_REF, NCLOC_KEY, newMeasureBuilder().create(1));
 
-    underStep.execute();
+    underStep.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getAddedRawMeasure(FILE_1_REF, TEST_METRIC_KEY).get().getIntValue()).isEqualTo(1);
     assertThat(measureRepository.getAddedRawMeasure(FILE_2_REF, TEST_METRIC_KEY).get().getIntValue()).isEqualTo(1);

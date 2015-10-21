@@ -46,6 +46,7 @@ import org.sonar.server.computation.period.PeriodsHolderRule;
 import org.sonar.test.DbTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.sonar.db.component.SnapshotTesting.createForComponent;
 import static org.sonar.db.component.SnapshotTesting.newSnapshotForProject;
 import static org.sonar.db.component.SnapshotTesting.newSnapshotForView;
@@ -110,7 +111,7 @@ public class ViewsComputeMeasureVariationsStepTest {
 
     treeRootHolder.setRoot(VIEW);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getRawMeasures(VIEW).keys()).isEmpty();
   }
@@ -121,7 +122,7 @@ public class ViewsComputeMeasureVariationsStepTest {
     treeRootHolder.setRoot(view);
     periodsHolder.setPeriods();
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getRawMeasures(view).keys()).isEmpty();
   }
@@ -150,7 +151,7 @@ public class ViewsComputeMeasureVariationsStepTest {
     addRawMeasure(view, ISSUES_METRIC, Measure.newMeasureBuilder().create(80, null));
     addRawMeasure(subview, ISSUES_METRIC, Measure.newMeasureBuilder().create(20, null));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getRawMeasure(view, ISSUES_METRIC).get().getVariations().getVariation1()).isEqualTo(20d);
     assertThat(measureRepository.getRawMeasure(subview, ISSUES_METRIC).get().getVariations().getVariation1()).isEqualTo(10d);
@@ -183,7 +184,7 @@ public class ViewsComputeMeasureVariationsStepTest {
 
     addRawMeasure(VIEW, ISSUES_METRIC, Measure.newMeasureBuilder().create(80, null));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getRawMeasures(VIEW).keys()).hasSize(1);
 
@@ -217,7 +218,7 @@ public class ViewsComputeMeasureVariationsStepTest {
     addRawMeasure(VIEW, FILE_COMPLEXITY_METRIC, Measure.newMeasureBuilder().create(3d, null));
     addRawMeasure(VIEW, BUILD_BREAKER_METRIC, Measure.newMeasureBuilder().create(false, null));
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(measureRepository.getRawMeasures(VIEW).keys()).hasSize(4);
 

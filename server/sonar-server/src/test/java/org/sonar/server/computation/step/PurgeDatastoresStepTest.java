@@ -122,7 +122,7 @@ public class PurgeDatastoresStepTest extends BaseStepTest {
   private void verify_do_not_call_purge_method_of_the_purge_task(Component component) {
     treeRootHolder.setRoot(component);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     verifyNoMoreInteractions(projectCleaner);
   }
@@ -132,7 +132,7 @@ public class PurgeDatastoresStepTest extends BaseStepTest {
     when(settingsRepository.getSettings(project)).thenReturn(new Settings());
     dbIdsRepository.setComponentId(project, PROJECT_ID);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     ArgumentCaptor<IdUuidPair> argumentCaptor = ArgumentCaptor.forClass(IdUuidPair.class);
     verify(projectCleaner).purge(any(DbSession.class), argumentCaptor.capture(), any(Settings.class));

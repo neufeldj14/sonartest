@@ -108,7 +108,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
       .build();
     treeRootHolder.setRoot(project);
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("projects")).isEqualTo(4);
 
@@ -183,7 +183,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
             .build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     ComponentDto directory = dbClient.componentDao().selectByKey(dbTester.getSession(), "PROJECT_KEY:/").get();
     assertThat(directory.name()).isEqualTo("/");
@@ -210,7 +210,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
             .build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     ComponentDto file = dbClient.componentDao().selectByKey(dbTester.getSession(), PROJECT_KEY + ":src/test/java/dir/FooTest.java").get();
     assertThat(file.name()).isEqualTo("FooTest.java");
@@ -245,7 +245,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
             .build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("projects")).isEqualTo(4);
 
@@ -297,7 +297,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
             .build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("projects")).isEqualTo(5);
 
@@ -340,7 +340,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
             .build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("projects")).isEqualTo(4);
 
@@ -393,7 +393,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
             .build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("projects")).isEqualTo(4);
     assertThat(dbClient.componentDao().selectByKey(dbTester.getSession(), PROJECT_KEY).get().getId()).isEqualTo(project.getId());
@@ -454,7 +454,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
             .build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     ComponentDto projectReloaded = dbClient.componentDao().selectByKey(dbTester.getSession(), PROJECT_KEY).get();
     assertThat(projectReloaded.name()).isEqualTo("New project name");
@@ -482,7 +482,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
             .build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     ComponentDto projectReloaded = dbClient.componentDao().selectByKey(dbTester.getSession(), PROJECT_KEY).get();
     assertThat(projectReloaded.description()).isEqualTo("New project description");
@@ -509,7 +509,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
             .build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     ComponentDto moduleReloaded = dbClient.componentDao().selectByKey(dbTester.getSession(), "MODULE_KEY").get();
     assertThat(moduleReloaded.path()).isEqualTo("New path");
@@ -548,7 +548,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
             .build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("projects")).isEqualTo(5);
 
@@ -593,7 +593,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
         .setName("New project name")
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     Optional<ComponentDto> projectReloaded = dbClient.componentDao().selectByKey(dbTester.getSession(), PROJECT_KEY);
     assertThat(projectReloaded.get().name()).isEqualTo("New project name");
@@ -629,7 +629,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
             .build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     assertThat(dbTester.countRowsOfTable("projects")).isEqualTo(4);
     assertThat(dbClient.componentDao().selectByKey(dbTester.getSession(), PROJECT_KEY).get().getId()).isEqualTo(project.getId());
@@ -709,7 +709,7 @@ public class ReportPersistComponentsStepTest extends BaseStepTest {
             .build())
         .build());
 
-    underTest.execute();
+    underTest.execute(mock(StepContext.class));
 
     // Projects contains 4 components from the report + one removed module
     assertThat(dbTester.countRowsOfTable("projects")).isEqualTo(5);

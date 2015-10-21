@@ -31,7 +31,7 @@ public class IndexIssuesStep implements ComputationStep {
   }
 
   @Override
-  public void execute() {
+  public void execute(StepContext context) {
     indexer.index();
   }
 
