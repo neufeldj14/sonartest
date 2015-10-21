@@ -36,6 +36,8 @@ import org.sonar.server.computation.issue.RuleRepository;
 import org.sonar.db.DbClient;
 import org.sonar.core.util.CloseableIterator;
 
+import static java.lang.String.format;
+
 public class PersistIssuesStep implements ComputationStep {
 
   private final DbClient dbClient;
@@ -58,17 +60,20 @@ public class PersistIssuesStep implements ComputationStep {
     DbSession session = dbClient.openSession(true);
     IssueMapper mapper = session.getMapper(IssueMapper.class);
     IssueChangeMapper changeMapper = session.getMapper(IssueChangeMapper.class);
-
+    int countIssues = 0;
+    int countUpdatedIssues = 0;
     CloseableIterator<DefaultIssue> issues = issueCache.traverse();
     try {
       while (issues.hasNext()) {
         DefaultIssue issue = issues.next();
         boolean saved = false;
+        countIssues++;
         if (issue.isNew()) {
           Integer ruleId = ruleRepository.getByKey(issue.ruleKey()).getId();
           IssueDto dto = IssueDto.toDtoForComputationInsert(issue, ruleId, system2.now());
           mapper.insert(dto);
           saved = true;
+          countUpdatedIssues++;
         } else if (issue.isChanged()) {
           IssueDto dto = IssueDto.toDtoForUpdate(issue, system2.now());
           int updateCount = mapper.updateIfBeforeSelectedDate(dto);
@@ -78,6 +83,7 @@ public class PersistIssuesStep implements ComputationStep {
             conflictResolver.resolve(issue, mapper);
           }
           saved = true;
+          countUpdatedIssues++;
         }
         if (saved) {
           insertChanges(changeMapper, issue);
@@ -85,6 +91,7 @@ public class PersistIssuesStep implements ComputationStep {
       }
       session.flushStatements();
       session.commit();
+      context.addProfilerContext("updatedIssues", format("%d/%d", countUpdatedIssues, countIssues));
     } finally {
       MyBatis.closeQuietly(session);
       issues.close();

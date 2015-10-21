@@ -103,9 +103,11 @@ public class PersistIssuesStepTest extends BaseStepTest {
       .setNew(true)
       ).close();
 
-    step.execute(mock(StepContext.class));
+    StepContext context = mock(StepContext.class);
+    step.execute(context);
 
     dbTester.assertDbUnit(getClass(), "insert_new_issue-result.xml", new String[]{"id"}, "issues");
+    verify(context).addProfilerContext("updatedIssues", "1/1");
   }
 
   @Test
