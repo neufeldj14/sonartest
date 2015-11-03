@@ -3,6 +3,7 @@ import moment from 'moment';
 import Handlebars from 'hbsfy/runtime';
 import md5 from 'blueimp-md5';
 import { formatMeasure, formatMeasureVariation } from './measures';
+import { collapsedDirFromPath, fileFromPath } from './path';
 
 
 var defaultActions = ['comment', 'assign', 'assign_to_me', 'plan', 'set_severity', 'set_tags'];
@@ -523,11 +524,11 @@ Handlebars.registerHelper('dirFromPath', function (path) {
 });
 
 Handlebars.registerHelper('collapsedDirFromPath', function (path) {
-  return window.collapsedDirFromPath(path);
+  return collapsedDirFromPath(path);
 });
 
 Handlebars.registerHelper('fileFromPath', function (path) {
-  return window.fileFromPath(path);
+  return fileFromPath(path);
 });
 
 Handlebars.registerHelper('repeat', function (number, options) {

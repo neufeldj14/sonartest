@@ -7,6 +7,8 @@ import SearchItemTemplate from '../templates/nav-search-item.hbs';
 import EmptySearchTemplate from '../templates/nav-search-empty.hbs';
 import SearchTemplate from '../templates/nav-search.hbs';
 import RecentHistory from '../component/recent-history';
+import { collapsedDirFromPath, fileFromPath } from '../../../helpers/path';
+
 
 var SearchItemView = Marionette.ItemView.extend({
       tagName: 'li',
@@ -124,7 +126,7 @@ export default Marionette.LayoutView.extend({
         var isFile = ['FIL', 'UTS'].indexOf(f.qualifier) !== -1;
         return {
           url: baseUrl + '/dashboard/index?id=' + encodeURIComponent(f.key) + window.dashboardParameters(true),
-          name: isFile ? window.collapsedDirFromPath(f.lname) + window.fileFromPath(f.lname) : f.name,
+          name: isFile ? collapsedDirFromPath(f.lname) + fileFromPath(f.lname) : f.name,
           icon: 'favorite'
         };
       });
