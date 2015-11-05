@@ -46,7 +46,7 @@ public class PluginsTest {
   /**
    * Temporarily disabled plugins. To be re-enabled.
    */
-  static final Set<String> DISABLED_PLUGINS = Sets.newHashSet("devcockpit", "views",
+  static final Set<String> DISABLED_PLUGINS = Sets.newHashSet("devcockpit",
     // internal plugin used for integration tests of language plugins
     "lits");
 
