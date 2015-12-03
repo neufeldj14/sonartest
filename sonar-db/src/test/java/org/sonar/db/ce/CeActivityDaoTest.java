@@ -243,7 +243,7 @@ public class CeActivityDaoTest {
     dto.setStartedAt(1_500_000_000_000L);
     dto.setExecutedAt(1_500_000_000_500L);
     dto.setExecutionTimeMs(500L);
-    dto.setSnapshotId(123_456);
+    dto.setSnapshotId(123_456L);
     underTest.insert(db.getSession(), dto);
   }
 

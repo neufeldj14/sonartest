@@ -35,7 +35,7 @@ public class CeActivityDto {
 
   private String uuid;
   private String componentUuid;
-  private Integer snapshotId;
+  private Long snapshotId;
   private Status status;
   private String taskType;
   private boolean isLast;
@@ -167,11 +167,11 @@ public class CeActivityDto {
   }
 
   @CheckForNull
-  public Integer getSnapshotId() {
+  public Long getSnapshotId() {
     return snapshotId;
   }
 
-  public CeActivityDto setSnapshotId(@Nullable Integer snapshotId) {
+  public CeActivityDto setSnapshotId(@Nullable Long snapshotId) {
     this.snapshotId = snapshotId;
     return this;
   }
