@@ -102,6 +102,17 @@ public class PermissionsServiceTest {
   }
 
   @Test
+  public void groups_does_POST_without_params_on_WS_groups_when_request_is_empty() {
+    underTest.groups(new GroupsWsRequest());
+
+    assertThat(serviceTester.getGetParser()).isSameAs(WsPermissions.WsGroupsResponse.parser());
+    GetRequest getRequest = serviceTester.getGetRequest();
+    serviceTester.assertThat(getRequest)
+      .hasPath("groups")
+      .andNoOtherParam();
+  }
+
+  @Test
   public void addGroup_does_POST_on_Ws_add_group() {
     underTest.addGroup(new AddGroupWsRequest()
       .setPermission(PERMISSION_VALUE)
@@ -119,6 +130,17 @@ public class PermissionsServiceTest {
       .hasParam(PARAM_PROJECT_KEY, PROJECT_KEY_VALUE)
       .hasParam(PARAM_GROUP_ID, GROUP_ID_VALUE)
       .hasParam(PARAM_GROUP_NAME, GROUP_NAME_VALUE)
+      .andNoOtherParam();
+  }
+
+  @Test
+  public void addGroup_does_without_params_POST_on_Ws_add_group_when_request_is_empty() {
+    underTest.addGroup(new AddGroupWsRequest());
+
+    assertThat(serviceTester.getPostParser()).isNull();
+    PostRequest postRequest = serviceTester.getPostRequest();
+    serviceTester.assertThat(postRequest)
+      .hasPath("add_group")
       .andNoOtherParam();
   }
 
@@ -146,6 +168,17 @@ public class PermissionsServiceTest {
   }
 
   @Test
+  public void addGroupToTemplate_does_POST_without_params_on_Ws_add_group_to_template_when_request_is_empty() {
+    underTest.addGroupToTemplate(new AddGroupToTemplateWsRequest());
+
+    assertThat(serviceTester.getPostParser()).isNull();
+    PostRequest postRequest = serviceTester.getPostRequest();
+    serviceTester.assertThat(postRequest)
+      .hasPath("add_group_to_template")
+      .andNoOtherParam();
+  }
+
+  @Test
   public void addUser_does_POST_on_Ws_add_user() {
     underTest.addUser(new AddUserWsRequest()
       .setLogin(LOGIN_VALUE)
@@ -162,6 +195,17 @@ public class PermissionsServiceTest {
       .hasParam(PARAM_PERMISSION, PERMISSION_VALUE)
       .hasParam(PARAM_PROJECT_ID, PROJECT_ID_VALUE)
       .hasParam(PARAM_PROJECT_KEY, PROJECT_KEY_VALUE)
+      .andNoOtherParam();
+  }
+
+  @Test
+  public void addUser_does_POST_without_params_on_Ws_add_user_when_request_is_empty() {
+    underTest.addUser(new AddUserWsRequest());
+
+    assertThat(serviceTester.getPostParser()).isNull();
+    PostRequest postRequest = serviceTester.getPostRequest();
+    serviceTester.assertThat(postRequest)
+      .hasPath("add_user")
       .andNoOtherParam();
   }
 
@@ -186,6 +230,17 @@ public class PermissionsServiceTest {
   }
 
   @Test
+  public void addUserToTemplate_does_POST_without_params_on_Ws_add_user_to_template_when_request_is_empty() {
+    underTest.addUserToTemplate(new AddUserToTemplateWsRequest());
+
+    assertThat(serviceTester.getPostParser()).isNull();
+    PostRequest postRequest = serviceTester.getPostRequest();
+    serviceTester.assertThat(postRequest)
+      .hasPath("add_user_to_template")
+      .andNoOtherParam();
+  }
+
+  @Test
   public void applyTemplate_does_POST_on_Ws_apply_template() {
     underTest.applyTemplate(new ApplyTemplateWsRequest()
       .setProjectId(PROJECT_ID_VALUE)
@@ -202,6 +257,17 @@ public class PermissionsServiceTest {
       .hasParam(PARAM_PROJECT_KEY, PROJECT_KEY_VALUE)
       .hasParam(PARAM_TEMPLATE_ID, TEMPLATE_ID_VALUE)
       .hasParam(PARAM_TEMPLATE_NAME, TEMPLATE_NAME_VALUE)
+      .andNoOtherParam();
+  }
+
+  @Test
+  public void applyTemplate_does_POST_without_params_on_Ws_apply_template_when_request_is_empty() {
+    underTest.applyTemplate(new ApplyTemplateWsRequest());
+
+    assertThat(serviceTester.getPostParser()).isNull();
+    PostRequest postRequest = serviceTester.getPostRequest();
+    serviceTester.assertThat(postRequest)
+      .hasPath("apply_template")
       .andNoOtherParam();
   }
 
@@ -224,6 +290,17 @@ public class PermissionsServiceTest {
   }
 
   @Test
+  public void createTemplate_does_POST_without_params_on_Ws_create_template_when_request_is_empty() {
+    underTest.createTemplate(new CreateTemplateWsRequest());
+
+    assertThat(serviceTester.getPostParser()).isSameAs(WsPermissions.CreateTemplateWsResponse.parser());
+    PostRequest postRequest = serviceTester.getPostRequest();
+    serviceTester.assertThat(postRequest)
+      .hasPath("create_template")
+      .andNoOtherParam();
+  }
+
+  @Test
   public void deleteTemplate_does_POST_on_Ws_delete_template() {
     underTest.deleteTemplate(new DeleteTemplateWsRequest()
       .setTemplateId(TEMPLATE_ID_VALUE)
@@ -236,6 +313,17 @@ public class PermissionsServiceTest {
       .hasPath("delete_template")
       .hasParam(PARAM_TEMPLATE_ID, TEMPLATE_ID_VALUE)
       .hasParam(PARAM_TEMPLATE_NAME, TEMPLATE_NAME_VALUE)
+      .andNoOtherParam();
+  }
+
+  @Test
+  public void deleteTemplate_does_POST_without_params_on_Ws_delete_template_when_request_is_empty() {
+    underTest.deleteTemplate(new DeleteTemplateWsRequest());
+
+    assertThat(serviceTester.getPostParser()).isNull();
+    PostRequest postRequest = serviceTester.getPostRequest();
+    serviceTester.assertThat(postRequest)
+      .hasPath("delete_template")
       .andNoOtherParam();
   }
 
@@ -262,6 +350,17 @@ public class PermissionsServiceTest {
   }
 
   @Test
+  public void removeGroup_does_POST_without_params_on_Ws_remove_group_when_request_is_empty() {
+    underTest.removeGroup(new RemoveGroupWsRequest());
+
+    assertThat(serviceTester.getPostParser()).isNull();
+    PostRequest postRequest = serviceTester.getPostRequest();
+    serviceTester.assertThat(postRequest)
+      .hasPath("remove_group")
+      .andNoOtherParam();
+  }
+
+  @Test
   public void removeGroupFromTemplate_does_POST_on_Ws_remove_group_from_template() {
     underTest.removeGroupFromTemplate(new RemoveGroupFromTemplateWsRequest()
       .setPermission(PERMISSION_VALUE)
@@ -280,6 +379,17 @@ public class PermissionsServiceTest {
       .hasParam(PARAM_GROUP_NAME, GROUP_NAME_VALUE)
       .hasParam(PARAM_TEMPLATE_ID, TEMPLATE_ID_VALUE)
       .hasParam(PARAM_TEMPLATE_NAME, TEMPLATE_NAME_VALUE)
+      .andNoOtherParam();
+  }
+
+  @Test
+  public void removeGroupFromTemplate_does_POST_without_params_on_Ws_remove_group_from_template_when_request_is_empty() {
+    underTest.removeGroupFromTemplate(new RemoveGroupFromTemplateWsRequest());
+
+    assertThat(serviceTester.getPostParser()).isNull();
+    PostRequest postRequest = serviceTester.getPostRequest();
+    serviceTester.assertThat(postRequest)
+      .hasPath("remove_group_from_template")
       .andNoOtherParam();
   }
 
@@ -304,6 +414,17 @@ public class PermissionsServiceTest {
   }
 
   @Test
+  public void removeUser_does_POST_without_params_on_Ws_remove_user_when_request_is_empty() {
+    underTest.removeUser(new RemoveUserWsRequest());
+
+    assertThat(serviceTester.getPostParser()).isNull();
+    PostRequest postRequest = serviceTester.getPostRequest();
+    serviceTester.assertThat(postRequest)
+      .hasPath("remove_user")
+      .andNoOtherParam();
+  }
+
+  @Test
   public void removeUserFromTemplate_does_POST_on_Ws_remove_user_from_template() {
     underTest.removeUserFromTemplate(new RemoveUserFromTemplateWsRequest()
       .setPermission(PERMISSION_VALUE)
@@ -320,6 +441,17 @@ public class PermissionsServiceTest {
       .hasParam(PARAM_USER_LOGIN, LOGIN_VALUE)
       .hasParam(PARAM_TEMPLATE_ID, TEMPLATE_ID_VALUE)
       .hasParam(PARAM_TEMPLATE_NAME, TEMPLATE_NAME_VALUE)
+      .andNoOtherParam();
+  }
+
+  @Test
+  public void removeUserFromTemplate_does_POST_without_params_on_Ws_remove_user_from_template_when_request_is_empty() {
+    underTest.removeUserFromTemplate(new RemoveUserFromTemplateWsRequest());
+
+    assertThat(serviceTester.getPostParser()).isNull();
+    PostRequest postRequest = serviceTester.getPostRequest();
+    serviceTester.assertThat(postRequest)
+      .hasPath("remove_user_from_template")
       .andNoOtherParam();
   }
 
@@ -359,6 +491,18 @@ public class PermissionsServiceTest {
   }
 
   @Test
+  public void searchProjectPermissions_does_GET_without_params_on_Ws_search_project_permissions_when_request_is_empty() {
+    underTest.searchProjectPermissions(new SearchProjectPermissionsWsRequest()
+      );
+
+    assertThat(serviceTester.getGetParser()).isSameAs(WsPermissions.SearchProjectPermissionsWsResponse.parser());
+    GetRequest getRequest = serviceTester.getGetRequest();
+    serviceTester.assertThat(getRequest)
+      .hasPath("search_project_permissions")
+      .andNoOtherParam();
+  }
+
+  @Test
   public void searchTemplates_does_GET_on_Ws_search_templates() {
     underTest.searchTemplates(new SearchTemplatesWsRequest()
       .setQuery(QUERY_VALUE)
@@ -369,6 +513,17 @@ public class PermissionsServiceTest {
     serviceTester.assertThat(getRequest)
       .hasPath("search_templates")
       .hasParam(PARAM_Q, QUERY_VALUE)
+      .andNoOtherParam();
+  }
+
+  @Test
+  public void searchTemplates_does_GET_without_params_on_Ws_search_templates_when_request_is_empty() {
+    underTest.searchTemplates(new SearchTemplatesWsRequest());
+
+    assertThat(serviceTester.getGetParser()).isSameAs(WsPermissions.SearchTemplatesWsResponse.parser());
+    GetRequest getRequest = serviceTester.getGetRequest();
+    serviceTester.assertThat(getRequest)
+      .hasPath("search_templates")
       .andNoOtherParam();
   }
 
@@ -391,6 +546,17 @@ public class PermissionsServiceTest {
   }
 
   @Test
+  public void setDefaultTemplate_does_POST_without_params_on_Ws_set_default_template_when_request_is_empty() {
+    underTest.setDefaultTemplate(new SetDefaultTemplateWsRequest());
+
+    assertThat(serviceTester.getPostParser()).isNull();
+    PostRequest postRequest = serviceTester.getPostRequest();
+    serviceTester.assertThat(postRequest)
+      .hasPath("set_default_template")
+      .andNoOtherParam();
+  }
+
+  @Test
   public void updateTemplate_does_POST_on_Ws_update_template() {
     underTest.updateTemplate(new UpdateTemplateWsRequest()
       .setDescription(DESCRIPTION_VALUE)
@@ -407,6 +573,17 @@ public class PermissionsServiceTest {
       .hasParam(PARAM_ID, TEMPLATE_ID_VALUE)
       .hasParam(PARAM_NAME, TEMPLATE_NAME_VALUE)
       .hasParam(PARAM_PROJECT_KEY_PATTERN, PROJECT_KEY_PATTERN_VALUE)
+      .andNoOtherParam();
+  }
+
+  @Test
+  public void updateTemplate_does_POST_without_params_on_Ws_update_template_when_request_is_empty() {
+    underTest.updateTemplate(new UpdateTemplateWsRequest());
+
+    assertThat(serviceTester.getPostParser()).isSameAs(WsPermissions.UpdateTemplateWsResponse.parser());
+    PostRequest postRequest = serviceTester.getPostRequest();
+    serviceTester.assertThat(postRequest)
+      .hasPath("update_template")
       .andNoOtherParam();
   }
 
@@ -433,6 +610,17 @@ public class PermissionsServiceTest {
       .hasParam(PARAM_P, PAGE_VALUE)
       .hasParam(PARAM_PS, PAGE_SIZE_VALUE)
       .hasParam(PARAM_Q, QUERY_VALUE)
+      .andNoOtherParam();
+  }
+
+  @Test
+  public void users_does_GET_without_params_on_Ws_users_when_request_is_empty() {
+    underTest.users(new UsersWsRequest());
+
+    assertThat(serviceTester.getGetParser()).isSameAs(WsPermissions.UsersWsResponse.parser());
+    GetRequest getRequest = serviceTester.getGetRequest();
+    serviceTester.assertThat(getRequest)
+      .hasPath("users")
       .andNoOtherParam();
   }
 }

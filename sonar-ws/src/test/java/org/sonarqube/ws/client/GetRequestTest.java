@@ -17,24 +17,15 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+package org.sonarqube.ws.client;
 
-package org.sonarqube.ws.client.permission;
+import org.junit.Test;
 
-public interface PermissionsWsParameters {
-  String CONTROLLER = "api/permissions";
+import static org.assertj.core.api.Assertions.assertThat;
 
-  String PARAM_PERMISSION = "permission";
-  String PARAM_GROUP_NAME = "groupName";
-  String PARAM_GROUP_ID = "groupId";
-  String PARAM_PROJECT_ID = "projectId";
-  String PARAM_PROJECT_KEY = "projectKey";
-  String PARAM_USER_LOGIN = "login";
-  String PARAM_TEMPLATE_ID = "templateId";
-  String PARAM_TEMPLATE_NAME = "templateName";
-  String PARAM_ID = "id";
-  String PARAM_NAME = "name";
-  String PARAM_DESCRIPTION = "description";
-  String PARAM_PROJECT_KEY_PATTERN = "projectKeyPattern";
-  String PARAM_QUALIFIER = "qualifier";
-
+public class GetRequestTest {
+  @Test
+  public void getMethod_returns_Get() {
+    assertThat(new GetRequest("path").getMethod()).isEqualTo(WsRequest.Method.GET);
+  }
 }
