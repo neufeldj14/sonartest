@@ -41,11 +41,8 @@ import com.sonar.orchestrator.Orchestrator;
 import it.actionPlan.ActionPlanTest;
 import it.actionPlan.ActionPlanUiTest;
 import it.administration.UsersPageTest;
-import it.authorisation.BaseIdentityProviderTest;
 import it.authorisation.ExecuteAnalysisPermissionTest;
 import it.authorisation.IssuePermissionTest;
-import it.authorisation.LocalAuthenticationTest;
-import it.authorisation.OAuth2IdentityProviderTest;
 import it.authorisation.PermissionTest;
 import it.i18n.I18nTest;
 import it.measureHistory.DifferentialPeriodsTest;
@@ -56,7 +53,12 @@ import it.measureHistory.TimeMachineTest;
 import it.projectAdministration.BackgroundTasksTest;
 import it.projectAdministration.BulkDeletionTest;
 import it.projectAdministration.ProjectAdministrationTest;
-import it.projectServices.*;
+import it.projectServices.AllProjectsTest;
+import it.projectServices.ProjectCodeTest;
+import it.projectServices.ProjectComparisonTest;
+import it.projectServices.ProjectDrilldownTest;
+import it.projectServices.ProjectOverviewTest;
+import it.projectServices.ProjectWidgetsTest;
 import it.qualityGate.QualityGateNotificationTest;
 import it.qualityGate.QualityGateTest;
 import it.qualityGate.QualityGateUiTest;
@@ -64,7 +66,6 @@ import it.settings.PropertySetsTest;
 import it.settings.SettingsTest;
 import it.settings.SettingsTestRestartingOrchestrator;
 import it.settings.SubCategoriesTest;
-import it.user.MyAccountPageTest;
 import org.junit.ClassRule;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -98,10 +99,6 @@ import static util.ItUtils.xooPlugin;
   QualityGateTest.class,
   QualityGateUiTest.class,
   QualityGateNotificationTest.class,
-  // authentication
-  LocalAuthenticationTest.class,
-  BaseIdentityProviderTest.class,
-  OAuth2IdentityProviderTest.class,
   // permission
   PermissionTest.class,
   IssuePermissionTest.class,
@@ -114,8 +111,7 @@ import static util.ItUtils.xooPlugin;
   TimeMachineTest.class,
   // action plan
   ActionPlanTest.class,
-  ActionPlanUiTest.class,
-  MyAccountPageTest.class
+  ActionPlanUiTest.class
 })
 public class Category1Suite {
 
@@ -136,12 +132,6 @@ public class Category1Suite {
 
     // Used in SettingsTest.should_get_settings_default_value
     .addPlugin(pluginArtifact("server-plugin"))
-
-    // Used in BaseIdentityProviderTest
-    .addPlugin(pluginArtifact("base-auth-plugin"))
-
-    // Used in OAuth2IdentityProviderTest
-    .addPlugin(pluginArtifact("oauth2-auth-plugin"))
 
     .addPlugin(xooPlugin())
     .build();

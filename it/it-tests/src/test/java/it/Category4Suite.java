@@ -33,12 +33,18 @@ import it.serverSystem.RestartTest;
 import it.serverSystem.ServerSystemRestartingOrchestrator;
 import it.serverSystem.ServerSystemTest;
 import it.updateCenter.UpdateCenterTest;
+import it.user.BaseIdentityProviderTest;
 import it.user.FavouriteTest;
 import it.user.ForceAuthenticationTest;
+import it.user.LocalAuthenticationTest;
+import it.user.MyAccountPageTest;
+import it.user.OAuth2IdentityProviderTest;
+import it.user.RailsExternalAuthenticationTest;
 import org.junit.ClassRule;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import static util.ItUtils.pluginArtifact;
 import static util.ItUtils.xooPlugin;
 
 @RunWith(Suite.class)
@@ -49,8 +55,14 @@ import static util.ItUtils.xooPlugin;
   ServerSystemTest.class,
   ServerSystemRestartingOrchestrator.class,
   // user
-  ForceAuthenticationTest.class,
+  MyAccountPageTest.class,
   FavouriteTest.class,
+  // authentication
+  RailsExternalAuthenticationTest.class,
+  ForceAuthenticationTest.class,
+  LocalAuthenticationTest.class,
+  BaseIdentityProviderTest.class,
+  OAuth2IdentityProviderTest.class,
   // component search
   ProjectSearchTest.class,
   ComponentsWsTest.class,
@@ -71,5 +83,12 @@ public class Category4Suite {
   @ClassRule
   public static final Orchestrator ORCHESTRATOR = Orchestrator.builderEnv()
     .addPlugin(xooPlugin())
+
+    // Used in BaseIdentityProviderTest
+    .addPlugin(pluginArtifact("base-auth-plugin"))
+
+    // Used in OAuth2IdentityProviderTest
+    .addPlugin(pluginArtifact("oauth2-auth-plugin"))
+
     .build();
 }
