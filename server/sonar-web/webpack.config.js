@@ -1,13 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var output = '/Users/stasvilchik/sonarqube/web/js/bundles';
-//var output = path.join(__dirname, 'src/main/webapp/js');
-
+var baseOutput = process.env.OUTPUT || path.join(__dirname, 'src/main/webapp');
+var output = path.join(baseOutput, 'js/bundles');
 
 module.exports = {
   entry: {
-    //vendor: ['react', 'react-dom', 'backbone', 'backbone.marionette', 'moment'],
+    'vendor': ['react', 'react-dom', 'backbone', 'backbone.marionette', 'moment', 'handlebars/runtime'],
 
     'main': './src/main/js/main/app.js',
 
@@ -36,14 +35,16 @@ module.exports = {
     'source-viewer': './src/main/js/apps/source-viewer/app.js',
     'system': './src/main/js/apps/system/app.js',
     'update-center': './src/main/js/apps/update-center/app.js',
-    'users': './src/main/js/apps/users/app.js'
+    'users': './src/main/js/apps/users/app.js',
+
+    'widgets': './src/main/js/widgets/widgets.js'
   },
   output: {
     path: output,
     filename: '[name].js'
   },
   plugins: [
-    //new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js')
   ],
   resolve: {
     root: path.join(__dirname, 'src/main/js')
@@ -71,6 +72,7 @@ module.exports = {
   externals: {
     'jquery': 'jQuery',
     'underscore': '_',
-    'numeral': 'numeral'
+    'numeral': 'numeral',
+    'd3': 'd3'
   }
 };
