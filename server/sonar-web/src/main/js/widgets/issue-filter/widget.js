@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _ from 'underscore';
 import moment from 'moment';
 import Backbone from 'backbone';
-import Handlebars from 'hbsfy/runtime';
+import Handlebars from 'handlebars/runtime';
 import Marionette from 'backbone.marionette';
 
 import Template from './templates/widget-issue-filter.hbs';
@@ -17,7 +17,6 @@ import TotalPartial from './templates/_widget-issue-filter-total.hbs';
 
 import { formatMeasure } from '../../helpers/measures';
 
-import '../../helpers/handlebars-helpers';
 
 var FACET_LIMIT = 15,
     defaultComparator = function (item) {
@@ -232,9 +231,6 @@ Handlebars.registerHelper('issueFilterValue', function (value, mode) {
   var formatter = mode === 'debt' ? 'SHORT_WORK_DUR' : 'SHORT_INT';
   return formatMeasure(value, formatter);
 });
-
-Handlebars.registerPartial('_widget-issue-filter-limit', LimitPartial);
-Handlebars.registerPartial('_widget-issue-filter-total', TotalPartial);
 
 export default Marionette.ItemView.extend({
 
