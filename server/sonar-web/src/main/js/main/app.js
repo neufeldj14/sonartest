@@ -5,7 +5,6 @@ import Backbone from 'backbone';
 import Marionette from 'backbone.marionette';
 import 'whatwg-fetch';
 import moment from 'moment';
-import '../libs/third-party/backbone-super.js';
 import './processes';
 import Navigation from './nav/app';
 
