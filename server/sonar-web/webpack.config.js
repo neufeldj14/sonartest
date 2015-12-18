@@ -6,7 +6,19 @@ var output = path.join(baseOutput, 'js/bundles');
 
 module.exports = {
   entry: {
-    'vendor': ['react', 'react-dom', 'backbone', 'backbone.marionette', 'moment', 'handlebars/runtime'],
+    'vendor': [
+      'jquery',
+      'underscore',
+      'd3',
+      'react',
+      'react-dom',
+      'backbone',
+      'backbone.marionette',
+      'moment',
+      'handlebars/runtime'
+    ],
+
+    'sonar': './src/main/js/libs/sonar.js',
 
     'main': './src/main/js/main/app.js',
 
@@ -57,7 +69,7 @@ module.exports = {
         exclude: /(node_modules|libs)/
       },
       {
-        test: /(blueimp-md5|backbone-super)/,
+        test: /(blueimp-md5)/,
         loader: 'imports?define=>false'
       },
       {
@@ -66,13 +78,22 @@ module.exports = {
         query: {
           helperDirs: path.join(__dirname, 'src/main/js/helpers/handlebars')
         }
+      },
+      {
+        test: require.resolve('jquery'),
+        loader: 'expose?$!expose?jQuery'
+      },
+      {
+        test: require.resolve('underscore'),
+        loader: 'expose?_'
+      },
+      {
+        test: require.resolve('d3'),
+        loader: 'expose?d3'
       }
     ]
   },
   externals: {
-    'jquery': 'jQuery',
-    'underscore': '_',
-    'numeral': 'numeral',
-    'd3': 'd3'
+    'numeral': 'numeral'
   }
 };
