@@ -14,18 +14,14 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.3.13",
-    "babelify": "7.2.0",
     "backbone": "1.2.3",
     "backbone.marionette": "2.4.3",
     "blueimp-md5": "1.1.1",
-    "browserify": "11.2.0",
-    "browserify-shim": "3.8.10",
     "chai": "3.3.0",
     "classnames": "^2.2.0",
     "clipboard": "1.5.5",
     "d3": "3.5.6",
     "del": "2.0.2",
-    "envify": "^3.4.0",
     "enzyme": "^1.2.0",
     "eslint": "^1.10.3",
     "eslint-plugin-import": "^0.11.0",
@@ -35,7 +31,6 @@
     "glob": "5.0.15",
     "gulp": "3.9.0",
     "gulp-autoprefixer": "^3.1.0",
-    "gulp-browserify": "0.5.1",
     "gulp-concat": "2.6.0",
     "gulp-env": "0.2.0",
     "gulp-if": "2.0.0",
@@ -48,7 +43,6 @@
     "gulp-util": "3.0.6",
     "handlebars": "^2.0.0",
     "handlebars-loader": "^1.1.4",
-    "hbsfy": "2.3.1",
     "imports-loader": "^0.6.5",
     "isparta": "^4.0.0",
     "jquery": "2.1.4",
@@ -80,19 +74,5 @@
     "test": "mocha --opts tests/mocha.opts tests",
     "coverage": "babel-node node_modules/.bin/isparta cover --root 'src/main/js' --include-all-sources --excludes '**/libs/**' --dir 'target/coverage' node_modules/.bin/_mocha -- --opts tests/mocha.opts tests",
     "lint": "eslint src/main/js"
-  },
-  "browserify-shim": {
-    "jquery": "global:jQuery",
-    "underscore": "global:_",
-    "d3": "global:d3",
-    "numeral": "global:numeral"
-  },
-  "browserify": {
-    "transform": [
-      "hbsfy",
-      "babelify",
-      "browserify-shim",
-      "envify"
-    ]
   }
 }
