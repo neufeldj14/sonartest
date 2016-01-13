@@ -32,7 +32,7 @@ import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 import org.sonar.batch.protocol.output.BatchReport;
-import org.sonar.core.util.CloseableIterator;
+import org.sonar.batch.protocol.output.CloseableIterator;
 
 public class BatchReportReaderRule implements TestRule, BatchReportReader {
   private BatchReport.Metadata metadata;

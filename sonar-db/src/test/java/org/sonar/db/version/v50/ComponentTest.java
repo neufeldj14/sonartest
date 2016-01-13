@@ -21,16 +21,23 @@ package org.sonar.db.version.v50;
 
 import org.junit.Test;
 
-import static com.google.code.beanmatchers.BeanMatchers.hasValidGettersAndSetters;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.allOf;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ComponentTest {
 
   @Test
   public void test_bean() throws Exception {
-    assertThat(Component.class, allOf(
-      hasValidGettersAndSetters()));
+    Component c = new Component();
+    c.setId(1L);
+    c.setProjectId(2L);
+    c.setSnapshotId(3L);
+    c.setSnapshotPath("4");
+    c.setScope("5");
+    c.setUuid("6");
+    c.setProjectUuid("7");
+    c.setModuleUuid("8");
+    c.setModuleUuidPath("9");
+    assertThat(c).isEqualToComparingFieldByField(c);
   }
 
 }

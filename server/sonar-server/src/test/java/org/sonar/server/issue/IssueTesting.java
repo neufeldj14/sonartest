@@ -28,8 +28,8 @@ import org.sonar.core.util.Uuids;
 import org.sonar.db.component.ComponentDto;
 import org.sonar.db.issue.IssueDto;
 import org.sonar.db.rule.RuleDto;
-import org.sonar.server.issue.index.IssueDoc;
 import org.sonar.db.rule.RuleTesting;
+import org.sonar.server.issue.index.IssueDoc;
 
 public class IssueTesting {
 

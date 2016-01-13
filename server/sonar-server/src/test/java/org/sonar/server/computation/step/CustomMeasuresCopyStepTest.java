@@ -125,12 +125,9 @@ public class CustomMeasuresCopyStepTest {
                   ReportComponent.builder(DIRECTORY, DIR_REF).setUuid(DIR_UUID)
                     .addChildren(
                       ReportComponent.builder(FILE, FILE1_REF).setUuid(FILE1_UUID).build(),
-                      ReportComponent.builder(FILE, FILE2_REF).setUuid(FILE2_UUID).build()
-                    )
-                    .build()
-                )
-                .build()
-            )
+                      ReportComponent.builder(FILE, FILE2_REF).setUuid(FILE2_UUID).build())
+                    .build())
+                .build())
             .build())
         .build());
 
@@ -154,8 +151,7 @@ public class CustomMeasuresCopyStepTest {
       ViewsComponent.builder(VIEW, VIEW_REF).setUuid("VIEW")
         .addChildren(
           ViewsComponent.builder(SUBVIEW, SUBVIEW_REF).setUuid("SUBVIEW").build(),
-          ViewsComponent.builder(PROJECT_VIEW, PROJECT_VIEW_REF).setUuid("PROJECT_VIEW").build()
-        )
+          ViewsComponent.builder(PROJECT_VIEW, PROJECT_VIEW_REF).setUuid("PROJECT_VIEW").build())
         .build());
 
     underTest.execute();

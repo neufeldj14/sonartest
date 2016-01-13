@@ -26,12 +26,6 @@
     </dependency>
     <dependency>
       <groupId>org.sonarsource.sonarqube</groupId>
-      <artifactId>sonar-xoo-plugin</artifactId>
-      <version>${project.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.sonarsource.sonarqube</groupId>
       <artifactId>sonar-application</artifactId>
       <version>${project.version}</version>
       <scope>provided</scope>

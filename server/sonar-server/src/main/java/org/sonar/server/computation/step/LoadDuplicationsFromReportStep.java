@@ -22,7 +22,7 @@ package org.sonar.server.computation.step;
 import com.google.common.base.Function;
 import javax.annotation.Nonnull;
 import org.sonar.batch.protocol.output.BatchReport;
-import org.sonar.core.util.CloseableIterator;
+import org.sonar.batch.protocol.output.CloseableIterator;
 import org.sonar.server.computation.batch.BatchReportReader;
 import org.sonar.server.computation.component.Component;
 import org.sonar.server.computation.component.CrawlerDepthLimit;
@@ -85,8 +85,7 @@ public class LoadDuplicationsFromReportStep implements ComputationStep {
       new Duplication(
         convert(duplication.getOriginPosition(), id),
         from(duplication.getDuplicateList())
-          .transform(new BatchDuplicateToCeDuplicate(file))
-      ));
+          .transform(new BatchDuplicateToCeDuplicate(file))));
   }
 
   private static TextBlock convert(BatchReport.TextRange textRange) {

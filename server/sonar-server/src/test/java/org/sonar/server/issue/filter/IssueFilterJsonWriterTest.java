@@ -19,17 +19,16 @@
  */
 package org.sonar.server.issue.filter;
 
+import java.io.StringWriter;
 import org.junit.Test;
 import org.sonar.api.utils.text.JsonWriter;
-import org.sonar.db.issue.IssueFilterDto;
 import org.sonar.core.permission.GlobalPermissions;
+import org.sonar.db.issue.IssueFilterDto;
 import org.sonar.server.tester.AnonymousMockUserSession;
 import org.sonar.server.tester.MockUserSession;
 import org.sonar.server.user.UserSession;
 
-import java.io.StringWriter;
-
-import static org.sonar.test.JsonAssert.assertJson;
+import static org.sonar.server.JsonAssert.assertJson;
 
 public class IssueFilterJsonWriterTest {
 

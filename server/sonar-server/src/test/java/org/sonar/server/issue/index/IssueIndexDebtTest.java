@@ -42,10 +42,10 @@ import org.sonar.server.es.SearchResult;
 import org.sonar.server.issue.IssueQuery;
 import org.sonar.server.issue.IssueQuery.Builder;
 import org.sonar.server.issue.IssueTesting;
-import org.sonarqube.ws.client.issue.IssueFilterParameters;
 import org.sonar.server.tester.UserSessionRule;
 import org.sonar.server.view.index.ViewIndexDefinition;
 import org.sonar.server.view.index.ViewIndexer;
+import org.sonarqube.ws.client.issue.IssueFilterParameters;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;

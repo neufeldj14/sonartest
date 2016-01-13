@@ -88,11 +88,11 @@ public class ReportCommentMeasuresStepTest {
                   builder(DIRECTORY, DIRECTORY_REF)
                     .addChildren(
                       builder(FILE, FILE_1_REF).build(),
-                      builder(FILE, FILE_2_REF).build()
-                    ).build()
-                ).build()
-            ).build()
-        ).build());
+                      builder(FILE, FILE_2_REF).build())
+                    .build())
+                .build())
+            .build())
+        .build());
   }
 
   @Test

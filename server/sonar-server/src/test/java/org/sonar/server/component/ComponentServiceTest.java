@@ -416,8 +416,7 @@ public class ComponentServiceTest {
     when(componentDao.selectComponentsHavingSameKeyOrderedById(session, projectKey)).thenReturn(newArrayList(
       ComponentTesting.newProjectDto().setId(1L).setKey(projectKey),
       ComponentTesting.newProjectDto().setId(2L).setKey(projectKey),
-      ComponentTesting.newProjectDto().setId(3L).setKey(projectKey)
-    ));
+      ComponentTesting.newProjectDto().setId(3L).setKey(projectKey)));
 
     service = new ComponentService(dbClient, i18n, userSessionRule, System2.INSTANCE, new ComponentFinder(dbClient));
     service.create(NewComponent.create(projectKey, projectKey));

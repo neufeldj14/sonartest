@@ -23,8 +23,8 @@ import java.util.Collection;
 import org.junit.Test;
 import org.sonar.core.issue.DefaultIssue;
 import org.sonar.server.computation.component.Component;
-import org.sonar.server.computation.component.ReportComponent;
 import org.sonar.server.computation.component.FileAttributes;
+import org.sonar.server.computation.component.ReportComponent;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

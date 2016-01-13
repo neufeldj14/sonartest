@@ -29,7 +29,7 @@ import org.sonar.updatecenter.common.Release;
 import static com.google.common.collect.ImmutableList.of;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
-import static org.sonar.test.JsonAssert.assertJson;
+import static org.sonar.server.JsonAssert.assertJson;
 import static org.sonar.updatecenter.common.PluginUpdate.Status.COMPATIBLE;
 import static org.sonar.updatecenter.common.PluginUpdate.Status.INCOMPATIBLE;
 
@@ -71,8 +71,7 @@ public class UpdatesActionTest extends AbstractUpdateCenterBasedPluginsWsActionT
     .addOutgoingDependency(release(JAVA_PLUGIN, "1.0"));
 
   private UpdatesAction underTest = new UpdatesAction(updateCenterFactory,
-    new PluginWSCommons(), new PluginUpdateAggregator()
-    );
+    new PluginWSCommons(), new PluginUpdateAggregator());
 
   @Test
   public void action_updatable_is_defined() {
@@ -103,8 +102,7 @@ public class UpdatesActionTest extends AbstractUpdateCenterBasedPluginsWsActionT
     when(updateCenter.findPluginUpdates()).thenReturn(of(
       pluginUpdate(ABAP_32, COMPATIBLE),
       pluginUpdate(ABAP_31, INCOMPATIBLE),
-      pluginUpdate(ANDROID_10, COMPATIBLE)
-      ));
+      pluginUpdate(ANDROID_10, COMPATIBLE)));
 
     underTest.handle(request, response);
 
@@ -114,8 +112,7 @@ public class UpdatesActionTest extends AbstractUpdateCenterBasedPluginsWsActionT
   @Test
   public void status_COMPATIBLE_is_displayed_COMPATIBLE_in_JSON() throws Exception {
     when(updateCenter.findPluginUpdates()).thenReturn(of(
-      pluginUpdate(release(PLUGIN_1, "1.0.0"), COMPATIBLE)
-      ));
+      pluginUpdate(release(PLUGIN_1, "1.0.0"), COMPATIBLE)));
 
     underTest.handle(request, response);
 
@@ -130,8 +127,7 @@ public class UpdatesActionTest extends AbstractUpdateCenterBasedPluginsWsActionT
         "      ]" +
         "    }" +
         "  ]" +
-        "}"
-      );
+        "}");
   }
 
   @Test
@@ -140,8 +136,7 @@ public class UpdatesActionTest extends AbstractUpdateCenterBasedPluginsWsActionT
       pluginUpdate("key2", "name2"),
       pluginUpdate("key2", "name2"),
       pluginUpdate("key0", "name0"),
-      pluginUpdate("key1", "name1")
-      ));
+      pluginUpdate("key1", "name1")));
 
     underTest.handle(request, response);
 
@@ -161,7 +156,6 @@ public class UpdatesActionTest extends AbstractUpdateCenterBasedPluginsWsActionT
         "      \"name\": \"name2\"" +
         "    }," +
         "  ]" +
-        "}"
-      );
+        "}");
   }
 }

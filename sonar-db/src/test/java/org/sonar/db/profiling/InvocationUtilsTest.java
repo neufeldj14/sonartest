@@ -22,7 +22,7 @@ package org.sonar.db.profiling;
 import java.sql.Connection;
 import java.sql.SQLException;
 import org.junit.Test;
-import org.sonar.test.TestUtils;
+import org.sonar.db.TestUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;

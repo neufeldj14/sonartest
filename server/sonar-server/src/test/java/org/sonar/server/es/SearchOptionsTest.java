@@ -19,12 +19,11 @@
  */
 package org.sonar.server.es;
 
+import java.io.StringWriter;
 import org.junit.Test;
 import org.sonar.api.utils.text.JsonWriter;
+import org.sonar.server.JsonAssert;
 import org.sonar.server.search.QueryContext;
-import org.sonar.test.JsonAssert;
-
-import java.io.StringWriter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;

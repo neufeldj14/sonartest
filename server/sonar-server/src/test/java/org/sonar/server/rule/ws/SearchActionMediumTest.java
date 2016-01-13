@@ -20,6 +20,9 @@
 package org.sonar.server.rule.ws;
 
 import com.google.common.collect.ImmutableSet;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -49,10 +52,6 @@ import org.sonar.server.rule.index.RuleNormalizer;
 import org.sonar.server.tester.ServerTester;
 import org.sonar.server.tester.UserSessionRule;
 import org.sonar.server.ws.WsTester;
-
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

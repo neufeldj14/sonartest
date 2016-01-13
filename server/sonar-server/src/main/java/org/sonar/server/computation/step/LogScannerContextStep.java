@@ -21,7 +21,7 @@ package org.sonar.server.computation.step;
 
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
-import org.sonar.core.util.CloseableIterator;
+import org.sonar.batch.protocol.output.CloseableIterator;
 import org.sonar.server.computation.batch.BatchReportReader;
 
 public class LogScannerContextStep implements ComputationStep {

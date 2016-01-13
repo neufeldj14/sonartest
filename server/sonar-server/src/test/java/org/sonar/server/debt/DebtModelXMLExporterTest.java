@@ -33,12 +33,12 @@ import org.junit.Test;
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.server.debt.DebtRemediationFunction;
 import org.sonar.api.server.debt.internal.DefaultDebtCharacteristic;
+import org.sonar.server.debt.DebtModelXMLExporter.DebtModel;
+import org.sonar.server.debt.DebtModelXMLExporter.RuleDebt;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
-import static org.sonar.server.debt.DebtModelXMLExporter.DebtModel;
-import static org.sonar.server.debt.DebtModelXMLExporter.RuleDebt;
 
 public class DebtModelXMLExporterTest {
 

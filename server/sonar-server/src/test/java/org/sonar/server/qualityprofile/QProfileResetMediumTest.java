@@ -20,6 +20,7 @@
 package org.sonar.server.qualityprofile;
 
 import com.google.common.collect.ImmutableMap;
+import javax.annotation.Nullable;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -42,8 +43,6 @@ import org.sonar.server.db.DbClient;
 import org.sonar.server.platform.Platform;
 import org.sonar.server.qualityprofile.index.ActiveRuleIndex;
 import org.sonar.server.tester.ServerTester;
-
-import javax.annotation.Nullable;
 import org.sonar.server.tester.UserSessionRule;
 
 import static com.google.common.collect.Lists.newArrayList;

@@ -28,7 +28,7 @@ import org.junit.Test;
 import org.sonar.db.deprecated.WorkQueue;
 import org.sonar.db.rule.RuleMapper;
 
-import static org.hamcrest.Matchers.notNullValue;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 
@@ -65,8 +65,8 @@ public class MyBatisTest {
 
     SqlSession session = myBatis.openSession(false);
     try {
-      assertThat(session.getConnection(), notNullValue());
-      assertThat(session.getMapper(RuleMapper.class), notNullValue());
+      assertThat(session.getConnection()).isNotNull();
+      assertThat(session.getMapper(RuleMapper.class)).isNotNull();
     } finally {
       session.close();
     }

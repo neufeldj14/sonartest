@@ -38,7 +38,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.sonar.test.JsonAssert.assertJson;
+import static org.sonar.server.JsonAssert.assertJson;
 
 public class PendingActionTest {
 
@@ -76,8 +76,7 @@ public class PendingActionTest {
       "{" +
         "  \"installing\": []," +
         "  \"removing\": []" +
-        "}"
-      );
+        "}");
   }
 
   @Test
@@ -90,8 +89,7 @@ public class PendingActionTest {
       "{" +
         "  \"installing\": []," +
         "  \"removing\": []" +
-        "}"
-      );
+        "}");
   }
 
   @Test
@@ -102,9 +100,7 @@ public class PendingActionTest {
     when(updateCenter.findAllCompatiblePlugins()).thenReturn(
       Arrays.asList(
         new Plugin("scmgit")
-          .setCategory("cat_1")
-        )
-      );
+          .setCategory("cat_1")));
 
     underTest.handle(request, response);
 
@@ -127,8 +123,7 @@ public class PendingActionTest {
         "    }" +
         "  ]," +
         "  \"removing\": []" +
-        "}"
-      );
+        "}");
   }
 
   @Test
@@ -155,8 +150,7 @@ public class PendingActionTest {
         "      \"implementationBuild\": \"9ce9d330c313c296fab051317cc5ad4b26319e07\"" +
         "    }" +
         "  ]" +
-        "}"
-      );
+        "}");
   }
 
   @Test
@@ -164,8 +158,7 @@ public class PendingActionTest {
     when(pluginDownloader.getDownloadedPlugins()).thenReturn(of(
       newPluginInfo(0).setName("Foo"),
       newPluginInfo(3).setName("Bar"),
-      newPluginInfo(2).setName("Bar")
-      ));
+      newPluginInfo(2).setName("Bar")));
 
     underTest.handle(request, response);
 
@@ -187,8 +180,7 @@ public class PendingActionTest {
         "    }" +
         "  ]," +
         "  \"removing\": []" +
-        "}"
-      );
+        "}");
   }
 
   @Test
@@ -196,8 +188,7 @@ public class PendingActionTest {
     when(serverPluginRepository.getUninstalledPlugins()).thenReturn(of(
       newPluginInfo(0).setName("Foo"),
       newPluginInfo(3).setName("Bar"),
-      newPluginInfo(2).setName("Bar")
-      ));
+      newPluginInfo(2).setName("Bar")));
 
     underTest.handle(request, response);
 
@@ -219,8 +210,7 @@ public class PendingActionTest {
         "      \"name\": \"Foo\"," +
         "    }" +
         "  ]" +
-        "}"
-      );
+        "}");
   }
 
   public PluginInfo gitPluginInfo() {

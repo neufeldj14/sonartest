@@ -20,15 +20,14 @@
 package org.sonar.server.debt;
 
 import com.google.common.io.Resources;
-import org.junit.Test;
-import org.sonar.api.server.debt.DebtCharacteristic;
-
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import org.junit.Test;
+import org.sonar.api.server.debt.DebtCharacteristic;
+import org.sonar.server.debt.DebtModelXMLExporter.DebtModel;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;
-import static org.sonar.server.debt.DebtModelXMLExporter.DebtModel;
 
 public class DebtCharacteristicsXMLImporterTest {
 

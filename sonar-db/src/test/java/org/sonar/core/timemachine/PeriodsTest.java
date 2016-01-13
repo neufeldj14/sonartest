@@ -27,10 +27,10 @@ import org.junit.rules.ExpectedException;
 import org.sonar.api.config.Settings;
 import org.sonar.api.i18n.I18n;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.eq;
-import static org.mockito.Mockito.isNull;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Matchers.isNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.sonar.api.utils.DateUtils.parseDate;

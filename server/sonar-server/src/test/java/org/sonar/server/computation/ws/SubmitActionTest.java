@@ -22,14 +22,14 @@ package org.sonar.server.computation.ws;
 import java.io.InputStream;
 import org.junit.Test;
 import org.mockito.Matchers;
-import org.sonar.core.util.Protobuf;
+import org.sonar.batch.protocol.output.Protobuf;
 import org.sonar.db.ce.CeTaskTypes;
+import org.sonar.server.JsonAssert;
 import org.sonar.server.computation.queue.CeTask;
 import org.sonar.server.computation.queue.report.ReportSubmitter;
-import org.sonarqube.ws.MediaTypes;
 import org.sonar.server.ws.TestResponse;
 import org.sonar.server.ws.WsActionTester;
-import org.sonar.test.JsonAssert;
+import org.sonarqube.ws.MediaTypes;
 import org.sonarqube.ws.WsCe;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -20,7 +20,6 @@
 package org.sonar.process;
 
 import org.junit.Test;
-import org.sonar.test.TestUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

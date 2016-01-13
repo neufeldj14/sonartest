@@ -46,7 +46,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.sonar.db.user.UserTesting.newUserDto;
 import static org.sonar.db.user.UserTokenTesting.newUserToken;
-import static org.sonar.test.JsonAssert.assertJson;
+import static org.sonar.server.JsonAssert.assertJson;
 import static org.sonarqube.ws.client.usertoken.UserTokensWsParameters.PARAM_LOGIN;
 import static org.sonarqube.ws.client.usertoken.UserTokensWsParameters.PARAM_NAME;
 

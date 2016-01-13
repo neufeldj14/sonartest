@@ -20,13 +20,12 @@
 package org.sonar.server.platform;
 
 import com.google.common.io.Resources;
+import java.io.File;
+import java.util.List;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.sonar.api.platform.ServerFileSystem;
-
-import java.io.File;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

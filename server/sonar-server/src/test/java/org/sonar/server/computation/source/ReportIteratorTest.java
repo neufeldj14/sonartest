@@ -19,6 +19,8 @@
  */
 package org.sonar.server.computation.source;
 
+import java.io.File;
+import java.util.NoSuchElementException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -27,9 +29,6 @@ import org.junit.rules.TemporaryFolder;
 import org.sonar.batch.protocol.output.BatchReport;
 import org.sonar.batch.protocol.output.BatchReportWriter;
 import org.sonar.batch.protocol.output.FileStructure;
-
-import java.io.File;
-import java.util.NoSuchElementException;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;

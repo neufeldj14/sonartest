@@ -19,16 +19,14 @@
  */
 package org.sonar.server.es;
 
+import java.io.IOException;
+import java.util.Map;
+import javax.annotation.CheckForNull;
 import org.elasticsearch.action.admin.indices.settings.get.GetSettingsResponse;
 import org.elasticsearch.cluster.metadata.MappingMetaData;
 import org.elasticsearch.common.collect.ImmutableOpenMap;
 import org.junit.Rule;
 import org.junit.Test;
-
-import javax.annotation.CheckForNull;
-
-import java.io.IOException;
-import java.util.Map;
 import org.sonar.api.config.Settings;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -22,6 +22,7 @@ package org.sonar.server.computation.component;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.sonar.batch.protocol.Constants.ComponentType;
 import org.sonar.batch.protocol.output.BatchReport;
 
 import static com.google.common.base.Predicates.equalTo;
@@ -30,7 +31,6 @@ import static com.google.common.collect.FluentIterable.from;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
-import static org.sonar.batch.protocol.Constants.ComponentType;
 import static org.sonar.batch.protocol.Constants.ComponentType.FILE;
 import static org.sonar.server.computation.component.ComponentImpl.builder;
 

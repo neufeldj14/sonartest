@@ -67,26 +67,25 @@ public class ReportDuplicationMeasuresStepTest {
   @Rule
   public TreeRootHolderRule treeRootHolder = new TreeRootHolderRule()
     .setRoot(
-    builder(PROJECT, ROOT_REF)
-      .addChildren(
-        builder(MODULE, MODULE_REF)
-          .addChildren(
-            builder(MODULE, SUB_MODULE_1_REF)
-              .addChildren(
-                builder(DIRECTORY, DIRECTORY_REF)
-                  .addChildren(
-                    builder(FILE, FILE_1_REF).build(),
-                    builder(FILE, FILE_2_REF).build())
-                  .build())
-              .build(),
-            builder(MODULE, SUB_MODULE_2_REF)
-              .addChildren(
-                builder(FILE, FILE_3_REF).build(),
-                builder(FILE, FILE_4_REF).build()
-              )
-              .build())
-          .build())
-      .build());
+      builder(PROJECT, ROOT_REF)
+        .addChildren(
+          builder(MODULE, MODULE_REF)
+            .addChildren(
+              builder(MODULE, SUB_MODULE_1_REF)
+                .addChildren(
+                  builder(DIRECTORY, DIRECTORY_REF)
+                    .addChildren(
+                      builder(FILE, FILE_1_REF).build(),
+                      builder(FILE, FILE_2_REF).build())
+                    .build())
+                .build(),
+              builder(MODULE, SUB_MODULE_2_REF)
+                .addChildren(
+                  builder(FILE, FILE_3_REF).build(),
+                  builder(FILE, FILE_4_REF).build())
+                .build())
+            .build())
+        .build());
   @Rule
   public MetricRepositoryRule metricRepository = new MetricRepositoryRule()
     .add(LINES)

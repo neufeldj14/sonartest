@@ -19,12 +19,11 @@
  */
 package org.sonar.server.platform.monitoring;
 
-import org.junit.Test;
-
+import java.lang.management.ManagementFactory;
 import javax.annotation.CheckForNull;
 import javax.management.InstanceNotFoundException;
 import javax.management.ObjectInstance;
-import java.lang.management.ManagementFactory;
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

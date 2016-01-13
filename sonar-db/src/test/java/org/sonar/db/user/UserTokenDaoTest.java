@@ -20,7 +20,6 @@
 package org.sonar.db.user;
 
 import com.google.common.base.Optional;
-import org.assertj.guava.api.Assertions;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -33,6 +32,7 @@ import org.sonar.db.RowNotFoundException;
 import org.sonar.test.DbTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.guava.api.Assertions.assertThat;
 import static org.sonar.db.user.UserTokenTesting.newUserToken;
 
 @Category(DbTests.class)
@@ -73,7 +73,7 @@ public class UserTokenDaoTest {
 
     Optional<UserTokenDto> result = underTest.selectByTokenHash(dbSession, tokenHash);
 
-    Assertions.assertThat(result).isPresent();
+    assertThat(result).isPresent();
   }
 
   @Test
@@ -94,8 +94,8 @@ public class UserTokenDaoTest {
     Optional<UserTokenDto> unfoundResult1 = underTest.selectByLoginAndName(dbSession, "unknown-login", userToken.getName());
     Optional<UserTokenDto> unfoundResult2 = underTest.selectByLoginAndName(dbSession, userToken.getLogin(), "unknown-name");
 
-    Assertions.assertThat(unfoundResult1).isAbsent();
-    Assertions.assertThat(unfoundResult2).isAbsent();
+    assertThat(unfoundResult1).isAbsent();
+    assertThat(unfoundResult2).isAbsent();
     assertThat(resultByLoginAndName.getLogin()).isEqualTo(userToken.getLogin());
     assertThat(resultByLoginAndName.getName()).isEqualTo(userToken.getName());
     assertThat(resultByLoginAndName.getCreatedAt()).isEqualTo(userToken.getCreatedAt());
@@ -124,9 +124,9 @@ public class UserTokenDaoTest {
     underTest.deleteByLoginAndName(dbSession, "login", "name");
     db.commit();
 
-    Assertions.assertThat(underTest.selectByLoginAndName(dbSession, "login", "name")).isAbsent();
-    Assertions.assertThat(underTest.selectByLoginAndName(dbSession, "login", "another-name")).isPresent();
-    Assertions.assertThat(underTest.selectByLoginAndName(dbSession, "another-login", "name")).isPresent();
+    assertThat(underTest.selectByLoginAndName(dbSession, "login", "name")).isAbsent();
+    assertThat(underTest.selectByLoginAndName(dbSession, "login", "another-name")).isPresent();
+    assertThat(underTest.selectByLoginAndName(dbSession, "another-login", "name")).isPresent();
   }
 
   private void insertToken(UserTokenDto userToken) {

@@ -29,7 +29,7 @@ import javax.annotation.Nonnull;
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.rule.RuleStatus;
 import org.sonar.batch.protocol.output.BatchReport;
-import org.sonar.core.util.CloseableIterator;
+import org.sonar.batch.protocol.output.CloseableIterator;
 import org.sonar.server.computation.batch.BatchReportReader;
 import org.sonar.server.computation.issue.Rule;
 import org.sonar.server.computation.issue.RuleRepository;

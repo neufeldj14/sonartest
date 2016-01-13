@@ -42,7 +42,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
-import static org.sonar.test.ExceptionCauseMatcher.hasType;
+import static org.sonar.server.ExceptionCauseMatcher.hasType;
 
 public class QualityGateLoadingStepTest {
   private static final String PROJECT_KEY = "project key";

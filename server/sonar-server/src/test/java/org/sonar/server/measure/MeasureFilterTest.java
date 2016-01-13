@@ -20,10 +20,9 @@
 package org.sonar.server.measure;
 
 import com.google.common.collect.Lists;
-import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.Collections;
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -19,6 +19,8 @@
  */
 package org.sonar.server.issue.notification;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
@@ -31,9 +33,6 @@ import org.sonar.core.i18n.DefaultI18n;
 import org.sonar.plugins.emailnotifications.api.EmailMessage;
 import org.sonar.server.user.index.UserDoc;
 import org.sonar.server.user.index.UserIndex;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;

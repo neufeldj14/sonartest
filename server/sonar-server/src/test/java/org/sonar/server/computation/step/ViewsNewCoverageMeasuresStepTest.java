@@ -92,7 +92,7 @@ public class ViewsNewCoverageMeasuresStepTest {
     .add(CoreMetrics.NEW_BRANCH_COVERAGE)
     .add(CoreMetrics.NEW_LINE_COVERAGE)
 
-  .add(CoreMetrics.IT_COVERAGE_LINE_HITS_DATA)
+    .add(CoreMetrics.IT_COVERAGE_LINE_HITS_DATA)
     .add(CoreMetrics.IT_CONDITIONS_BY_LINE)
     .add(CoreMetrics.IT_COVERED_CONDITIONS_BY_LINE)
     .add(CoreMetrics.NEW_IT_LINES_TO_COVER)
@@ -103,7 +103,7 @@ public class ViewsNewCoverageMeasuresStepTest {
     .add(CoreMetrics.NEW_IT_BRANCH_COVERAGE)
     .add(CoreMetrics.NEW_IT_LINE_COVERAGE)
 
-  .add(CoreMetrics.OVERALL_COVERAGE_LINE_HITS_DATA)
+    .add(CoreMetrics.OVERALL_COVERAGE_LINE_HITS_DATA)
     .add(CoreMetrics.OVERALL_CONDITIONS_BY_LINE)
     .add(CoreMetrics.OVERALL_COVERED_CONDITIONS_BY_LINE)
     .add(CoreMetrics.NEW_OVERALL_LINES_TO_COVER)
@@ -234,13 +234,13 @@ public class ViewsNewCoverageMeasuresStepTest {
       entryOf(lineCoverageKey, createMeasure(90d, NO_PERIOD_4_OR_5_IN_VIEWS)),
       entryOf(branchCoverageKey, createMeasure(96d, NO_PERIOD_4_OR_5_IN_VIEWS)));
     assertThat(toEntries(measureRepository.getAddedRawMeasures(SUBVIEW_REF))).contains(
-        entryOf(codeCoverageKey, createMeasure(94.8d, NO_PERIOD_4_OR_5_IN_VIEWS)),
-        entryOf(lineCoverageKey, createMeasure(94.5d, NO_PERIOD_4_OR_5_IN_VIEWS)),
-        entryOf(branchCoverageKey, createMeasure(96.9d, NO_PERIOD_4_OR_5_IN_VIEWS)));
+      entryOf(codeCoverageKey, createMeasure(94.8d, NO_PERIOD_4_OR_5_IN_VIEWS)),
+      entryOf(lineCoverageKey, createMeasure(94.5d, NO_PERIOD_4_OR_5_IN_VIEWS)),
+      entryOf(branchCoverageKey, createMeasure(96.9d, NO_PERIOD_4_OR_5_IN_VIEWS)));
     assertThat(toEntries(measureRepository.getAddedRawMeasures(ROOT_REF))).contains(
-        entryOf(codeCoverageKey, createMeasure(94.8d, NO_PERIOD_4_OR_5_IN_VIEWS)),
-        entryOf(lineCoverageKey, createMeasure(94.5d, NO_PERIOD_4_OR_5_IN_VIEWS)),
-        entryOf(branchCoverageKey, createMeasure(96.9d, NO_PERIOD_4_OR_5_IN_VIEWS)));
+      entryOf(codeCoverageKey, createMeasure(94.8d, NO_PERIOD_4_OR_5_IN_VIEWS)),
+      entryOf(lineCoverageKey, createMeasure(94.5d, NO_PERIOD_4_OR_5_IN_VIEWS)),
+      entryOf(branchCoverageKey, createMeasure(96.9d, NO_PERIOD_4_OR_5_IN_VIEWS)));
   }
 
   private static final class MetricKeys {

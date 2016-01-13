@@ -20,6 +20,9 @@
 package org.sonar.server.search;
 
 import com.google.common.collect.ImmutableMap;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Map;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
@@ -30,10 +33,6 @@ import org.junit.Test;
 import org.sonar.api.utils.DateUtils;
 import org.sonar.server.es.EsTester;
 import org.sonar.server.es.NewIndex.NewIndexType;
-
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

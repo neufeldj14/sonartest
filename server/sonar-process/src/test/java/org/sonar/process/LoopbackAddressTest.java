@@ -20,12 +20,10 @@
 package org.sonar.process;
 
 import com.google.common.collect.Iterators;
-import org.junit.Test;
-import org.sonar.test.TestUtils;
-
 import java.net.NetworkInterface;
 import java.util.Collections;
 import java.util.Enumeration;
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;

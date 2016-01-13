@@ -29,10 +29,10 @@ import org.junit.rules.TemporaryFolder;
 import org.sonar.api.web.UserRole;
 import org.sonar.server.exceptions.ForbiddenException;
 import org.sonar.server.platform.ServerLogging;
-import org.sonarqube.ws.MediaTypes;
 import org.sonar.server.tester.UserSessionRule;
 import org.sonar.server.ws.TestResponse;
 import org.sonar.server.ws.WsActionTester;
+import org.sonarqube.ws.MediaTypes;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

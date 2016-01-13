@@ -19,6 +19,9 @@
  */
 package org.sonar.server.search;
 
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.Map;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
 import org.junit.After;
 import org.junit.Before;
@@ -28,10 +31,6 @@ import org.junit.rules.TemporaryFolder;
 import org.sonar.api.config.Settings;
 import org.sonar.process.ProcessProperties;
 import org.sonar.server.es.EsServerHolder;
-
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

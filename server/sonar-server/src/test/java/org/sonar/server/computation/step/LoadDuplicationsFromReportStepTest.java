@@ -37,10 +37,10 @@ import org.sonar.server.computation.duplication.InnerDuplicate;
 import org.sonar.server.computation.duplication.TextBlock;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.sonar.server.ExceptionCauseMatcher.hasType;
 import static org.sonar.server.computation.component.Component.Type.FILE;
 import static org.sonar.server.computation.component.Component.Type.PROJECT;
 import static org.sonar.server.computation.component.ReportComponent.builder;
-import static org.sonar.test.ExceptionCauseMatcher.hasType;
 
 public class LoadDuplicationsFromReportStepTest {
   private static final int LINE = 2;
@@ -54,10 +54,8 @@ public class LoadDuplicationsFromReportStepTest {
     builder(PROJECT, ROOT_REF)
       .addChildren(
         builder(FILE, FILE_1_REF).build(),
-        builder(FILE, FILE_2_REF).build()
-      )
-      .build()
-    );
+        builder(FILE, FILE_2_REF).build())
+      .build());
   @Rule
   public BatchReportReaderRule reportReader = new BatchReportReaderRule();
   @Rule
@@ -111,8 +109,7 @@ public class LoadDuplicationsFromReportStepTest {
         createInProjectDuplicate(FILE_1_REF, OTHER_LINE)),
       createDuplication(
         singleLineTextRange(OTHER_LINE + 80),
-        createInnerDuplicate(LINE), createInnerDuplicate(LINE + 10))
-      );
+        createInnerDuplicate(LINE), createInnerDuplicate(LINE + 10)));
 
     underTest.execute();
 
@@ -124,13 +121,10 @@ public class LoadDuplicationsFromReportStepTest {
         new InProjectDuplicate(file1Component, singleLineTextBlock(LINE + 10))),
       duplication(
         singleLineDetailedTextBlock(2, OTHER_LINE),
-        new InProjectDuplicate(file1Component, singleLineTextBlock(OTHER_LINE))
-      ),
+        new InProjectDuplicate(file1Component, singleLineTextBlock(OTHER_LINE))),
       duplication(
         singleLineDetailedTextBlock(3, OTHER_LINE + 80),
-        new InnerDuplicate(singleLineTextBlock(LINE)), new InnerDuplicate(singleLineTextBlock(LINE + 10))
-      )
-      );
+        new InnerDuplicate(singleLineTextBlock(LINE)), new InnerDuplicate(singleLineTextBlock(LINE + 10))));
   }
 
   @Test
@@ -142,8 +136,7 @@ public class LoadDuplicationsFromReportStepTest {
         createInnerDuplicate(LINE + 1), createInnerDuplicate(LINE + 2), createInProjectDuplicate(FILE_1_REF, LINE + 2)),
       createDuplication(
         singleLineTextRange(LINE),
-        createInnerDuplicate(LINE + 2), createInnerDuplicate(LINE + 3), createInProjectDuplicate(FILE_1_REF, LINE + 2))
-      );
+        createInnerDuplicate(LINE + 2), createInnerDuplicate(LINE + 3), createInProjectDuplicate(FILE_1_REF, LINE + 2)));
 
     underTest.execute();
 
@@ -152,14 +145,11 @@ public class LoadDuplicationsFromReportStepTest {
       duplication(
         singleLineDetailedTextBlock(1, LINE),
         new InnerDuplicate(singleLineTextBlock(LINE + 1)), new InnerDuplicate(singleLineTextBlock(LINE + 2)),
-        new InProjectDuplicate(file1Component, singleLineTextBlock(LINE + 2))
-      ),
+        new InProjectDuplicate(file1Component, singleLineTextBlock(LINE + 2))),
       duplication(
         singleLineDetailedTextBlock(2, LINE),
         new InnerDuplicate(singleLineTextBlock(LINE + 2)), new InnerDuplicate(singleLineTextBlock(LINE + 3)),
-        new InProjectDuplicate(file1Component, singleLineTextBlock(LINE + 2))
-      )
-      );
+        new InProjectDuplicate(file1Component, singleLineTextBlock(LINE + 2))));
   }
 
   @Test

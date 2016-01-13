@@ -20,7 +20,7 @@
 package org.sonar.server.computation.source;
 
 import com.google.common.base.Optional;
-import org.sonar.core.util.CloseableIterator;
+import org.sonar.batch.protocol.output.CloseableIterator;
 import org.sonar.server.computation.batch.BatchReportReader;
 import org.sonar.server.computation.component.Component;
 

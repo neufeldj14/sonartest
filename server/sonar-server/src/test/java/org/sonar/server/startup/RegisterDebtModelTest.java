@@ -19,6 +19,7 @@
  */
 package org.sonar.server.startup;
 
+import java.util.Collections;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,10 +29,10 @@ import org.sonar.db.debt.CharacteristicDao;
 import org.sonar.db.debt.CharacteristicDto;
 import org.sonar.server.debt.DebtModelBackup;
 
-import java.util.Collections;
-
 import static com.google.common.collect.Lists.newArrayList;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RegisterDebtModelTest {

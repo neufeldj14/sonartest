@@ -27,10 +27,8 @@ import org.sonar.api.utils.System2;
 import org.sonar.db.DbTester;
 import org.sonar.test.DbTests;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
 
 @Category(DbTests.class)
 public class DashboardDaoTest {
@@ -44,8 +42,8 @@ public class DashboardDaoTest {
   public void shouldSelectGlobalDashboard() {
     dbTester.prepareDbUnit(getClass(), "shouldSelectGlobalDashboard.xml");
     DashboardDto dashboard = dao.selectGlobalDashboard("SQALE");
-    assertThat(dashboard.getId(), is(2L));
-    assertThat(dashboard.getUserId(), nullValue());
+    assertThat(dashboard.getId()).isEqualTo(2);
+    assertThat(dashboard.getUserId()).isNull();
 
     assertNull(dao.selectGlobalDashboard("unknown"));
   }

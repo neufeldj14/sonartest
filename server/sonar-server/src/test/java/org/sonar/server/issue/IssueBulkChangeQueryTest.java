@@ -19,11 +19,10 @@
  */
 package org.sonar.server.issue;
 
-import org.junit.Test;
-import org.sonar.server.exceptions.BadRequestException;
-
 import java.util.Collections;
 import java.util.Map;
+import org.junit.Test;
+import org.sonar.server.exceptions.BadRequestException;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;

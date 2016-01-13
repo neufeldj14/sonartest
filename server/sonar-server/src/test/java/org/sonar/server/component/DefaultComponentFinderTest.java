@@ -19,12 +19,11 @@
  */
 package org.sonar.server.component;
 
+import java.util.Iterator;
+import java.util.List;
 import org.junit.Test;
 import org.sonar.api.component.Component;
 import org.sonar.api.resources.Project;
-
-import java.util.Iterator;
-import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;

@@ -19,7 +19,7 @@
  */
 package org.sonar.server.computation.source;
 
-import org.sonar.core.util.CloseableIterator;
+import org.sonar.batch.protocol.output.CloseableIterator;
 import org.sonar.server.computation.component.Component;
 
 public interface SourceLinesRepository {

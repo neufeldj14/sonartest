@@ -24,7 +24,7 @@ import com.google.common.collect.Multimap;
 import java.util.Arrays;
 import java.util.Collection;
 import org.junit.rules.ExternalResource;
-import org.sonar.core.util.CloseableIterator;
+import org.sonar.batch.protocol.output.CloseableIterator;
 import org.sonar.server.computation.component.Component;
 
 import static com.google.common.base.Preconditions.checkNotNull;

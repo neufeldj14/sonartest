@@ -31,8 +31,6 @@ import org.sonar.db.DbTester;
 import org.sonar.test.DbTests;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 
 @Category(DbTests.class)
 public class PropertiesDaoTest {
@@ -118,15 +116,15 @@ public class PropertiesDaoTest {
   public void selectGlobalProperties() {
     dbTester.prepareDbUnit(getClass(), "selectGlobalProperties.xml");
     List<PropertyDto> properties = dao.selectGlobalProperties();
-    assertThat(properties.size(), is(2));
+    assertThat(properties).hasSize(2);
 
     PropertyDto first = findById(properties, 1);
-    assertThat(first.getKey(), is("global.one"));
-    assertThat(first.getValue(), is("one"));
+    assertThat(first.getKey()).isEqualTo("global.one");
+    assertThat(first.getValue()).isEqualTo("one");
 
     PropertyDto second = findById(properties, 2);
-    assertThat(second.getKey(), is("global.two"));
-    assertThat(second.getValue(), is("two"));
+    assertThat(second.getKey()).isEqualTo("global.two");
+    assertThat(second.getValue()).isEqualTo("two");
   }
 
   @Test
@@ -135,7 +133,7 @@ public class PropertiesDaoTest {
 
     PropertyDto prop = dao.selectGlobalProperty("global.one");
     assertThat(prop).isNotNull();
-    assertThat(prop.getValue(), is("one"));
+    assertThat(prop.getValue()).isEqualTo("one");
 
     assertThat(dao.selectGlobalProperty("project.one")).isNull();
     assertThat(dao.selectGlobalProperty("user.one")).isNull();
@@ -146,11 +144,11 @@ public class PropertiesDaoTest {
   public void selectProjectProperties() {
     dbTester.prepareDbUnit(getClass(), "selectProjectProperties.xml");
     List<PropertyDto> properties = dao.selectProjectProperties("org.struts:struts");
-    assertThat(properties.size(), is(1));
+    assertThat(properties.size()).isEqualTo(1);
 
     PropertyDto first = properties.get(0);
-    assertThat(first.getKey(), is("struts.one"));
-    assertThat(first.getValue(), is("one"));
+    assertThat(first.getKey()).isEqualTo("struts.one");
+    assertThat(first.getValue()).isEqualTo("one");
   }
 
   @Test
@@ -158,19 +156,19 @@ public class PropertiesDaoTest {
     dbTester.prepareDbUnit(getClass(), "select_module_properties_tree.xml");
 
     List<PropertyDto> properties = dao.selectEnabledDescendantModuleProperties("ABCD", dbTester.getSession());
-    assertThat(properties.size(), is(4));
+    assertThat(properties).hasSize(4);
     assertThat(properties).extracting("key").containsOnly("struts.one", "core.one", "core.two", "data.one");
     assertThat(properties).extracting("value").containsOnly("one", "two");
 
     properties = dao.selectEnabledDescendantModuleProperties("EFGH", dbTester.getSession());
-    assertThat(properties.size(), is(3));
+    assertThat(properties).hasSize(3);
     assertThat(properties).extracting("key").containsOnly("core.one", "core.two", "data.one");
 
     properties = dao.selectEnabledDescendantModuleProperties("FGHI", dbTester.getSession());
-    assertThat(properties.size(), is(1));
+    assertThat(properties).hasSize(1);
     assertThat(properties).extracting("key").containsOnly("data.one");
 
-    assertThat(dao.selectEnabledDescendantModuleProperties("unknown-result.xml", dbTester.getSession()).size(), is(0));
+    assertThat(dao.selectEnabledDescendantModuleProperties("unknown-result.xml", dbTester.getSession())).isEmpty();
   }
 
   @Test
@@ -178,8 +176,8 @@ public class PropertiesDaoTest {
     dbTester.prepareDbUnit(getClass(), "selectProjectProperties.xml");
     PropertyDto property = dao.selectProjectProperty(11L, "commonslang.one");
 
-    assertThat(property.getKey(), is("commonslang.one"));
-    assertThat(property.getValue(), is("two"));
+    assertThat(property.getKey()).isEqualTo("commonslang.one");
+    assertThat(property.getValue()).isEqualTo("two");
   }
 
   @Test

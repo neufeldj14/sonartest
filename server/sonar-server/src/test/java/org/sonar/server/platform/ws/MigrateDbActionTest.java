@@ -46,7 +46,7 @@ import static org.sonar.db.version.DatabaseMigration.Status.FAILED;
 import static org.sonar.db.version.DatabaseMigration.Status.NONE;
 import static org.sonar.db.version.DatabaseMigration.Status.RUNNING;
 import static org.sonar.db.version.DatabaseMigration.Status.SUCCEEDED;
-import static org.sonar.test.JsonAssert.assertJson;
+import static org.sonar.server.JsonAssert.assertJson;
 
 public class MigrateDbActionTest {
   @Rule

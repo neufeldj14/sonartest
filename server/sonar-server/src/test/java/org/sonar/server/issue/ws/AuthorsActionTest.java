@@ -19,6 +19,7 @@
  */
 package org.sonar.server.issue.ws;
 
+import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,8 +28,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.sonar.api.server.ws.WebService;
 import org.sonar.server.issue.IssueService;
 import org.sonar.server.ws.WsTester;
-
-import java.util.Arrays;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

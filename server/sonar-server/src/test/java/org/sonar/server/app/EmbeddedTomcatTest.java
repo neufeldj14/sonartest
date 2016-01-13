@@ -19,18 +19,17 @@
  */
 package org.sonar.server.app;
 
+import java.io.File;
+import java.net.ConnectException;
+import java.net.Inet4Address;
+import java.net.URL;
+import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.sonar.process.NetworkUtils;
 import org.sonar.process.Props;
-
-import java.io.File;
-import java.net.ConnectException;
-import java.net.Inet4Address;
-import java.net.URL;
-import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;

@@ -28,8 +28,7 @@ import org.sonar.api.utils.DateUtils;
 import org.sonar.db.purge.DbCleanerTestUtils;
 import org.sonar.db.purge.PurgeableSnapshotDto;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class IntervalTest {
   static int calendarField(Interval interval, int field) {
@@ -55,39 +54,38 @@ public class IntervalTest {
       DbCleanerTestUtils.createSnapshotWithDate(5L, "2011-06-20"),
 
       DbCleanerTestUtils.createSnapshotWithDate(6L, "2012-06-29") // out of scope
-      );
+    );
 
     List<Interval> intervals = Interval.group(snapshots, DateUtils.parseDate("2010-01-01"), DateUtils.parseDate("2011-12-31"), Calendar.MONTH);
-    assertThat(intervals.size(), is(3));
+    assertThat(intervals).hasSize(3);
 
-    assertThat(intervals.get(0).count(), is(1));
-    assertThat(calendarField(intervals.get(0), Calendar.MONTH), is(Calendar.APRIL));
+    assertThat(intervals.get(0).count()).isEqualTo(1);
+    assertThat(calendarField(intervals.get(0), Calendar.MONTH)).isEqualTo(Calendar.APRIL);
 
-    assertThat(intervals.get(1).count(), is(2));
-    assertThat(calendarField(intervals.get(1), Calendar.MONTH), is(Calendar.MAY));
+    assertThat(intervals.get(1).count()).isEqualTo(2);
+    assertThat(calendarField(intervals.get(1), Calendar.MONTH)).isEqualTo(Calendar.MAY);
 
-    assertThat(intervals.get(2).count(), is(2));
-    assertThat(calendarField(intervals.get(2), Calendar.MONTH), is(Calendar.JUNE));
+    assertThat(intervals.get(2).count()).isEqualTo(2);
+    assertThat(calendarField(intervals.get(2), Calendar.MONTH)).isEqualTo(Calendar.JUNE);
   }
 
   @Test
   public void shouldNotJoinMonthsOfDifferentYears() {
     List<PurgeableSnapshotDto> snapshots = Arrays.asList(
       DbCleanerTestUtils.createSnapshotWithDate(1L, "2010-04-03"),
-      DbCleanerTestUtils.createSnapshotWithDate(2L, "2011-04-13")
-      );
+      DbCleanerTestUtils.createSnapshotWithDate(2L, "2011-04-13"));
 
     List<Interval> intervals = Interval.group(snapshots,
       DateUtils.parseDateTime("2010-01-01T00:00:00+0100"), DateUtils.parseDateTime("2011-12-31T00:00:00+0100"), Calendar.MONTH);
-    assertThat(intervals.size(), is(2));
+    assertThat(intervals).hasSize(2);
 
-    assertThat(intervals.get(0).count(), is(1));
-    assertThat(calendarField(intervals.get(0), Calendar.MONTH), is(Calendar.APRIL));
-    assertThat(calendarField(intervals.get(0), Calendar.YEAR), is(2010));
+    assertThat(intervals.get(0).count()).isEqualTo(1);
+    assertThat(calendarField(intervals.get(0), Calendar.MONTH)).isEqualTo(Calendar.APRIL);
+    assertThat(calendarField(intervals.get(0), Calendar.YEAR)).isEqualTo(2010);
 
-    assertThat(intervals.get(1).count(), is(1));
-    assertThat(calendarField(intervals.get(1), Calendar.MONTH), is(Calendar.APRIL));
-    assertThat(calendarField(intervals.get(1), Calendar.YEAR), is(2011));
+    assertThat(intervals.get(1).count()).isEqualTo(1);
+    assertThat(calendarField(intervals.get(1), Calendar.MONTH)).isEqualTo(Calendar.APRIL);
+    assertThat(calendarField(intervals.get(1), Calendar.YEAR)).isEqualTo(2011);
   }
 
   @Test
@@ -95,14 +93,13 @@ public class IntervalTest {
     List<PurgeableSnapshotDto> snapshots = Arrays.asList(
       DbCleanerTestUtils.createSnapshotWithDateTime(1L, "2011-05-25T00:16:48+0100"),
       DbCleanerTestUtils.createSnapshotWithDateTime(2L, "2012-01-26T00:16:48+0100"),
-      DbCleanerTestUtils.createSnapshotWithDateTime(3L, "2012-01-27T00:16:48+0100")
-      );
+      DbCleanerTestUtils.createSnapshotWithDateTime(3L, "2012-01-27T00:16:48+0100"));
 
     List<Interval> intervals = Interval.group(snapshots,
       DateUtils.parseDateTime("2011-05-25T00:00:00+0100"),
       DateUtils.parseDateTime("2012-01-26T00:00:00+0100"), Calendar.MONTH);
-    assertThat(intervals.size(), is(1));
-    assertThat(intervals.get(0).count(), is(1));
-    assertThat(intervals.get(0).get().get(0).getSnapshotId(), is(2L));
+    assertThat(intervals).hasSize(1);
+    assertThat(intervals.get(0).count()).isEqualTo(1);
+    assertThat(intervals.get(0).get().get(0).getSnapshotId()).isEqualTo(2L);
   }
 }

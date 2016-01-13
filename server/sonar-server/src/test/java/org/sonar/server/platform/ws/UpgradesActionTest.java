@@ -40,14 +40,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.sonar.test.JsonAssert.assertJson;
+import static org.sonar.server.JsonAssert.assertJson;
 
 public class UpgradesActionTest {
   private static final String DUMMY_CONTROLLER_KEY = "dummy";
-  private static final String JSON_EMPTY_UPGRADE_LIST =
-    "{" +
-      "  \"upgrades\":" + "[]" +
-      "}";
+  private static final String JSON_EMPTY_UPGRADE_LIST = "{" +
+    "  \"upgrades\":" + "[]" +
+    "}";
 
   private UpdateCenterMatrixFactory updateCenterFactory = mock(UpdateCenterMatrixFactory.class);
   private UpdateCenter updateCenter = mock(UpdateCenter.class);
@@ -135,8 +134,7 @@ public class UpgradesActionTest {
         .setDate(DateUtils.parseDate("2015-04-02"))
         .setDescription("New overall layout, merge Issues Drilldown [...]")
         .setDownloadUrl("http://dist.sonar.codehaus.org/sonarqube-5.1.zip")
-        .setChangelogUrl("http://jira.sonarsource.com/secure/ReleaseNote.jspa?projectId=11694&version=20666")
-    );
+        .setChangelogUrl("http://jira.sonarsource.com/secure/ReleaseNote.jspa?projectId=11694&version=20666"));
 
     sonarUpdate.addIncompatiblePlugin(brandingPlugin);
     sonarUpdate.addPluginToUpgrade(new Release(viewsPlugin, Version.create("2.8")));

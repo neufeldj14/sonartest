@@ -19,12 +19,10 @@
  */
 package org.sonar.server.db.fake;
 
-import org.apache.ibatis.annotations.Param;
-
-import javax.annotation.Nullable;
-
 import java.sql.Timestamp;
 import java.util.List;
+import javax.annotation.Nullable;
+import org.apache.ibatis.annotations.Param;
 
 public interface FakeMapper {
 

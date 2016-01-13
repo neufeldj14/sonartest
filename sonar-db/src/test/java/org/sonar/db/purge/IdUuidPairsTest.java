@@ -22,7 +22,7 @@ package org.sonar.db.purge;
 import com.google.common.collect.Lists;
 import java.util.List;
 import org.junit.Test;
-import org.sonar.test.TestUtils;
+import org.sonar.db.TestUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

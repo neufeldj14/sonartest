@@ -82,8 +82,7 @@ public class DebtAggregatorTest {
       asList(new CharacteristicImpl(PORTABILITY_SOFT_ID, "PORTABILITY_HARDWARE", PORTABILITY_ID),
         new CharacteristicImpl(PORTABILITY_HARD_ID, "PORTABILITY_SOFTWARE", PORTABILITY_ID)))
     .addCharacteristics(new CharacteristicImpl(RELIABILITY_ID, "RELIABILITY", null),
-      asList(new CharacteristicImpl(DATA_RELIABILITY_ID, "DATA_RELIABILITY", RELIABILITY_ID))
-    );
+      asList(new CharacteristicImpl(DATA_RELIABILITY_ID, "DATA_RELIABILITY", RELIABILITY_ID)));
 
   @org.junit.Rule
   public MetricRepositoryRule metricRepository = new MetricRepositoryRule().add(200, CoreMetrics.TECHNICAL_DEBT);
@@ -185,11 +184,11 @@ public class DebtAggregatorTest {
     return measureRepository.getAddedRawCharacteristicMeasure(component, TECHNICAL_DEBT_KEY, characteristicId);
   }
 
-  private static DefaultIssue newIssue(long debt){
+  private static DefaultIssue newIssue(long debt) {
     return newIssue().setDebt(Duration.create(debt));
   }
 
-  private static DefaultIssue newIssue(){
+  private static DefaultIssue newIssue() {
     return new DefaultIssue().setRuleKey(RULE.getKey());
   }
 }

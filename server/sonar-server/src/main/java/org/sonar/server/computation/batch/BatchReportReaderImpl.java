@@ -34,8 +34,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
 import org.sonar.batch.protocol.output.BatchReport;
-import org.sonar.core.util.CloseableIterator;
-import org.sonar.core.util.LineReaderIterator;
+import org.sonar.batch.protocol.output.CloseableIterator;
+import org.sonar.batch.protocol.output.LineReaderIterator;
 
 public class BatchReportReaderImpl implements BatchReportReader {
   private final org.sonar.batch.protocol.output.BatchReportReader delegate;

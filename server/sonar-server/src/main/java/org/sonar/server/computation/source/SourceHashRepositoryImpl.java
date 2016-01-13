@@ -22,8 +22,8 @@ package org.sonar.server.computation.source;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Nullable;
+import org.sonar.batch.protocol.output.CloseableIterator;
 import org.sonar.core.hash.SourceHashComputer;
-import org.sonar.core.util.CloseableIterator;
 import org.sonar.server.computation.component.Component;
 
 import static com.google.common.base.Preconditions.checkArgument;

@@ -19,6 +19,10 @@
  */
 package org.sonar.server.platform;
 
+import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.Collections;
 import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
 import org.junit.Test;
@@ -27,14 +31,8 @@ import org.sonar.api.platform.ServerFileSystem;
 import org.sonar.core.platform.PluginInfo;
 import org.sonar.core.platform.PluginRepository;
 
-import java.io.File;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.Collections;
-
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -46,7 +44,7 @@ public class RailsAppsDeployerTest {
 
   @Test
   public void hasRubyRailsApp() throws Exception {
-    ClassLoader classLoader = new URLClassLoader(new URL[]{
+    ClassLoader classLoader = new URLClassLoader(new URL[] {
       getClass().getResource("/org/sonar/server/platform/RailsAppsDeployerTest/FakeRubyRailsApp.jar").toURI().toURL()}, null);
 
     assertTrue(RailsAppsDeployer.hasRailsApp("fake", classLoader));
@@ -56,18 +54,17 @@ public class RailsAppsDeployerTest {
   @Test
   public void deployRubyRailsApp() throws Exception {
     File tempDir = this.temp.getRoot();
-    ClassLoader classLoader = new URLClassLoader(new URL[]{
+    ClassLoader classLoader = new URLClassLoader(new URL[] {
       getClass().getResource("/org/sonar/server/platform/RailsAppsDeployerTest/FakeRubyRailsApp.jar").toURI().toURL()}, null);
 
     RailsAppsDeployer.deployRailsApp(tempDir, "fake", classLoader);
 
     File appDir = new File(tempDir, "fake");
-    assertThat(appDir.isDirectory(), is(true));
-    assertThat(appDir.exists(), is(true));
-    assertThat(FileUtils.listFiles(appDir, null, true).size(), is(3));
-    assertThat(new File(appDir, "init.rb").exists(), is(true));
-    assertThat(new File(appDir, "app/controllers/fake_controller.rb").exists(), is(true));
-    assertThat(new File(appDir, "app/views/fake/index.html.erb").exists(), is(true));
+    assertThat(appDir).isDirectory();
+    assertThat(FileUtils.listFiles(appDir, null, true)).hasSize(3);
+    assertThat(new File(appDir, "init.rb")).exists();
+    assertThat(new File(appDir, "app/controllers/fake_controller.rb")).exists();
+    assertThat(new File(appDir, "app/views/fake/index.html.erb")).exists();
   }
 
   @Test
@@ -81,9 +78,8 @@ public class RailsAppsDeployerTest {
     new RailsAppsDeployer(fileSystem, pluginRepository).start();
 
     File appDir = new File(tempDir, "ror");
-    assertThat(appDir.isDirectory(), is(true));
-    assertThat(appDir.exists(), is(true));
-    assertThat(FileUtils.listFiles(appDir, null, true).size(), is(0));
+    assertThat(appDir).isDirectory();
+    assertThat(FileUtils.listFiles(appDir, null, true)).isEmpty();
   }
 
   @Test
@@ -94,9 +90,8 @@ public class RailsAppsDeployerTest {
 
     File dir = new RailsAppsDeployer(fileSystem, mock(PluginRepository.class)).prepareRailsDirectory();
 
-    assertThat(dir.isDirectory(), is(true));
-    assertThat(dir.exists(), is(true));
-    assertThat(dir.getCanonicalPath(), is(new File(tempDir, "ror").getCanonicalPath()));
+    assertThat(dir).isDirectory();
+    assertThat(dir.getCanonicalPath()).isEqualTo(new File(tempDir, "ror").getCanonicalPath());
   }
 
   @Test
@@ -110,9 +105,8 @@ public class RailsAppsDeployerTest {
 
     File dir = new RailsAppsDeployer(fileSystem, mock(PluginRepository.class)).prepareRailsDirectory();
 
-    assertThat(dir.isDirectory(), is(true));
-    assertThat(dir.exists(), is(true));
-    assertThat(dir.getCanonicalPath(), is(new File(tempDir, "ror").getCanonicalPath()));
-    assertThat(FileUtils.listFiles(new File(tempDir, "ror"), null, true).size(), is(0));
+    assertThat(dir).isDirectory();
+    assertThat(dir.getCanonicalPath()).isEqualTo(new File(tempDir, "ror").getCanonicalPath());
+    assertThat(FileUtils.listFiles(new File(tempDir, "ror"), null, true)).isEmpty();
   }
 }

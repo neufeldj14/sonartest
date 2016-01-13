@@ -26,8 +26,7 @@ import org.mockito.MockitoAnnotations;
 import org.sonar.api.notifications.Notification;
 import org.sonar.api.notifications.NotificationChannel;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -53,8 +52,8 @@ public class NotificationDispatcherTest {
   @Test
   public void defaultMethods() {
     NotificationDispatcher dispatcher = new FakeGenericNotificationDispatcher();
-    assertThat(dispatcher.getKey(), is("FakeGenericNotificationDispatcher"));
-    assertThat(dispatcher.toString(), is("FakeGenericNotificationDispatcher"));
+    assertThat(dispatcher.getKey()).isEqualTo("FakeGenericNotificationDispatcher");
+    assertThat(dispatcher.toString()).isEqualTo("FakeGenericNotificationDispatcher");
   }
 
   @Test

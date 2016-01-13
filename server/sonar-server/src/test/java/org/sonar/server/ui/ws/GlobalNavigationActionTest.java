@@ -39,11 +39,11 @@ import org.sonar.db.dashboard.ActiveDashboardDao;
 import org.sonar.db.dashboard.ActiveDashboardDto;
 import org.sonar.db.dashboard.DashboardDao;
 import org.sonar.db.dashboard.DashboardDto;
+import org.sonar.db.user.UserDao;
 import org.sonar.db.user.UserDto;
 import org.sonar.server.db.DbClient;
 import org.sonar.server.tester.UserSessionRule;
 import org.sonar.server.ui.Views;
-import org.sonar.db.user.UserDao;
 import org.sonar.server.ws.WsTester;
 
 import static org.mockito.Mockito.mock;

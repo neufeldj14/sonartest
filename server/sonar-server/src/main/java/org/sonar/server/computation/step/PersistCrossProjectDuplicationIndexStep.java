@@ -20,7 +20,7 @@
 package org.sonar.server.computation.step;
 
 import org.sonar.batch.protocol.output.BatchReport;
-import org.sonar.core.util.CloseableIterator;
+import org.sonar.batch.protocol.output.CloseableIterator;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.duplication.DuplicationUnitDto;
@@ -100,8 +100,7 @@ public class PersistCrossProjectDuplicationIndexStep implements ComputationStep 
               .setEndLine(block.getEndLine())
               .setIndexInFile(indexInFile)
               .setSnapshotId(dbIdsRepository.getSnapshotId(component))
-              .setProjectSnapshotId(projectSnapshotId)
-            );
+              .setProjectSnapshotId(projectSnapshotId));
           indexInFile++;
         }
       } finally {

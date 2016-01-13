@@ -68,17 +68,17 @@ public class DistributionFormulaExecutionTest {
             builder(DIRECTORY, 111)
               .addChildren(
                 builder(Component.Type.FILE, 1111).build(),
-                builder(Component.Type.FILE, 1112).build()
-              ).build()
-          ).build(),
+                builder(Component.Type.FILE, 1112).build())
+              .build())
+          .build(),
         builder(MODULE, 12)
           .addChildren(
             builder(DIRECTORY, 121)
               .addChildren(
-                builder(Component.Type.FILE, 1211).build()
-              ).build()
-          ).build()
-      ).build();
+                builder(Component.Type.FILE, 1211).build())
+              .build())
+          .build())
+      .build();
 
     treeRootHolder.setRoot(project);
 
@@ -106,10 +106,10 @@ public class DistributionFormulaExecutionTest {
           .addChildren(
             builder(DIRECTORY, 111)
               .addChildren(
-                builder(Component.Type.FILE, 1111).build()
-              ).build()
-          ).build()
-      ).build();
+                builder(Component.Type.FILE, 1111).build())
+              .build())
+          .build())
+      .build();
 
     treeRootHolder.setRoot(project);
 

@@ -20,7 +20,6 @@
 package org.sonar.db.version.v50;
 
 import org.junit.Test;
-import org.sonar.db.version.v50.FileSourceDto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

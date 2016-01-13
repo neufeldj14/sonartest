@@ -19,6 +19,8 @@
  */
 package org.sonar.server.db;
 
+import java.io.File;
+import java.sql.DriverManager;
 import org.h2.Driver;
 import org.junit.Rule;
 import org.junit.Test;
@@ -27,9 +29,6 @@ import org.sonar.api.config.Settings;
 import org.sonar.api.database.DatabaseProperties;
 import org.sonar.process.NetworkUtils;
 import org.sonar.process.ProcessProperties;
-
-import java.io.File;
-import java.sql.DriverManager;
 
 import static junit.framework.Assert.fail;
 import static org.assertj.core.api.Assertions.assertThat;

@@ -20,14 +20,13 @@
 package org.sonar.server.plugins.ws;
 
 import com.google.common.collect.ImmutableList;
+import java.util.Collection;
+import java.util.Collections;
 import org.junit.Test;
 import org.sonar.updatecenter.common.Plugin;
 import org.sonar.updatecenter.common.PluginUpdate;
 import org.sonar.updatecenter.common.Release;
 import org.sonar.updatecenter.common.Version;
-
-import java.util.Collection;
-import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

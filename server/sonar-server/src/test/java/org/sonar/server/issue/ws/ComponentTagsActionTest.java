@@ -20,6 +20,7 @@
 package org.sonar.server.issue.ws;
 
 import com.google.common.collect.ImmutableMap;
+import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,8 +33,6 @@ import org.sonar.server.issue.IssueQuery;
 import org.sonar.server.issue.IssueQueryService;
 import org.sonar.server.issue.IssueService;
 import org.sonar.server.ws.WsTester;
-
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

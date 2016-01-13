@@ -25,14 +25,14 @@ import org.sonar.api.utils.System2;
 import org.sonar.core.permission.GlobalPermissions;
 import org.sonar.db.DbTester;
 import org.sonar.db.qualityprofile.QualityProfileDao;
+import org.sonar.server.JsonAssert;
 import org.sonar.server.db.DbClient;
 import org.sonar.server.language.LanguageTesting;
-import org.sonarqube.ws.MediaTypes;
 import org.sonar.server.qualityprofile.QProfileFactory;
 import org.sonar.server.tester.UserSessionRule;
 import org.sonar.server.ws.TestResponse;
 import org.sonar.server.ws.WsActionTester;
-import org.sonar.test.JsonAssert;
+import org.sonarqube.ws.MediaTypes;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

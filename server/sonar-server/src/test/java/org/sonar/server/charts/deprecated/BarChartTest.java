@@ -19,12 +19,11 @@
  */
 package org.sonar.server.charts.deprecated;
 
-import org.junit.Test;
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.Test;
 
 public class BarChartTest extends BaseChartWebTest {
 

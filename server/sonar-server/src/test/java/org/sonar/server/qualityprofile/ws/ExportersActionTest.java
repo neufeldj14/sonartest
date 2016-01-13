@@ -19,12 +19,11 @@
  */
 package org.sonar.server.qualityprofile.ws;
 
+import java.io.Writer;
 import org.junit.Test;
 import org.sonar.api.profiles.ProfileExporter;
 import org.sonar.api.profiles.RulesProfile;
 import org.sonar.server.ws.WsTester;
-
-import java.io.Writer;
 
 import static org.mockito.Mockito.mock;
 

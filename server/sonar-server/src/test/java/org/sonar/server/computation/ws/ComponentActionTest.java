@@ -26,17 +26,17 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.sonar.api.utils.System2;
 import org.sonar.api.web.UserRole;
-import org.sonar.core.util.Protobuf;
+import org.sonar.batch.protocol.output.Protobuf;
 import org.sonar.db.DbTester;
 import org.sonar.db.ce.CeActivityDto;
 import org.sonar.db.ce.CeQueueDto;
 import org.sonar.db.ce.CeTaskTypes;
 import org.sonar.server.computation.log.CeLogging;
 import org.sonar.server.computation.log.LogFileRef;
-import org.sonarqube.ws.MediaTypes;
 import org.sonar.server.tester.UserSessionRule;
 import org.sonar.server.ws.TestResponse;
 import org.sonar.server.ws.WsActionTester;
+import org.sonarqube.ws.MediaTypes;
 import org.sonarqube.ws.WsCe;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -109,9 +109,9 @@ public class ComponentActionTest {
     insertActivity("T5", "PROJECT_1", CeActivityDto.Status.CANCELED);
 
     TestResponse wsResponse = tester.newRequest()
-        .setParam("componentId", "PROJECT_1")
-        .setMediaType(MediaTypes.PROTOBUF)
-        .execute();
+      .setParam("componentId", "PROJECT_1")
+      .setMediaType(MediaTypes.PROTOBUF)
+      .execute();
 
     WsCe.ProjectResponse response = Protobuf.read(wsResponse.getInputStream(), WsCe.ProjectResponse.parser());
     assertThat(response.getQueueCount()).isEqualTo(0);

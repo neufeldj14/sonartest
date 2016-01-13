@@ -25,9 +25,7 @@ import org.sonar.api.config.EmailSettings;
 import org.sonar.api.notifications.Notification;
 import org.sonar.plugins.emailnotifications.api.EmailMessage;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -46,7 +44,7 @@ public class AlertsEmailTemplateTest {
   public void shouldNotFormatIfNotCorrectNotification() {
     Notification notification = new Notification("other-notif");
     EmailMessage message = template.format(notification);
-    assertThat(message, nullValue());
+    assertThat(message).isNull();
   }
 
   @Test
@@ -54,9 +52,9 @@ public class AlertsEmailTemplateTest {
     Notification notification = createNotification("Orange (was Red)", "violations > 4, coverage < 75%", "WARN", "false");
 
     EmailMessage message = template.format(notification);
-    assertThat(message.getMessageId(), is("alerts/45"));
-    assertThat(message.getSubject(), is("Quality gate status changed on \"Foo\""));
-    assertThat(message.getMessage(), is("" +
+    assertThat(message.getMessageId()).isEqualTo("alerts/45");
+    assertThat(message.getSubject()).isEqualTo("Quality gate status changed on \"Foo\"");
+    assertThat(message.getMessage()).isEqualTo("" +
       "Project: Foo\n" +
       "Quality gate status: Orange (was Red)\n" +
       "\n" +
@@ -64,7 +62,7 @@ public class AlertsEmailTemplateTest {
       "  - violations > 4\n" +
       "  - coverage < 75%\n" +
       "\n" +
-      "See it in SonarQube: http://nemo.sonarsource.org/dashboard/index/org.sonar.foo:foo"));
+      "See it in SonarQube: http://nemo.sonarsource.org/dashboard/index/org.sonar.foo:foo");
   }
 
   @Test
@@ -72,9 +70,9 @@ public class AlertsEmailTemplateTest {
     Notification notification = createNotification("Orange (was Red)", "violations > 4, coverage < 75%", "WARN", "true");
 
     EmailMessage message = template.format(notification);
-    assertThat(message.getMessageId(), is("alerts/45"));
-    assertThat(message.getSubject(), is("New quality gate threshold reached on \"Foo\""));
-    assertThat(message.getMessage(), is("" +
+    assertThat(message.getMessageId()).isEqualTo("alerts/45");
+    assertThat(message.getSubject()).isEqualTo("New quality gate threshold reached on \"Foo\"");
+    assertThat(message.getMessage()).isEqualTo("" +
       "Project: Foo\n" +
       "Quality gate status: Orange (was Red)\n" +
       "\n" +
@@ -82,7 +80,7 @@ public class AlertsEmailTemplateTest {
       "  - violations > 4\n" +
       "  - coverage < 75%\n" +
       "\n" +
-      "See it in SonarQube: http://nemo.sonarsource.org/dashboard/index/org.sonar.foo:foo"));
+      "See it in SonarQube: http://nemo.sonarsource.org/dashboard/index/org.sonar.foo:foo");
   }
 
   @Test
@@ -90,15 +88,15 @@ public class AlertsEmailTemplateTest {
     Notification notification = createNotification("Orange (was Red)", "violations > 4", "WARN", "true");
 
     EmailMessage message = template.format(notification);
-    assertThat(message.getMessageId(), is("alerts/45"));
-    assertThat(message.getSubject(), is("New quality gate threshold reached on \"Foo\""));
-    assertThat(message.getMessage(), is("" +
+    assertThat(message.getMessageId()).isEqualTo("alerts/45");
+    assertThat(message.getSubject()).isEqualTo("New quality gate threshold reached on \"Foo\"");
+    assertThat(message.getMessage()).isEqualTo("" +
       "Project: Foo\n" +
       "Quality gate status: Orange (was Red)\n" +
       "\n" +
       "New quality gate threshold: violations > 4\n" +
       "\n" +
-      "See it in SonarQube: http://nemo.sonarsource.org/dashboard/index/org.sonar.foo:foo"));
+      "See it in SonarQube: http://nemo.sonarsource.org/dashboard/index/org.sonar.foo:foo");
   }
 
   @Test
@@ -106,25 +104,25 @@ public class AlertsEmailTemplateTest {
     Notification notification = createNotification("Green (was Red)", "", "OK", "false");
 
     EmailMessage message = template.format(notification);
-    assertThat(message.getMessageId(), is("alerts/45"));
-    assertThat(message.getSubject(), is("\"Foo\" is back to green"));
-    assertThat(message.getMessage(), is("" +
+    assertThat(message.getMessageId()).isEqualTo("alerts/45");
+    assertThat(message.getSubject()).isEqualTo("\"Foo\" is back to green");
+    assertThat(message.getMessage()).isEqualTo("" +
       "Project: Foo\n" +
       "Quality gate status: Green (was Red)\n" +
       "\n" +
       "\n" +
-      "See it in SonarQube: http://nemo.sonarsource.org/dashboard/index/org.sonar.foo:foo"));
+      "See it in SonarQube: http://nemo.sonarsource.org/dashboard/index/org.sonar.foo:foo");
   }
 
   private Notification createNotification(String alertName, String alertText, String alertLevel, String isNewAlert) {
     Notification notification = new Notification("alerts")
-        .setFieldValue("projectName", "Foo")
-        .setFieldValue("projectKey", "org.sonar.foo:foo")
-        .setFieldValue("projectId", "45")
-        .setFieldValue("alertName", alertName)
-        .setFieldValue("alertText", alertText)
-        .setFieldValue("alertLevel", alertLevel)
-        .setFieldValue("isNewAlert", isNewAlert);
+      .setFieldValue("projectName", "Foo")
+      .setFieldValue("projectKey", "org.sonar.foo:foo")
+      .setFieldValue("projectId", "45")
+      .setFieldValue("alertName", alertName)
+      .setFieldValue("alertText", alertText)
+      .setFieldValue("alertLevel", alertLevel)
+      .setFieldValue("isNewAlert", isNewAlert);
     return notification;
   }
 

@@ -19,11 +19,10 @@
  */
 package org.sonar.server.charts;
 
-import org.junit.Test;
-import org.sonar.api.charts.ChartParameters;
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import org.junit.Test;
+import org.sonar.api.charts.ChartParameters;
 
 public class DistributionBarChartTest extends AbstractChartTest {
   DistributionBarChart chart = new DistributionBarChart();

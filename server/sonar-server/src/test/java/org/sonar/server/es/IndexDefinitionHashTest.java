@@ -19,9 +19,8 @@
  */
 package org.sonar.server.es;
 
-import org.junit.Test;
-
 import java.util.Arrays;
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

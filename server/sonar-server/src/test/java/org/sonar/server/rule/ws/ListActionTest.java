@@ -26,9 +26,9 @@ import org.sonar.api.server.ws.WebService;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbTester;
 import org.sonar.db.rule.RuleTesting;
-import org.sonarqube.ws.MediaTypes;
 import org.sonar.server.ws.TestResponse;
 import org.sonar.server.ws.WsActionTester;
+import org.sonarqube.ws.MediaTypes;
 import org.sonarqube.ws.Rules;
 
 import static org.assertj.core.api.Assertions.assertThat;

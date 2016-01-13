@@ -19,6 +19,7 @@
  */
 package org.sonar.server.es;
 
+import java.util.List;
 import org.apache.commons.lang.reflect.FieldUtils;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.client.Client;
@@ -27,8 +28,6 @@ import org.elasticsearch.search.sort.SortBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.junit.Test;
 import org.sonar.server.exceptions.BadRequestException;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;

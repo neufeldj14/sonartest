@@ -412,7 +412,7 @@ public class MeasureDaoTest {
     assertThat(measureDtos).isEmpty();
   }
 
-  //TODO add test for selectBySnapshotIdsAndMetricIds
+  // TODO add test for selectBySnapshotIdsAndMetricIds
 
   @Test
   public void insert() {
@@ -434,11 +434,10 @@ public class MeasureDaoTest {
       .setVariation(5, 5.0d)
       .setAlertStatus("alert")
       .setAlertText("alert-text")
-      .setDescription("measure-description")
-    );
+      .setDescription("measure-description"));
     db.getSession().commit();
 
-    db.assertDbUnit(getClass(), "insert-result.xml", new String[]{"id"}, "project_measures");
+    db.assertDbUnit(getClass(), "insert-result.xml", new String[] {"id"}, "project_measures");
   }
 
   @Test
@@ -446,16 +445,15 @@ public class MeasureDaoTest {
     db.prepareDbUnit(getClass(), "empty.xml");
 
     underTest.insert(db.getSession(), new MeasureDto()
-        .setSnapshotId(2L)
-        .setMetricId(3)
-        .setComponentId(6L)
-        .setValue(2.0d),
+      .setSnapshotId(2L)
+      .setMetricId(3)
+      .setComponentId(6L)
+      .setValue(2.0d),
       new MeasureDto()
         .setSnapshotId(3L)
         .setMetricId(4)
         .setComponentId(6L)
-        .setValue(4.0d)
-    );
+        .setValue(4.0d));
     db.getSession().commit();
 
     assertThat(db.countRowsOfTable("project_measures")).isEqualTo(2);

@@ -20,6 +20,10 @@
 package org.sonar.server.qualityprofile;
 
 import com.google.common.collect.Lists;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
@@ -41,11 +45,6 @@ import org.sonar.server.db.DbClient;
 import org.sonar.server.exceptions.BadRequestException;
 import org.sonar.server.exceptions.NotFoundException;
 import org.sonar.server.tester.ServerTester;
-
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
-import java.util.List;
 import org.sonar.server.tester.UserSessionRule;
 
 import static org.assertj.core.api.Assertions.assertThat;

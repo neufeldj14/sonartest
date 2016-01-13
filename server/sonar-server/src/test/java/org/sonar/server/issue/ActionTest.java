@@ -19,12 +19,11 @@
  */
 package org.sonar.server.issue;
 
+import java.util.Collection;
+import java.util.Map;
 import org.junit.Test;
 import org.sonar.api.issue.Issue;
 import org.sonar.server.user.UserSession;
-
-import java.util.Collection;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

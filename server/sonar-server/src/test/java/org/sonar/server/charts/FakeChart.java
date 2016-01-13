@@ -19,10 +19,9 @@
  */
 package org.sonar.server.charts;
 
+import java.awt.image.BufferedImage;
 import org.sonar.api.charts.Chart;
 import org.sonar.api.charts.ChartParameters;
-
-import java.awt.image.BufferedImage;
 
 class FakeChart implements Chart {
   public String getKey() {

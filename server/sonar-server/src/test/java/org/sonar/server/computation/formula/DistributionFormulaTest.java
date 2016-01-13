@@ -20,7 +20,6 @@
 package org.sonar.server.computation.formula;
 
 import com.google.common.base.Optional;
-import org.assertj.guava.api.Assertions;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -31,6 +30,7 @@ import org.sonar.server.computation.metric.Metric;
 import org.sonar.server.computation.period.PeriodsHolder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.guava.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.sonar.api.measures.CoreMetrics.FUNCTION_COMPLEXITY_DISTRIBUTION_KEY;
@@ -44,9 +44,9 @@ public class DistributionFormulaTest {
 
   CounterInitializationContext counterInitializationContext = mock(CounterInitializationContext.class);
   CreateMeasureContext projectCreateMeasureContext = new DumbCreateMeasureContext(
-      ReportComponent.builder(Component.Type.PROJECT, 1).build(), mock(Metric.class), mock(PeriodsHolder.class));
+    ReportComponent.builder(Component.Type.PROJECT, 1).build(), mock(Metric.class), mock(PeriodsHolder.class));
   CreateMeasureContext fileCreateMeasureContext = new DumbCreateMeasureContext(
-      ReportComponent.builder(Component.Type.FILE, 1).build(), mock(Metric.class), mock(PeriodsHolder.class));
+    ReportComponent.builder(Component.Type.FILE, 1).build(), mock(Metric.class), mock(PeriodsHolder.class));
 
   @Test
   public void check_new_counter_class() {
@@ -93,7 +93,7 @@ public class DistributionFormulaTest {
     when(counterInitializationContext.getMeasure(FUNCTION_COMPLEXITY_DISTRIBUTION_KEY)).thenReturn(Optional.<Measure>absent());
     counter.initialize(counterInitializationContext);
 
-    Assertions.assertThat(BASIC_DISTRIBUTION_FORMULA.createMeasure(counter, projectCreateMeasureContext)).isAbsent();
+    assertThat(BASIC_DISTRIBUTION_FORMULA.createMeasure(counter, projectCreateMeasureContext)).isAbsent();
   }
 
   @Test
@@ -102,7 +102,7 @@ public class DistributionFormulaTest {
     addMeasure(FUNCTION_COMPLEXITY_DISTRIBUTION_KEY, "0=3;3=7;6=10");
     counter.initialize(counterInitializationContext);
 
-    Assertions.assertThat(BASIC_DISTRIBUTION_FORMULA.createMeasure(counter, fileCreateMeasureContext)).isAbsent();
+    assertThat(BASIC_DISTRIBUTION_FORMULA.createMeasure(counter, fileCreateMeasureContext)).isAbsent();
   }
 
   private void addMeasure(String metricKey, String value) {

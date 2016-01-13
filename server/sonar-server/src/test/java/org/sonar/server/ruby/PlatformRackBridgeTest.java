@@ -19,6 +19,7 @@
  */
 package org.sonar.server.ruby;
 
+import javax.servlet.ServletContext;
 import org.jruby.rack.RackApplication;
 import org.jruby.rack.RackApplicationFactory;
 import org.junit.Before;
@@ -26,8 +27,6 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import javax.servlet.ServletContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;

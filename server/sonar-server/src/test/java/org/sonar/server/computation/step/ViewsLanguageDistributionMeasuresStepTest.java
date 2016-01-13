@@ -56,9 +56,9 @@ public class ViewsLanguageDistributionMeasuresStepTest {
           .addChildren(
             builder(SUBVIEW, SUB_SUBVIEW_1_REF)
               .addChildren(
-                  builder(PROJECT_VIEW, PROJECT_VIEW_1_REF).build(),
-                  builder(PROJECT_VIEW, PROJECT_VIEW_2_REF).build(),
-                  builder(PROJECT_VIEW, PROJECT_VIEW_3_REF).build())
+                builder(PROJECT_VIEW, PROJECT_VIEW_1_REF).build(),
+                builder(PROJECT_VIEW, PROJECT_VIEW_2_REF).build(),
+                builder(PROJECT_VIEW, PROJECT_VIEW_3_REF).build())
               .build(),
             builder(SUBVIEW, SUB_SUBVIEW_2_REF).build())
           .build(),

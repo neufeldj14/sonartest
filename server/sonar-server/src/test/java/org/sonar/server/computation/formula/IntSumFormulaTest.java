@@ -21,7 +21,6 @@ package org.sonar.server.computation.formula;
 
 import com.google.common.base.Optional;
 import javax.annotation.Nullable;
-import org.assertj.guava.api.Assertions;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -34,6 +33,7 @@ import org.sonar.server.computation.metric.Metric;
 import org.sonar.server.computation.period.PeriodsHolder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.guava.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.sonar.api.measures.CoreMetrics.LINES_KEY;
@@ -49,9 +49,9 @@ public class IntSumFormulaTest {
   public ExpectedException thrown = ExpectedException.none();
 
   CreateMeasureContext projectCreateMeasureContext = new DumbCreateMeasureContext(
-      ReportComponent.builder(Component.Type.PROJECT, 1).build(), mock(Metric.class), mock(PeriodsHolder.class));
+    ReportComponent.builder(Component.Type.PROJECT, 1).build(), mock(Metric.class), mock(PeriodsHolder.class));
   CreateMeasureContext fileCreateMeasureContext = new DumbCreateMeasureContext(
-      ReportComponent.builder(Component.Type.FILE, 2).build(), mock(Metric.class), mock(PeriodsHolder.class));
+    ReportComponent.builder(Component.Type.FILE, 2).build(), mock(Metric.class), mock(PeriodsHolder.class));
 
   @Test
   public void check_create_new_counter_class() {
@@ -145,7 +145,7 @@ public class IntSumFormulaTest {
   }
 
   private void assertCreateNoMeasure(IntSumCounter counter) {
-    Assertions.assertThat(INT_SUM_FORMULA.createMeasure(counter, projectCreateMeasureContext)).isAbsent();
+    assertThat(INT_SUM_FORMULA.createMeasure(counter, projectCreateMeasureContext)).isAbsent();
   }
 
   private void assertCreateMeasureValue(IntSumCounter counter, int expectMeasureValue) {
@@ -155,7 +155,7 @@ public class IntSumFormulaTest {
   private void initialize_does_not_create_measure_on_file(IntSumCounter counter) {
     counter.initialize(createMeasureInInitContext(10));
 
-    Assertions.assertThat(INT_SUM_FORMULA.createMeasure(counter, fileCreateMeasureContext)).isAbsent();
+    assertThat(INT_SUM_FORMULA.createMeasure(counter, fileCreateMeasureContext)).isAbsent();
   }
 
   private static CounterInitializationContext createMeasureInInitContext(int value) {

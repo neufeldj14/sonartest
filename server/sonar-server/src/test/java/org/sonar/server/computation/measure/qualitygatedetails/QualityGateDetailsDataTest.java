@@ -22,11 +22,11 @@ package org.sonar.server.computation.measure.qualitygatedetails;
 import com.google.common.collect.ImmutableList;
 import java.util.Collections;
 import org.junit.Test;
+import org.sonar.server.JsonAssert;
 import org.sonar.server.computation.measure.Measure;
 import org.sonar.server.computation.metric.Metric;
 import org.sonar.server.computation.metric.MetricImpl;
 import org.sonar.server.computation.qualitygate.Condition;
-import org.sonar.test.JsonAssert;
 
 public class QualityGateDetailsDataTest {
   @Test(expected = NullPointerException.class)

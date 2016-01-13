@@ -19,16 +19,14 @@
  */
 package org.sonar.server.platform;
 
+import java.io.File;
+import java.util.Date;
+import javax.annotation.CheckForNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.sonar.api.platform.Server;
 import org.sonar.api.platform.ServerStartHandler;
 import org.sonar.api.platform.ServerStopHandler;
-
-import javax.annotation.CheckForNull;
-
-import java.io.File;
-import java.util.Date;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;

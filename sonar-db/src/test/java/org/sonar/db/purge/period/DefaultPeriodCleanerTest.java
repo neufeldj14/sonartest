@@ -34,9 +34,9 @@ import org.sonar.db.purge.PurgeSnapshotQuery;
 import org.sonar.db.purge.PurgeableSnapshotDto;
 
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.anyListOf;
-import static org.mockito.Mockito.argThat;
-import static org.mockito.Mockito.eq;
+import static org.mockito.Matchers.anyListOf;
+import static org.mockito.Matchers.argThat;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;

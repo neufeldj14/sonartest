@@ -20,6 +20,7 @@
 package org.sonar.server.issue.notification;
 
 import com.google.common.io.Resources;
+import java.nio.charset.StandardCharsets;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,8 +32,6 @@ import org.sonar.api.notifications.Notification;
 import org.sonar.api.user.User;
 import org.sonar.api.user.UserFinder;
 import org.sonar.plugins.emailnotifications.api.EmailMessage;
-
-import java.nio.charset.StandardCharsets;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

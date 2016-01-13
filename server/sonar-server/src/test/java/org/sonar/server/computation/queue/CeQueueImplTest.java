@@ -36,7 +36,6 @@ import org.sonar.server.computation.monitoring.CEQueueStatus;
 import org.sonar.server.computation.monitoring.CEQueueStatusImpl;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.startsWith;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -197,7 +196,7 @@ public class CeQueueImplTest {
   @Test
   public void fail_to_cancel_if_in_progress() throws Exception {
     expectedException.expect(IllegalStateException.class);
-    expectedException.expectMessage(startsWith("Task is in progress and can't be canceled"));
+    expectedException.expectMessage("Task is in progress and can't be canceled");
 
     CeTask task = submit(CeTaskTypes.REPORT, "PROJECT_1");
     underTest.peek();

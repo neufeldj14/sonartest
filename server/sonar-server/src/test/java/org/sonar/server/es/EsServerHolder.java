@@ -19,6 +19,8 @@
  */
 package org.sonar.server.es;
 
+import java.io.File;
+import java.util.Properties;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.ImmutableSettings;
@@ -28,10 +30,7 @@ import org.sonar.process.NetworkUtils;
 import org.sonar.process.ProcessProperties;
 import org.sonar.process.Props;
 import org.sonar.search.SearchServer;
-import org.sonar.test.TestUtils;
-
-import java.io.File;
-import java.util.Properties;
+import org.sonar.server.TestUtils;
 
 public class EsServerHolder {
 
@@ -63,9 +62,9 @@ public class EsServerHolder {
   public int getPort() {
     return port;
   }
-  
+
   public String getHostName() {
-  return hostName;
+    return hostName;
   }
 
   public SearchServer getServer() {

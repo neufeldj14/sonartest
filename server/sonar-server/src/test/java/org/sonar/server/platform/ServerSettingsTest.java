@@ -20,12 +20,11 @@
 package org.sonar.server.platform;
 
 import com.google.common.collect.ImmutableMap;
+import java.util.Map;
+import java.util.Properties;
 import org.junit.Before;
 import org.junit.Test;
 import org.sonar.api.config.PropertyDefinitions;
-
-import java.util.Map;
-import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

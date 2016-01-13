@@ -21,7 +21,7 @@ package org.sonar.server.es;
 
 import org.elasticsearch.common.collect.ImmutableMap;
 import org.junit.Test;
-import org.sonar.test.TestUtils;
+import org.sonar.server.TestUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

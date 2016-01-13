@@ -40,14 +40,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.sonar.test.JsonAssert.assertJson;
+import static org.sonar.server.JsonAssert.assertJson;
 
 public class InstalledActionTest {
   private static final String DUMMY_CONTROLLER_KEY = "dummy";
-  private static final String JSON_EMPTY_PLUGIN_LIST =
-    "{" +
-      "  \"plugins\":" + "[]" +
-      "}";
+  private static final String JSON_EMPTY_PLUGIN_LIST = "{" +
+    "  \"plugins\":" + "[]" +
+    "}";
 
   @Rule
   public TemporaryFolder temp = new TemporaryFolder();
@@ -97,9 +96,7 @@ public class InstalledActionTest {
   public void empty_fields_are_not_serialized_to_json() throws Exception {
     when(pluginRepository.getPluginInfos()).thenReturn(
       of(
-      new PluginInfo("").setName("")
-      )
-      );
+        new PluginInfo("").setName("")));
 
     underTest.handle(request, response);
 
@@ -120,17 +117,13 @@ public class InstalledActionTest {
         .setHomepageUrl("homepage_url")
         .setIssueTrackerUrl("issueTracker_url")
         .setImplementationBuild("sou_rev_sha1")
-        .setJarFile(new File(getClass().getResource(jarFilename).toURI()))
-      )
-      );
+        .setJarFile(new File(getClass().getResource(jarFilename).toURI()))));
     UpdateCenter updateCenter = mock(UpdateCenter.class);
     when(updateCenterMatrixFactory.getUpdateCenter(false)).thenReturn(Optional.of(updateCenter));
     when(updateCenter.findAllCompatiblePlugins()).thenReturn(
       Arrays.asList(
         new Plugin("plugKey")
-          .setCategory("cat_1")
-        )
-      );
+          .setCategory("cat_1")));
 
     underTest.handle(request, response);
 
@@ -152,8 +145,7 @@ public class InstalledActionTest {
         "      \"implementationBuild\": \"sou_rev_sha1\"" +
         "    }" +
         "  ]" +
-        "}"
-      );
+        "}");
   }
 
   @Test
@@ -163,9 +155,7 @@ public class InstalledActionTest {
         plugin("A", "name2"),
         plugin("B", "name1"),
         plugin("C", "name0"),
-        plugin("D", "name0")
-      )
-      );
+        plugin("D", "name0")));
 
     underTest.handle(request, response);
 
@@ -178,8 +168,7 @@ public class InstalledActionTest {
         "    {\"key\": \"B\"}" + "," +
         "    {\"key\": \"A\"}" +
         "  ]" +
-        "}"
-      );
+        "}");
   }
 
   @Test
@@ -187,9 +176,7 @@ public class InstalledActionTest {
     when(pluginRepository.getPluginInfos()).thenReturn(
       of(
         plugin("A", "name2"),
-        plugin("A", "name2")
-      )
-      );
+        plugin("A", "name2")));
 
     underTest.handle(request, response);
 
@@ -199,8 +186,7 @@ public class InstalledActionTest {
         "  [" +
         "    {\"key\": \"A\"}" +
         "  ]" +
-        "}"
-      );
+        "}");
     assertThat(response.outputAsString()).containsOnlyOnce("name2");
   }
 

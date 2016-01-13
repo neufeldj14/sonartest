@@ -82,13 +82,13 @@ public class ViewsCommentMeasuresStepTest {
         .addChildren(
           builder(SUBVIEW, MODULE_REF)
             .addChildren(
-                builder(SUBVIEW, SUB_MODULE_REF)
-                    .addChildren(
-                        builder(PROJECT_VIEW, PROJECTVIEW_1_REF).build(),
-                        builder(PROJECT_VIEW, PROJECTVIEW_2_REF).build())
-                    .build())
+              builder(SUBVIEW, SUB_MODULE_REF)
+                .addChildren(
+                  builder(PROJECT_VIEW, PROJECTVIEW_1_REF).build(),
+                  builder(PROJECT_VIEW, PROJECTVIEW_2_REF).build())
+                .build())
             .build(),
-            builder(PROJECT_VIEW, PROJECTVIEW_3_REF).build())
+          builder(PROJECT_VIEW, PROJECTVIEW_3_REF).build())
         .build());
   }
 

@@ -20,18 +20,19 @@
 package org.sonar.server.computation.formula;
 
 import com.google.common.base.Optional;
-import org.assertj.guava.api.Assertions;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.sonar.api.measures.CoreMetrics;
 import org.sonar.server.computation.component.Component;
 import org.sonar.server.computation.component.ReportComponent;
+import org.sonar.server.computation.formula.AverageFormula.Builder;
 import org.sonar.server.computation.measure.Measure;
 import org.sonar.server.computation.metric.Metric;
 import org.sonar.server.computation.period.PeriodsHolder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.guava.api.Assertions.assertThat;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -39,7 +40,6 @@ import static org.sonar.api.measures.CoreMetrics.COMPLEXITY_IN_FUNCTIONS_KEY;
 import static org.sonar.api.measures.CoreMetrics.COMPLEXITY_KEY;
 import static org.sonar.api.measures.CoreMetrics.FUNCTIONS_KEY;
 import static org.sonar.api.measures.CoreMetrics.FUNCTION_COMPLEXITY_KEY;
-import static org.sonar.server.computation.formula.AverageFormula.Builder;
 
 public class AverageFormulaTest {
 
@@ -51,7 +51,7 @@ public class AverageFormulaTest {
 
   CounterInitializationContext counterInitializationContext = mock(CounterInitializationContext.class);
   CreateMeasureContext createMeasureContext = new DumbCreateMeasureContext(
-      ReportComponent.builder(Component.Type.PROJECT, 1).build(), mock(Metric.class), mock(PeriodsHolder.class));
+    ReportComponent.builder(Component.Type.PROJECT, 1).build(), mock(Metric.class), mock(PeriodsHolder.class));
 
   @Rule
   public ExpectedException thrown = ExpectedException.none();
@@ -162,7 +162,7 @@ public class AverageFormulaTest {
     when(counterInitializationContext.getMeasure(FUNCTIONS_KEY)).thenReturn(Optional.of(Measure.newMeasureBuilder().createNoValue()));
     counter.initialize(counterInitializationContext);
 
-    Assertions.assertThat(BASIC_AVERAGE_FORMULA.createMeasure(counter, createMeasureContext)).isAbsent();
+    assertThat(BASIC_AVERAGE_FORMULA.createMeasure(counter, createMeasureContext)).isAbsent();
   }
 
   @Test
@@ -184,7 +184,7 @@ public class AverageFormulaTest {
     when(counterInitializationContext.getMeasure(anyString())).thenReturn(Optional.<Measure>absent());
     counter.initialize(counterInitializationContext);
 
-    Assertions.assertThat(BASIC_AVERAGE_FORMULA.createMeasure(counter, createMeasureContext)).isAbsent();
+    assertThat(BASIC_AVERAGE_FORMULA.createMeasure(counter, createMeasureContext)).isAbsent();
   }
 
   @Test
@@ -194,7 +194,7 @@ public class AverageFormulaTest {
     when(counterInitializationContext.getMeasure(FUNCTIONS_KEY)).thenReturn(Optional.<Measure>absent());
     counter.initialize(counterInitializationContext);
 
-    Assertions.assertThat(BASIC_AVERAGE_FORMULA.createMeasure(counter, createMeasureContext)).isAbsent();
+    assertThat(BASIC_AVERAGE_FORMULA.createMeasure(counter, createMeasureContext)).isAbsent();
   }
 
   @Test
@@ -204,7 +204,7 @@ public class AverageFormulaTest {
     addMeasure(FUNCTIONS_KEY, 0d);
     counter.initialize(counterInitializationContext);
 
-    Assertions.assertThat(BASIC_AVERAGE_FORMULA.createMeasure(counter, createMeasureContext)).isAbsent();
+    assertThat(BASIC_AVERAGE_FORMULA.createMeasure(counter, createMeasureContext)).isAbsent();
   }
 
   @Test

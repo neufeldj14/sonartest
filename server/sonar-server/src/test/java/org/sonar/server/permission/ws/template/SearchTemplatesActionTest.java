@@ -60,8 +60,8 @@ import static org.sonar.core.util.Uuids.UUID_EXAMPLE_03;
 import static org.sonar.db.permission.PermissionTemplateTesting.newPermissionTemplateDto;
 import static org.sonar.db.user.GroupTesting.newGroupDto;
 import static org.sonar.db.user.UserTesting.newUserDto;
+import static org.sonar.server.JsonAssert.assertJson;
 import static org.sonar.server.permission.DefaultPermissionTemplates.defaultRootQualifierTemplateProperty;
-import static org.sonar.test.JsonAssert.assertJson;
 
 @Category(DbTests.class)
 public class SearchTemplatesActionTest {

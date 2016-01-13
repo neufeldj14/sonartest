@@ -25,6 +25,7 @@ import org.sonar.db.dialect.H2;
 import org.sonar.db.dialect.MsSql;
 import org.sonar.db.dialect.MySql;
 import org.sonar.db.dialect.Oracle;
+import org.sonar.db.version.DdlChange.Context;
 
 import static java.util.Collections.singletonList;
 import static org.mockito.Matchers.anyListOf;
@@ -33,7 +34,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
-import static org.sonar.db.version.DdlChange.Context;
 
 public class FixMsSqlCollationTest {
 

@@ -20,6 +20,9 @@
 package org.sonar.server.qualitygate.ws;
 
 import com.google.common.collect.ImmutableList;
+import java.util.Collection;
+import java.util.Locale;
+import java.util.Map;
 import org.json.simple.JSONValue;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,10 +38,6 @@ import org.sonar.core.timemachine.Periods;
 import org.sonar.server.qualitygate.QgateProjectFinder;
 import org.sonar.server.qualitygate.QualityGates;
 import org.sonar.server.ws.WsTester;
-
-import java.util.Collection;
-import java.util.Locale;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;

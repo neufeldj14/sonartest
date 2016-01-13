@@ -23,7 +23,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.sonar.db.Database;
 import org.sonar.db.dialect.PostgreSql;
-import org.sonar.db.version.v51.DropIssuesColumns;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

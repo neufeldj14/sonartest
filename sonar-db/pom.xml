@@ -28,15 +28,15 @@
       <artifactId>commons-csv</artifactId>
     </dependency>
     <dependency>
-      <groupId>${project.groupId}</groupId>
+      <groupId>org.sonarsource.scanner.engine</groupId>
       <artifactId>sonar-batch-protocol</artifactId>
     </dependency>
     <dependency>
-      <groupId>${project.groupId}</groupId>
+      <groupId>org.sonarsource.scanner.engine</groupId>
       <artifactId>sonar-core</artifactId>
     </dependency>
     <dependency>
-      <groupId>${project.groupId}</groupId>
+      <groupId>org.sonarsource.scanner.engine</groupId>
       <artifactId>sonar-plugin-api</artifactId>
     </dependency>
     <dependency>
@@ -72,18 +72,23 @@
 
     <!-- tests -->
     <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>sonar-testing-harness</artifactId>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-guava</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.dbunit</groupId>
       <artifactId>dbunit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.code.bean-matchers</groupId>
-      <artifactId>bean-matchers</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -117,13 +122,6 @@
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <skipTests>${skipServerTests}</skipTests>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>

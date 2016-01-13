@@ -45,6 +45,7 @@ import static org.sonar.db.version.DatabaseMigration.Status.FAILED;
 import static org.sonar.db.version.DatabaseMigration.Status.NONE;
 import static org.sonar.db.version.DatabaseMigration.Status.RUNNING;
 import static org.sonar.db.version.DatabaseMigration.Status.SUCCEEDED;
+import static org.sonar.server.JsonAssert.assertJson;
 import static org.sonar.server.platform.ws.DbMigrationJsonWriter.MESSAGE_MIGRATION_REQUIRED;
 import static org.sonar.server.platform.ws.DbMigrationJsonWriter.MESSAGE_NO_MIGRATION_ON_EMBEDDED_DATABASE;
 import static org.sonar.server.platform.ws.DbMigrationJsonWriter.MESSAGE_STATUS_NONE;
@@ -56,7 +57,6 @@ import static org.sonar.server.platform.ws.DbMigrationJsonWriter.STATUS_MIGRATIO
 import static org.sonar.server.platform.ws.DbMigrationJsonWriter.STATUS_MIGRATION_SUCCEEDED;
 import static org.sonar.server.platform.ws.DbMigrationJsonWriter.STATUS_NOT_SUPPORTED;
 import static org.sonar.server.platform.ws.DbMigrationJsonWriter.STATUS_NO_MIGRATION;
-import static org.sonar.test.JsonAssert.assertJson;
 
 public class DbMigrationStatusActionTest {
   @Rule

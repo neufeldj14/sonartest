@@ -75,8 +75,8 @@ public class MeasureComputerContextImplTest {
     .setRoot(builder(org.sonar.server.computation.component.Component.Type.PROJECT, PROJECT_REF).setKey("project")
       .addChildren(
         FILE_1,
-        builder(org.sonar.server.computation.component.Component.Type.FILE, FILE_2_REF).setKey("fileKey2").build()
-      ).build());
+        builder(org.sonar.server.computation.component.Component.Type.FILE, FILE_2_REF).setKey("fileKey2").build())
+      .build());
 
   @Rule
   public MetricRepositoryRule metricRepository = new MetricRepositoryRule()
@@ -85,8 +85,7 @@ public class MeasureComputerContextImplTest {
     .add(new MetricImpl(3, DOUBLE_METRIC_KEY, "double metric", Metric.MetricType.FLOAT))
     .add(new MetricImpl(4, LONG_METRIC_KEY, "long metric", Metric.MetricType.MILLISEC))
     .add(new MetricImpl(5, STRING_METRIC_KEY, "string metric", Metric.MetricType.STRING))
-    .add(new MetricImpl(6, BOOLEAN_METRIC_KEY, "boolean metric", Metric.MetricType.BOOL))
-    ;
+    .add(new MetricImpl(6, BOOLEAN_METRIC_KEY, "boolean metric", Metric.MetricType.BOOL));
 
   @Rule
   public MeasureRepositoryRule measureRepository = MeasureRepositoryRule.create(treeRootHolder, metricRepository);

@@ -19,6 +19,7 @@
  */
 package org.sonar.server.platform;
 
+import java.io.File;
 import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Rule;
@@ -28,8 +29,6 @@ import org.junit.rules.TemporaryFolder;
 import org.sonar.api.CoreProperties;
 import org.sonar.api.config.Settings;
 import org.sonar.process.ProcessProperties;
-
-import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThat;

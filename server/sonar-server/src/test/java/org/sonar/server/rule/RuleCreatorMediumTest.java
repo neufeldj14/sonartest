@@ -21,6 +21,7 @@ package org.sonar.server.rule;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
+import java.util.List;
 import org.assertj.core.api.Fail;
 import org.junit.After;
 import org.junit.Before;
@@ -41,8 +42,6 @@ import org.sonar.server.rule.db.RuleDao;
 import org.sonar.server.rule.index.RuleIndex;
 import org.sonar.server.search.BaseIndex;
 import org.sonar.server.tester.ServerTester;
-
-import java.util.List;
 import org.sonar.server.tester.UserSessionRule;
 
 import static org.assertj.core.api.Assertions.assertThat;

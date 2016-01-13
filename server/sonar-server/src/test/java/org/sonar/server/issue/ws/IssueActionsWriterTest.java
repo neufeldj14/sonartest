@@ -31,10 +31,10 @@ import org.sonar.api.rule.RuleKey;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.core.issue.DefaultIssue;
 import org.sonar.core.issue.workflow.Transition;
+import org.sonar.server.JsonAssert;
 import org.sonar.server.issue.ActionService;
 import org.sonar.server.issue.IssueService;
 import org.sonar.server.tester.UserSessionRule;
-import org.sonar.test.JsonAssert;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.mockito.Matchers.eq;

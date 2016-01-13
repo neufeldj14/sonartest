@@ -20,15 +20,14 @@
 package org.sonar.server.platform;
 
 import com.google.common.collect.ImmutableMap;
+import java.util.Arrays;
+import java.util.Properties;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentMatcher;
 import org.sonar.api.config.PropertyDefinitions;
 import org.sonar.db.property.PropertiesDao;
 import org.sonar.db.property.PropertyDto;
-
-import java.util.Arrays;
-import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.argThat;

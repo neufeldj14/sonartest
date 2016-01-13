@@ -24,7 +24,7 @@ import java.io.IOException;
 import javax.annotation.Nullable;
 import org.apache.commons.io.FileUtils;
 import org.sonar.api.config.Settings;
-import org.sonar.home.cache.FileHashes;
+import org.sonar.core.platform.FileHashes;
 import org.sonar.process.ProcessProperties;
 import org.sonar.server.platform.DefaultServerFileSystem;
 

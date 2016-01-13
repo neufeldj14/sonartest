@@ -51,10 +51,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.sonar.db.component.ComponentTesting.newProjectDto;
+import static org.sonar.server.JsonAssert.assertJson;
 import static org.sonar.server.qualityprofile.ws.SearchAction.PARAM_DEFAULTS;
 import static org.sonar.server.qualityprofile.ws.SearchAction.PARAM_PROFILE_NAME;
 import static org.sonar.server.qualityprofile.ws.SearchAction.PARAM_PROJECT_KEY;
-import static org.sonar.test.JsonAssert.assertJson;
 
 @Category(DbTests.class)
 public class SearchActionTest {
@@ -108,15 +108,13 @@ public class SearchActionTest {
   public void search_nominal() throws Exception {
     when(profileLoader.countAllActiveRules()).thenReturn(ImmutableMap.of(
       "sonar-way-xoo1-12345", 11L,
-      "my-sonar-way-xoo2-34567", 33L
-      ));
+      "my-sonar-way-xoo2-34567", 33L));
 
     qualityProfileDao.insert(dbSession,
       QualityProfileDto.createFor("sonar-way-xoo1-12345").setLanguage(xoo1.getKey()).setName("Sonar way").setDefault(true),
       QualityProfileDto.createFor("sonar-way-xoo2-23456").setLanguage(xoo2.getKey()).setName("Sonar way"),
       QualityProfileDto.createFor("my-sonar-way-xoo2-34567").setLanguage(xoo2.getKey()).setName("My Sonar way").setParentKee("sonar-way-xoo2-23456"),
-      QualityProfileDto.createFor("sonar-way-other-666").setLanguage("other").setName("Sonar way").setDefault(true)
-      );
+      QualityProfileDto.createFor("sonar-way-other-666").setLanguage("other").setName("Sonar way").setDefault(true));
     new ComponentDao().insert(dbSession,
       newProjectDto("project-uuid1"),
       newProjectDto("project-uuid2"));
@@ -132,8 +130,7 @@ public class SearchActionTest {
   @Test
   public void search_for_language() throws Exception {
     qualityProfileDao.insert(dbSession,
-      QualityProfileDto.createFor("sonar-way-xoo1-12345").setLanguage(xoo1.getKey()).setName("Sonar way")
-      );
+      QualityProfileDto.createFor("sonar-way-xoo1-12345").setLanguage(xoo1.getKey()).setName("Sonar way"));
     commit();
 
     String result = ws.newRequest().setParam("language", xoo1.getKey()).execute().getInput();

@@ -47,7 +47,6 @@ public class RestartActionTest {
   @Rule
   public TemporaryFolder temp = new TemporaryFolder();
 
-
   Settings settings = new Settings();
   Platform platform = mock(Platform.class);
   RestartAction sut = new RestartAction(userSessionRule, settings, platform);
@@ -102,7 +101,7 @@ public class RestartActionTest {
     settings.setProperty("process.index", processNumber);
 
     DefaultProcessCommands processCommands = new DefaultProcessCommands(tempFolder, processNumber);
-    
+
     actionTester.newRequest().execute();
 
     assertThat(processCommands.askedForRestart()).isTrue();

@@ -20,15 +20,13 @@
 package org.sonar.process;
 
 import com.google.common.collect.Maps;
+import java.io.File;
+import java.util.Map;
+import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import org.sonar.test.TestUtils;
-
-import java.io.File;
-import java.util.Map;
-import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;
@@ -87,7 +85,7 @@ public class ConfigurationUtilsTest {
     FileUtils.deleteQuietly(propsFile);
 
     try {
-      ConfigurationUtils.loadPropsFromCommandLineArgs(new String[]{propsFile.getAbsolutePath()});
+      ConfigurationUtils.loadPropsFromCommandLineArgs(new String[] {propsFile.getAbsolutePath()});
       fail();
     } catch (IllegalStateException e) {
       assertThat(e).hasMessage("Could not read properties from file: " + propsFile.getAbsolutePath());

@@ -20,9 +20,8 @@
 package org.sonar.server.es;
 
 import com.google.common.collect.ImmutableMap;
-import org.elasticsearch.cluster.metadata.IndexMetaData;
-
 import java.util.Map;
+import org.elasticsearch.cluster.metadata.IndexMetaData;
 
 public class FakeIndexDefinition implements IndexDefinition {
 

@@ -26,8 +26,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.sonar.api.utils.System2;
+import org.sonar.batch.protocol.output.CloseableIterator;
 import org.sonar.core.issue.DefaultIssue;
-import org.sonar.core.util.CloseableIterator;
 import org.sonar.server.computation.component.ComponentVisitor;
 import org.sonar.server.computation.component.ReportComponent;
 import org.sonar.server.computation.component.VisitorsCrawler;
@@ -57,7 +57,8 @@ public class CloseIssuesOnRemovedComponentsVisitorTest {
   @Before
   public void setUp() throws Exception {
     issueCache = new IssueCache(temp.newFile(), System2.INSTANCE);
-    underTest = new VisitorsCrawler(Arrays.<ComponentVisitor>asList(new CloseIssuesOnRemovedComponentsVisitor(baseIssuesLoader, componentsWithUnprocessedIssues, issueCache, issueLifecycle)));
+    underTest = new VisitorsCrawler(
+      Arrays.<ComponentVisitor>asList(new CloseIssuesOnRemovedComponentsVisitor(baseIssuesLoader, componentsWithUnprocessedIssues, issueCache, issueLifecycle)));
   }
 
   @Test

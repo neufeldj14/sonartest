@@ -24,7 +24,7 @@ import com.google.common.collect.SetMultimap;
 import java.util.HashSet;
 import java.util.Set;
 import org.sonar.batch.protocol.output.BatchReport;
-import org.sonar.core.util.CloseableIterator;
+import org.sonar.batch.protocol.output.CloseableIterator;
 import org.sonar.db.DbClient;
 import org.sonar.db.DbSession;
 import org.sonar.db.measure.MeasureDto;

@@ -21,14 +21,13 @@ package org.sonar.server.startup;
 
 import com.google.common.io.Files;
 import com.google.common.io.Resources;
+import java.io.File;
+import java.nio.charset.StandardCharsets;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.sonar.api.config.Settings;
 import org.sonar.server.platform.DefaultServerFileSystem;
-
-import java.io.File;
-import java.nio.charset.StandardCharsets;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

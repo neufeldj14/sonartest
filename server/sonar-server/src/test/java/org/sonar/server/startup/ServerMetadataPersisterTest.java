@@ -19,16 +19,15 @@
  */
 package org.sonar.server.startup;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
 import org.junit.Test;
 import org.mockito.ArgumentMatcher;
 import org.sonar.api.CoreProperties;
 import org.sonar.api.platform.Server;
 import org.sonar.server.platform.PersistentSettings;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Map;
 
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.mock;

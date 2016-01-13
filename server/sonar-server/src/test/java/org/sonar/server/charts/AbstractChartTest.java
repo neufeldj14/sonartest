@@ -19,13 +19,6 @@
  */
 package org.sonar.server.charts;
 
-import org.apache.commons.io.FileUtils;
-import org.jfree.chart.ChartUtilities;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
-
-import javax.swing.JPanel;
-
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -37,6 +30,11 @@ import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JPanel;
+import org.apache.commons.io.FileUtils;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
 
 import static org.junit.Assert.assertTrue;
 

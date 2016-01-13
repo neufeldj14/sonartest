@@ -161,8 +161,7 @@ public class MapBasedRawMeasureRepositoryTest {
     Measure.newMeasureBuilder().create(false),
     Measure.newMeasureBuilder().create("sds"),
     Measure.newMeasureBuilder().create(Measure.Level.OK),
-    Measure.newMeasureBuilder().createNoValue()
-    );
+    Measure.newMeasureBuilder().createNoValue());
 
   @DataProvider
   public static Object[][] measures() {

@@ -40,12 +40,12 @@ import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
 import org.sonar.core.platform.ComponentContainer;
 import org.sonar.process.ProcessProperties;
+import org.sonar.server.TestUtils;
 import org.sonar.server.es.EsServerHolder;
 import org.sonar.server.platform.BackendCleanup;
 import org.sonar.server.platform.ServerTesterPlatform;
 import org.sonar.server.plugins.UpdateCenterClient;
 import org.sonar.server.ws.WsTester;
-import org.sonar.test.TestUtils;
 
 import static org.sonar.server.platform.Platform.Startup.ALL;
 import static org.sonar.server.platform.Platform.Startup.NO_STARTUP_TASKS;

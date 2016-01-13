@@ -19,9 +19,8 @@
  */
 package org.sonar.server.platform.monitoring;
 
-import org.junit.Test;
-
 import java.util.LinkedHashMap;
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

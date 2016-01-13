@@ -24,8 +24,7 @@ import org.junit.Test;
 import org.sonar.api.utils.System2;
 import org.sonar.db.DbTester;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoadedTemplateDaoTest {
 
@@ -38,9 +37,9 @@ public class LoadedTemplateDaoTest {
   public void shouldCountByTypeAndKey() {
     dbTester.prepareDbUnit(getClass(), "shouldCountByTypeAndKey.xml");
 
-    assertThat(dao.countByTypeAndKey("DASHBOARD", "HOTSPOTS"), is(1));
-    assertThat(dao.countByTypeAndKey("DASHBOARD", "UNKNOWN"), is(0));
-    assertThat(dao.countByTypeAndKey("PROFILE", "HOTSPOTS"), is(0));
+    assertThat(dao.countByTypeAndKey("DASHBOARD", "HOTSPOTS")).isEqualTo(1);
+    assertThat(dao.countByTypeAndKey("DASHBOARD", "UNKNOWN")).isEqualTo(0);
+    assertThat(dao.countByTypeAndKey("PROFILE", "HOTSPOTS")).isEqualTo(0);
   }
 
   @Test

@@ -25,7 +25,6 @@ import org.sonar.db.dialect.MsSql;
 import org.sonar.db.dialect.MySql;
 import org.sonar.db.dialect.Oracle;
 import org.sonar.db.dialect.PostgreSql;
-import org.sonar.db.version.DropColumnsBuilder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

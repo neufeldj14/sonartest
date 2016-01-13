@@ -37,8 +37,8 @@ import org.sonar.api.server.ws.WebService;
 import org.sonar.api.server.ws.internal.ValidatingRequest;
 import org.sonar.api.utils.text.JsonWriter;
 import org.sonar.api.utils.text.XmlWriter;
+import org.sonar.server.JsonAssert;
 import org.sonar.server.ws.WsTester.TestResponse.TestStream;
-import org.sonar.test.JsonAssert;
 import org.sonarqube.ws.MediaTypes;
 
 import static org.assertj.core.api.Assertions.assertThat;

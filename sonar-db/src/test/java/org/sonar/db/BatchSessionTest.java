@@ -24,7 +24,7 @@ import org.junit.Test;
 import org.sonar.db.deprecated.ClusterAction;
 import org.sonar.db.deprecated.WorkQueue;
 
-import static org.mockito.Mockito.anyBoolean;
+import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;

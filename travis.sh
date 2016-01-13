@@ -13,6 +13,11 @@ function strongEcho {
   echo "================ $1 ================="
 }
 
+# Build Scanner Engine
+cd engine
+mvn install -e -V -B
+cd ..
+
 case "$TARGET" in
 
 CI)

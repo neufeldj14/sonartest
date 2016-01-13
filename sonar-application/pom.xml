@@ -55,9 +55,9 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>${project.groupId}</groupId>
+      <groupId>org.sonarsource.scanner.engine</groupId>
       <artifactId>sonar-batch-shaded</artifactId>
-      <version>${project.version}</version>
+      <version>${scannerEngine.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -120,8 +120,8 @@
 
     <!-- unit tests -->
     <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>sonar-testing-harness</artifactId>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -230,13 +230,6 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <skipTests>${skipServerTests}</skipTests>
-        </configuration>
       </plugin>
     </plugins>
   </build>

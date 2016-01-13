@@ -30,8 +30,8 @@ import org.sonar.updatecenter.common.Version;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.sonar.api.utils.DateUtils.parseDate;
+import static org.sonar.server.JsonAssert.assertJson;
 import static org.sonar.server.plugins.ws.PluginWSCommons.toJSon;
-import static org.sonar.test.JsonAssert.assertJson;
 import static org.sonar.updatecenter.common.PluginUpdate.Status.COMPATIBLE;
 import static org.sonar.updatecenter.common.PluginUpdate.Status.DEPENDENCIES_REQUIRE_SONAR_UPGRADE;
 import static org.sonar.updatecenter.common.PluginUpdate.Status.INCOMPATIBLE;
@@ -176,8 +176,7 @@ public class PluginWSCommonsTest {
   public void writeUpdate_renders_key_name_and_description_of_requirements() {
     PluginUpdate pluginUpdate = new PluginUpdate();
     pluginUpdate.setRelease(
-      new Release(newPlugin(), version("1.0")).addOutgoingDependency(newRelease())
-      );
+      new Release(newPlugin(), version("1.0")).addOutgoingDependency(newRelease()));
 
     jsonWriter.beginObject();
     underTest.writeUpdate(jsonWriter, pluginUpdate);

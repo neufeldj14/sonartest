@@ -19,6 +19,7 @@
  */
 package org.sonar.server.platform;
 
+import java.io.File;
 import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
 import org.junit.Test;
@@ -26,8 +27,6 @@ import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
 import org.sonar.api.platform.ServerFileSystem;
 import org.sonar.api.utils.TempFolder;
-
-import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

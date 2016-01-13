@@ -20,6 +20,8 @@
 package org.sonar.server.issue;
 
 import com.google.common.collect.ImmutableSet;
+import java.util.Collection;
+import java.util.Map;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -28,9 +30,6 @@ import org.mockito.Matchers;
 import org.sonar.core.issue.DefaultIssue;
 import org.sonar.core.issue.IssueChangeContext;
 import org.sonar.core.issue.IssueUpdater;
-
-import java.util.Collection;
-import java.util.Map;
 
 import static com.google.common.collect.Maps.newHashMap;
 import static org.mockito.Matchers.any;

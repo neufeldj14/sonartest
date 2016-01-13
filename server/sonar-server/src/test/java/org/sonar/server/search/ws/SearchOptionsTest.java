@@ -27,9 +27,9 @@ import org.sonar.api.server.ws.WebService;
 import org.sonar.api.server.ws.WebService.Param;
 import org.sonar.api.server.ws.internal.SimpleGetRequest;
 import org.sonar.api.utils.text.JsonWriter;
+import org.sonar.server.JsonAssert;
 import org.sonar.server.search.QueryContext;
 import org.sonar.server.search.Result;
-import org.sonar.test.JsonAssert;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

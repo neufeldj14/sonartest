@@ -19,6 +19,10 @@
  */
 package org.sonar.server.startup;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.hamcrest.core.Is;
 import org.junit.Before;
@@ -28,11 +32,6 @@ import org.junit.rules.TemporaryFolder;
 import org.sonar.core.platform.PluginInfo;
 import org.sonar.core.platform.PluginRepository;
 import org.sonar.server.platform.DefaultServerFileSystem;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.assertThat;
 import static org.junit.matchers.JUnitMatchers.containsString;

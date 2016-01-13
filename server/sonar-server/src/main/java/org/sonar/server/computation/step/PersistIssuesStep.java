@@ -21,20 +21,20 @@ package org.sonar.server.computation.step;
 
 import org.sonar.api.issue.IssueComment;
 import org.sonar.api.utils.System2;
+import org.sonar.batch.protocol.output.CloseableIterator;
 import org.sonar.core.issue.DefaultIssue;
 import org.sonar.core.issue.DefaultIssueComment;
 import org.sonar.core.issue.FieldDiffs;
+import org.sonar.db.DbClient;
+import org.sonar.db.DbSession;
+import org.sonar.db.MyBatis;
 import org.sonar.db.issue.IssueChangeDto;
 import org.sonar.db.issue.IssueChangeMapper;
 import org.sonar.db.issue.IssueDto;
 import org.sonar.db.issue.IssueMapper;
-import org.sonar.server.computation.issue.UpdateConflictResolver;
-import org.sonar.db.DbSession;
-import org.sonar.db.MyBatis;
 import org.sonar.server.computation.issue.IssueCache;
 import org.sonar.server.computation.issue.RuleRepository;
-import org.sonar.db.DbClient;
-import org.sonar.core.util.CloseableIterator;
+import org.sonar.server.computation.issue.UpdateConflictResolver;
 
 public class PersistIssuesStep implements ComputationStep {
 

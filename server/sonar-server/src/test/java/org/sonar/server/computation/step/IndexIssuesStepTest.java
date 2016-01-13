@@ -22,14 +22,12 @@ package org.sonar.server.computation.step;
 import org.junit.Rule;
 import org.junit.Test;
 import org.sonar.server.computation.batch.TreeRootHolderRule;
-import org.sonar.server.computation.component.Component;
-import org.sonar.server.computation.component.ReportComponent;
 import org.sonar.server.issue.index.IssueIndexer;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.sonar.server.computation.component.Component.Type.*;
-import static org.sonar.server.computation.component.ReportComponent.*;
+import static org.sonar.server.computation.component.Component.Type.PROJECT;
+import static org.sonar.server.computation.component.ReportComponent.builder;
 
 public class IndexIssuesStepTest {
 

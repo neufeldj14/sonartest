@@ -59,10 +59,9 @@ public class ComputeQProfileMeasureStepTest {
     .addChildren(
       ReportComponent.builder(MODULE, MODULE_REF)
         .addChildren(
-          ReportComponent.builder(MODULE, SUB_MODULE_REF).build()
-        )
-        .build()
-    ).build();
+          ReportComponent.builder(MODULE, SUB_MODULE_REF).build())
+        .build())
+    .build();
 
   @Rule
   public ExpectedException thrown = ExpectedException.none();
@@ -101,11 +100,10 @@ public class ComputeQProfileMeasureStepTest {
       .addChildren(
         ReportComponent.builder(MODULE, MODULE_REF)
           .addChildren(
-            ReportComponent.builder(MODULE, SUB_MODULE_REF).build()
-          )
+            ReportComponent.builder(MODULE, SUB_MODULE_REF).build())
           .build(),
-        ReportComponent.builder(MODULE, 12).build()
-      ).build();
+        ReportComponent.builder(MODULE, 12).build())
+      .build();
 
     treeRootHolder.setRoot(project);
 

@@ -49,7 +49,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.sonar.db.component.ComponentTesting.newDirectory;
 import static org.sonar.db.component.ComponentTesting.newFileDto;
 import static org.sonar.db.component.ComponentTesting.newProjectDto;
-import static org.sonar.test.JsonAssert.assertJson;
+import static org.sonar.server.JsonAssert.assertJson;
 import static org.sonarqube.ws.client.component.ComponentsWsParameters.PARAM_ID;
 import static org.sonarqube.ws.client.component.ComponentsWsParameters.PARAM_KEY;
 
@@ -136,7 +136,7 @@ public class ShowActionTest {
       request.setParam(PARAM_KEY, key);
     }
 
-    try(InputStream responseStream = request.execute().getInputStream()) {
+    try (InputStream responseStream = request.execute().getInputStream()) {
       return ShowWsResponse.parseFrom(responseStream);
     } catch (IOException e) {
       throw Throwables.propagate(e);

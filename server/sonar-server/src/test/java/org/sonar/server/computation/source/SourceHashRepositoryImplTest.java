@@ -31,8 +31,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
+import org.sonar.batch.protocol.output.CloseableIterator;
 import org.sonar.core.hash.SourceHashComputer;
-import org.sonar.core.util.CloseableIterator;
 import org.sonar.server.computation.component.Component;
 import org.sonar.server.computation.component.ReportComponent;
 import org.sonar.server.computation.component.ViewsComponent;
@@ -80,34 +80,34 @@ public class SourceHashRepositoryImplTest {
   @DataProvider
   public static Object[][] componentsOfAllTypesButFile() {
     return FluentIterable.from(Arrays.asList(Component.Type.values()))
-        .filter(new Predicate<Component.Type>() {
-          @Override
-          public boolean apply(@Nullable Component.Type input) {
-            return input != Component.Type.FILE;
+      .filter(new Predicate<Component.Type>() {
+        @Override
+        public boolean apply(@Nullable Component.Type input) {
+          return input != Component.Type.FILE;
+        }
+      })
+      .transform(new Function<Component.Type, Component>() {
+        @Nullable
+        @Override
+        public Component apply(Component.Type input) {
+          if (input.isReportType()) {
+            return ReportComponent.builder(input, input.hashCode())
+              .setKey(input.name() + "_key")
+              .build();
+          } else if (input.isViewsType()) {
+            return ViewsComponent.builder(input, input.name() + "_key")
+              .build();
+          } else {
+            throw new IllegalArgumentException("Unsupported type " + input);
           }
-        })
-        .transform(new Function<Component.Type, Component>() {
-          @Nullable
-          @Override
-          public Component apply(Component.Type input) {
-            if (input.isReportType()) {
-              return ReportComponent.builder(input, input.hashCode())
-                  .setKey(input.name() + "_key")
-                  .build();
-            } else if (input.isViewsType()) {
-              return ViewsComponent.builder(input, input.name() + "_key")
-                  .build();
-            } else {
-              throw new IllegalArgumentException("Unsupported type " + input);
-            }
-          }
-        }).transform(new Function<Component, Component[]>() {
-          @Nullable
-          @Override
-          public Component[] apply(@Nullable Component input) {
-            return new Component[] { input };
-          }
-        }).toArray(Component[].class);
+        }
+      }).transform(new Function<Component, Component[]>() {
+        @Nullable
+        @Override
+        public Component[] apply(@Nullable Component input) {
+          return new Component[] {input};
+        }
+      }).toArray(Component[].class);
 
   }
 
