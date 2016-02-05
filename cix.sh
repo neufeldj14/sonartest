@@ -19,7 +19,7 @@ case "$RUN_ACTIVITY" in
   run-db-unit-tests-*)
     DB_ENGINE=`echo $RUN_ACTIVITY | sed "s/run-db-unit-tests-//g"`
 
-    echo "./run-db-unit-tests.sh $DB_ENGINE $SLAVE_TYPE"
+    ./run-db-unit-tests.sh "http://infra.internal.sonarsource.com/jenkins/orch-${DB_ENGINE}.properties"
     ;;
 
   run-db-integration-tests-*)
