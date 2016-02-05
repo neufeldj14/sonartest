@@ -3,17 +3,6 @@
 
 set -euo pipefail
 
-if [ -z "${RUN_ACTIVITY:-}" ]; then
-  echo "missing RUN_ACTIVITY"
-  exit 1
-fi
-
-if [ -z "${SLAVE_TYPE:-}" ]; then
-  echo "missing SLAVE_TYPE"
-  exit 1
-fi
-
-
 case "$RUN_ACTIVITY" in
 
   run-db-unit-tests-*)
