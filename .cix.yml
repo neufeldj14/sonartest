@@ -35,4 +35,4 @@ exclude:
   - RUN_ACTIVITY: run-upgrade-tests-postgresql93
     SLAVE_TYPE: performance
   - RUN_ACTIVITY: run-perf-tests
-    SLAVE_TYPE: linux
+    SLAVE_TYPE: linux && gva
