@@ -36,7 +36,7 @@ case "$RUN_ACTIVITY" in
     ;;
 
   run-perf-tests)
-    echo "./run-perf-tests.sh"
+    ./run-perf-tests.sh
     ;;
 
   *)
