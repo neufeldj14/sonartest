@@ -17,10 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package com.sonar.performance.batch;
+package org.sonarsource.sonarqube.perf.scanner;
 
 import com.google.common.collect.Lists;
-import com.sonar.performance.MavenLogs;
+import org.sonarsource.sonarqube.perf.MavenLogs;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;

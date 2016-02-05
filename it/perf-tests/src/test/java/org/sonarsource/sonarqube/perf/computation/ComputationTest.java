@@ -17,15 +17,14 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package com.sonar.performance.computation;
+package org.sonarsource.sonarqube.perf.computation;
 
 import com.google.common.base.Charsets;
 import com.sonar.orchestrator.Orchestrator;
-import com.sonar.orchestrator.build.SonarRunner;
+import com.sonar.orchestrator.build.SonarScanner;
 import com.sonar.orchestrator.locator.FileLocation;
-import com.sonar.orchestrator.locator.MavenLocation;
-import com.sonar.performance.MavenLogs;
-import com.sonar.performance.PerfTestCase;
+import org.sonarsource.sonarqube.perf.MavenLogs;
+import org.sonarsource.sonarqube.perf.PerfTestCase;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -68,7 +67,7 @@ public class ComputationTest extends PerfTestCase {
 
   @Test
   public void analyse_big_project() throws Exception {
-    SonarRunner runner = SonarRunner.create()
+    SonarScanner scanner = SonarScanner.create()
       .setProperties(
         "sonar.projectKey", "big-project",
         "sonar.projectName", "Big Project",
@@ -77,7 +76,7 @@ public class ComputationTest extends PerfTestCase {
         "sonar.profile", "one-xoo-issue-per-line")
       .setProjectDir(bigProjectBaseDir);
 
-    orchestrator.executeBuild(runner);
+    orchestrator.executeBuild(scanner);
 
     assertComputationDurationAround(340000L);
   }

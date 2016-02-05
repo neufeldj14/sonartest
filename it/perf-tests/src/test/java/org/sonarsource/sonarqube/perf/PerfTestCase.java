@@ -17,21 +17,20 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package com.sonar.performance;
+package org.sonarsource.sonarqube.perf;
 
-import com.sonar.orchestrator.build.SonarRunner;
+import com.sonar.orchestrator.build.SonarScanner;
 import com.sonar.orchestrator.locator.FileLocation;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.hamcrest.CustomMatcher;
 import org.junit.Rule;
 import org.junit.rules.ErrorCollector;
 import org.junit.rules.TestName;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -90,13 +89,15 @@ public abstract class PerfTestCase {
   /**
    * New batch analysis with most features disabled by default (empty QP, no CPD, no SCM, ...)
    */
-  public static SonarRunner newSonarRunner(String sonarRunnerOpts, String... props) {
-    return SonarRunner.create()
+  public static SonarScanner newScanner(String sonarRunnerOpts, String... props) {
+    SonarScanner scanner = SonarScanner.create()
       .setProperties(
         "sonar.scm.disabled", "true",
         "sonar.cpd.exclusions", "**")
-      .setProperties(props)
+      .setProperties(props);
+    scanner
       .setEnvironmentVariable("SONAR_RUNNER_OPTS", sonarRunnerOpts)
       .setProjectDir(FileLocation.of("projects/xoo-sample").getFile());
+    return scanner;
   }
 }

@@ -17,12 +17,11 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package com.sonar.performance.batch.suite;
+package org.sonarsource.sonarqube.perf.scanner.suite;
 
 import com.sonar.orchestrator.Orchestrator;
 import com.sonar.orchestrator.locator.FileLocation;
-import com.sonar.orchestrator.locator.MavenLocation;
-import com.sonar.performance.PerfTestCase;
+import org.sonarsource.sonarqube.perf.PerfTestCase;
 import java.io.File;
 import java.io.IOException;
 import org.junit.BeforeClass;
@@ -39,7 +38,7 @@ import org.junit.runners.Suite;
   MemoryTest.class,
   IssuesModeTest.class
 })
-public class BatchPerfTestSuite {
+public class ScannerPerfTestSuite {
 
   @ClassRule
   public static final Orchestrator ORCHESTRATOR = Orchestrator
@@ -55,6 +54,6 @@ public class BatchPerfTestSuite {
   @BeforeClass
   public static void setUp() throws IOException {
     // Execute a first analysis to prevent any side effects with cache of plugin JAR files
-    ORCHESTRATOR.executeBuild(PerfTestCase.newSonarRunner("-Xmx512m -server", "sonar.profile", "one-xoo-issue-per-line"));
+    ORCHESTRATOR.executeBuild(PerfTestCase.newScanner("-Xmx512m -server", "sonar.profile", "one-xoo-issue-per-line"));
   }
 }

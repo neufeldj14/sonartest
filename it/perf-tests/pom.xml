@@ -22,14 +22,15 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
+          <argLine>-Dsonar.runtimeVersion=${project.version} -Dorchestrator.sqZipDir=../../sonar-application/target</argLine>
           <includes>
-            <include>com/sonar/performance/${category}/suite/*TestSuite.java</include>
+            <include>org/sonarsource/sonarqube/perf/${category}/suite/*TestSuite.java</include>
             <!-- not included in suites -->
-            <include>com/sonar/performance/${category}/*Test.java</include>
+            <include>org/sonarsource/sonarqube/perf/${category}/*Test.java</include>
           </includes>
           <excludes>
             <!-- included into suites -->
-            <exclude>com/sonar/performance/*/suite/*Test.java</exclude>
+            <exclude>org/sonarsource/sonarqube/perf/*/suite/*Test.java</exclude>
           </excludes>
         </configuration>
       </plugin>

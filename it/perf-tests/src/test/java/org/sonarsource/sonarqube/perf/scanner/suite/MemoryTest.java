@@ -17,15 +17,15 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package com.sonar.performance.batch.suite;
+package org.sonarsource.sonarqube.perf.scanner.suite;
 
 import com.google.common.base.Strings;
 import com.sonar.orchestrator.Orchestrator;
 import com.sonar.orchestrator.build.BuildResult;
 import com.sonar.orchestrator.build.SonarRunner;
-import com.sonar.performance.MavenLogs;
-import com.sonar.performance.PerfRule;
-import com.sonar.performance.PerfTestCase;
+import org.sonarsource.sonarqube.perf.MavenLogs;
+import org.sonarsource.sonarqube.perf.PerfRule;
+import org.sonarsource.sonarqube.perf.PerfTestCase;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -50,7 +50,7 @@ public class MemoryTest extends PerfTestCase {
   public static TemporaryFolder temp = new TemporaryFolder();
 
   @ClassRule
-  public static Orchestrator orchestrator = BatchPerfTestSuite.ORCHESTRATOR;
+  public static Orchestrator orchestrator = ScannerPerfTestSuite.ORCHESTRATOR;
 
   @Before
   public void cleanDatabase() {
@@ -60,7 +60,7 @@ public class MemoryTest extends PerfTestCase {
   @Test
   public void should_not_fail_with_limited_xmx_memory_and_no_coverage_per_test() {
     orchestrator.executeBuild(
-      newSonarRunner("-Xmx80m -server -XX:-HeapDumpOnOutOfMemoryError"));
+      newScanner("-Xmx80m -server -XX:-HeapDumpOnOutOfMemoryError"));
   }
 
   int DEPTH = 4;

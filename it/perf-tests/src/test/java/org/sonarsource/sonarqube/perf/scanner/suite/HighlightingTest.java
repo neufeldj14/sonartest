@@ -17,14 +17,14 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package com.sonar.performance.batch.suite;
+package org.sonarsource.sonarqube.perf.scanner.suite;
 
 import com.sonar.orchestrator.Orchestrator;
 import com.sonar.orchestrator.build.BuildResult;
 import com.sonar.orchestrator.build.SonarRunner;
-import com.sonar.performance.MavenLogs;
-import com.sonar.performance.PerfRule;
-import com.sonar.performance.PerfTestCase;
+import org.sonarsource.sonarqube.perf.MavenLogs;
+import org.sonarsource.sonarqube.perf.PerfRule;
+import org.sonarsource.sonarqube.perf.PerfTestCase;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.junit.*;
@@ -48,12 +48,12 @@ public class HighlightingTest extends PerfTestCase {
   public static TemporaryFolder temp = new TemporaryFolder();
 
   @ClassRule
-  public static Orchestrator orchestrator = BatchPerfTestSuite.ORCHESTRATOR;
+  public static Orchestrator orchestrator = ScannerPerfTestSuite.ORCHESTRATOR;
 
   @BeforeClass
   public static void setUp() throws IOException {
     // Execute a first analysis to prevent any side effects with cache of plugin JAR files
-    orchestrator.executeBuild(newSonarRunner("-Xmx512m -server", "sonar.profile", "one-xoo-issue-per-line"));
+    orchestrator.executeBuild(newScanner("-Xmx512m -server", "sonar.profile", "one-xoo-issue-per-line"));
   }
 
   @Before

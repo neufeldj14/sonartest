@@ -17,13 +17,13 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package com.sonar.performance.server;
+package org.sonarsource.sonarqube.perf.server;
 
 import com.github.kevinsawicki.http.HttpRequest;
 import com.sonar.orchestrator.Orchestrator;
 import com.sonar.orchestrator.build.MavenBuild;
 import com.sonar.orchestrator.locator.FileLocation;
-import com.sonar.performance.PerfTestCase;
+import org.sonarsource.sonarqube.perf.PerfTestCase;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;

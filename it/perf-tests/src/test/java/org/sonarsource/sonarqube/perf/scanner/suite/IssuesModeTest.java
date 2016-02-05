@@ -17,12 +17,12 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package com.sonar.performance.batch.suite;
+package org.sonarsource.sonarqube.perf.scanner.suite;
 
 import com.sonar.orchestrator.Orchestrator;
 import com.sonar.orchestrator.build.SonarRunner;
-import com.sonar.performance.PerfRule;
-import com.sonar.performance.PerfTestCase;
+import org.sonarsource.sonarqube.perf.PerfRule;
+import org.sonarsource.sonarqube.perf.PerfTestCase;
 import java.io.File;
 import java.io.IOException;
 import org.junit.Before;
@@ -34,7 +34,7 @@ import org.junit.rules.TemporaryFolder;
 public class IssuesModeTest extends PerfTestCase {
 
   @ClassRule
-  public static Orchestrator orchestrator = BatchPerfTestSuite.ORCHESTRATOR;
+  public static Orchestrator orchestrator = ScannerPerfTestSuite.ORCHESTRATOR;
 
   @ClassRule
   public static TemporaryFolder temp = new TemporaryFolder();
@@ -57,7 +57,7 @@ public class IssuesModeTest extends PerfTestCase {
     File userHome = temp.newFolder();
     orchestrator.getServer().provisionProject("sample", "xoo-sample");
     orchestrator.getServer().associateProjectToQualityProfile("sample", "xoo", "one-xoo-issue-per-line");
-    SonarRunner runner = newSonarRunner(
+    SonarRunner runner = newScanner(
       "-Xmx512m -server -XX:MaxPermSize=64m",
       "sonar.analysis.mode", "issues",
       "sonar.userHome", userHome.getAbsolutePath(),
@@ -75,7 +75,7 @@ public class IssuesModeTest extends PerfTestCase {
     File userHome = temp.newFolder();
     orchestrator.getServer().provisionProject("sample", "xoo-sample");
     orchestrator.getServer().associateProjectToQualityProfile("sample", "xoo", "one-xoo-issue-per-line");
-    SonarRunner runner = newSonarRunner(
+    SonarRunner runner = newScanner(
       "-Xmx512m -server -XX:MaxPermSize=64m",
       "sonar.analysis.mode", "issues",
       "sonar.useWsCache", "true",

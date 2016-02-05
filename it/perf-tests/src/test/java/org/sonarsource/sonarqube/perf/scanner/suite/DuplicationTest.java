@@ -17,12 +17,13 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package com.sonar.performance.batch.suite;
+package org.sonarsource.sonarqube.perf.scanner.suite;
 
 import com.sonar.orchestrator.Orchestrator;
 import com.sonar.orchestrator.build.MavenBuild;
 import com.sonar.orchestrator.locator.FileLocation;
-import com.sonar.performance.PerfTestCase;
+import org.sonarsource.sonarqube.perf.PerfTestCase;
+import java.io.IOException;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -33,8 +34,6 @@ import org.junit.rules.TemporaryFolder;
 import org.sonar.wsclient.services.Resource;
 import org.sonar.wsclient.services.ResourceQuery;
 
-import java.io.IOException;
-
 import static org.fest.assertions.Assertions.assertThat;
 
 public class DuplicationTest extends PerfTestCase {
@@ -42,16 +41,16 @@ public class DuplicationTest extends PerfTestCase {
   @Rule
   public ErrorCollector collector = new ErrorCollector();
 
-  @ClassRule
-  public static TemporaryFolder temp = new TemporaryFolder();
+  @Rule
+  public TemporaryFolder temp = new TemporaryFolder();
 
   @ClassRule
-  public static Orchestrator orchestrator = BatchPerfTestSuite.ORCHESTRATOR;
+  public static Orchestrator orchestrator = ScannerPerfTestSuite.ORCHESTRATOR;
 
   @BeforeClass
   public static void setUp() throws IOException {
     // Execute a first analysis to prevent any side effects with cache of plugin JAR files
-    orchestrator.executeBuild(newSonarRunner("-Xmx512m -server", "sonar.profile", "one-xoo-issue-per-line"));
+    orchestrator.executeBuild(newScanner("-Xmx512m -server", "sonar.profile", "one-xoo-issue-per-line"));
   }
 
   @Before
