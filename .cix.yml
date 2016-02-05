@@ -5,14 +5,14 @@
 
 RUN_ACTIVITY:
   - run-db-unit-tests-mysql56
-  - run-db-integration-tests-mysql56-cat1
-  - run-db-integration-tests-mysql56-cat2
-  - run-db-integration-tests-mysql56-cat3
-  - run-db-integration-tests-mysql56-cat4
-  - run-upgrade-tests-mysql56
-  - run-db-unit-tests-postgresql93
-  - run-db-integration-tests-postgresql93
-  - run-upgrade-tests-postgresql93
+  #- run-db-integration-tests-mysql56-cat1
+  #- run-db-integration-tests-mysql56-cat2
+  #- run-db-integration-tests-mysql56-cat3
+  #- run-db-integration-tests-mysql56-cat4
+  #- run-upgrade-tests-mysql56
+  #- run-db-unit-tests-postgresql93
+  #- run-db-integration-tests-postgresql93
+  #- run-upgrade-tests-postgresql93
   - run-perf-tests
 
 exclude:
