@@ -30,6 +30,8 @@ before_cache:
   - 'find ~/.m2/repository -type d -name \*-SNAPSHOT -exec rm -rf {} \;'
   - 'find ~/.m2/repository -name maven-metadata-\* -exec rm {} \;'
   - 'find ~/.m2/repository -name resolver-status.properties -exec rm {} \;'
+  # remove all the artifacts (JAR, ZIP) that are installed in local repo because of mvn deploy
+  - rm -rf $HOME/.m2/repository/org/sonarsource/sonarqube
 
 notifications:
   email: false
