@@ -11,4 +11,4 @@ exclude:
   - RUN_ACTIVITY: run-db-unit-tests-mysql56
     SLAVE_TYPE: performance
   - RUN_ACTIVITY: run-perf-tests
-    SLAVE_TYPE: linux && gva
+    SLAVE_TYPE: linux
