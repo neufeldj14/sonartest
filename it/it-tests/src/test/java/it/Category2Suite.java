@@ -58,6 +58,7 @@ import it.issue.NewIssuesMeasureTest;
 import it.measure.NewDebtRatioMeasureTest;
 import it.measure.TechnicalDebtMeasureVariationTest;
 import it.measureFilter.MeasureFiltersTest;
+import it.projectEvent.EventTest;
 import it.test.CoverageTest;
 import it.test.CoverageTrackingTest;
 import it.test.NewCoverageTest;
@@ -99,7 +100,9 @@ import static util.ItUtils.xooPlugin;
   TechnicalDebtMeasureTest.class,
   TechnicalDebtPurgeTest.class,
   TechnicalDebtTest.class,
-  TechnicalDebtWidgetTest.class
+  TechnicalDebtWidgetTest.class,
+  // project event
+  EventTest.class
 })
 public class Category2Suite {
 
