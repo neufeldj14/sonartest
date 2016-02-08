@@ -141,6 +141,7 @@
         <plugin>
           <groupId>org.sonarsource.orchestrator</groupId>
           <artifactId>orchestrator-maven-plugin</artifactId>
+          <version>${orchestrator.version}</version>
           <configuration>
             <sonar.runtimeVersion>${project.version}</sonar.runtimeVersion>
           </configuration>
