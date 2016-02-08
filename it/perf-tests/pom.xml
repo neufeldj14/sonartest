@@ -22,7 +22,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
-          <argLine>-Dsonar.runtimeVersion=${project.version} -Dorchestrator.sqZipDir=../../sonar-application/target</argLine>
+          <argLine>-Dsonar.runtimeVersion=${project.version}</argLine>
           <includes>
             <include>org/sonarsource/sonarqube/perf/${category}/suite/*TestSuite.java</include>
             <!-- not included in suites -->
@@ -77,4 +77,48 @@
     </dependency>
   </dependencies>
 
+  <profiles>
+    <profile>
+      <id>qa</id>
+      <activation>
+        <property>
+          <name>env.SONARSOURCE_QA</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.10</version>
+            <executions>
+              <execution>
+                <id>copy-plugin</id>
+                <phase>generate-test-resources</phase>
+                <goals>
+                  <goal>copy</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>${project.groupId}</groupId>
+                      <artifactId>sonar-xoo-plugin</artifactId>
+                      <version>${project.version}</version>
+                      <type>sonar-plugin</type>
+                      <overWrite>true</overWrite>
+                    </artifactItem>
+                  </artifactItems>
+                  <outputDirectory>../../plugins/sonar-xoo-plugin/target</outputDirectory>
+                  <overWriteReleases>true</overWriteReleases>
+                  <overWriteSnapshots>true</overWriteSnapshots>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
 </project>
