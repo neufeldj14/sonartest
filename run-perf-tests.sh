@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "YeAH"
+echo 'Run performance tests'
 cd it/perf-tests
-mvn verify -B -e -V
+mvn verify -B -e -V $*

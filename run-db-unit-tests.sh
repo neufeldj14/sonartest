@@ -1,4 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-mvn verify -pl :sonar-db -am -Dorchestrator.configUrl=$1 -B -e -V
+ORCHESTRATOR_CONFIG_URL=$1
+shift
+
+mvn verify -pl :sonar-db -Dorchestrator.configUrl=$ORCHESTRATOR_CONFIG_URL -B -e -V $*
