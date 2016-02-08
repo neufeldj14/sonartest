@@ -23,6 +23,7 @@ import com.github.kevinsawicki.http.HttpRequest;
 import com.sonar.orchestrator.Orchestrator;
 import com.sonar.orchestrator.build.MavenBuild;
 import com.sonar.orchestrator.locator.FileLocation;
+import org.junit.Ignore;
 import org.sonarsource.sonarqube.perf.PerfTestCase;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -30,6 +31,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.fail;
 
+@Ignore("Temporarily disabled as it requires access to IT_SOURCES")
 public class WebTest extends PerfTestCase {
 
   static final int DEFAULT_PAGE_TIMEOUT_MS = 1000;
